@@ -36,9 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new CategoryAlreadyExistException(registration.name());
         }
         final Category category = Category.from(registration);
-        return CategoryResponse.from(
-            this.categoryRepository.save(category)
-        );
+        return CategoryResponse.from(this.categoryRepository.save(category));
     }
 
     @Transactional
