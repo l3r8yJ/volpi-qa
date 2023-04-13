@@ -1,12 +1,15 @@
 package ru.volpi.qaadmin.dto.question;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import ru.volpi.qaadmin.domain.question.Question;
 
-import java.io.Serial;
 import java.io.Serializable;
 
-public record QuestionResponse(String name, String answer, String categoryName) implements Serializable {
+public record QuestionResponse(String text, String answer, String categoryName) implements Serializable {
+    public static QuestionResponse from(final Question question) {
+        return new QuestionResponse(
+            question.getText(),
+            question.getAnswer(),
+            question.getCategory().getName()
+        );
+    }
 }
