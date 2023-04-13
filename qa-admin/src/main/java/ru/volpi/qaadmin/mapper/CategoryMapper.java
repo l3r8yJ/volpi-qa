@@ -1,6 +1,7 @@
 package ru.volpi.qaadmin.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import ru.volpi.qaadmin.domain.category.Category;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;

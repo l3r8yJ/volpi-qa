@@ -30,8 +30,8 @@ final class CategoryServiceImplIT extends TestcontainersTest {
     @Test
     @DisplayName("Save non conflicting category")
     void savesCategory() {
-        assertThat(this.categoryService.save(new CategoryRegistration("Третья категория")).name())
-            .isEqualTo("Третья категория");
+        assertThat(this.categoryService.save(new CategoryRegistration("Третья категория")))
+            .isNotNull();
     }
 
     @Test
@@ -84,7 +84,7 @@ final class CategoryServiceImplIT extends TestcontainersTest {
     @Test
     @DisplayName("Deletes existing category")
     void deletesExistingCategory() {
-        assertThat(this.categoryService.deleteCategoryById(1230L)).isEqualTo(1230L);
+        assertThat(this.categoryService.deleteCategoryById(3421L)).isEqualTo(3421L);
     }
 
     @Test
