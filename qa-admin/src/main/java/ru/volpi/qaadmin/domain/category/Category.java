@@ -41,14 +41,6 @@ public class Category implements Serializable {
     @Builder.Default
     private Set<Question> questions = new HashSet<>(0);
 
-    public static Category from(CategoryRegistration registration) {
-        return Category.builder().name(registration.name()).build();
-    }
-
-    public static Category from(CategoryUpdate update) {
-        return Category.builder().name(update.name()).build();
-    }
-
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {

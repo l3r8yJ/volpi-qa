@@ -3,6 +3,7 @@ package ru.volpi.qaadmin.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
+import ru.volpi.qaadmin.domain.category.Categories;
 import ru.volpi.qaadmin.domain.category.Category;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
@@ -35,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (this.categoryRepository.existsByName(registration.name())) {
             throw new CategoryAlreadyExistException(registration.name());
         }
-        final Category category = Category.from(registration);
+        final Category category = Categories.from(registration);
         return CategoryResponse.from(this.categoryRepository.save(category));
     }
 
@@ -43,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse update(Long id, CategoryUpdate update) {
         return this.categoryRepository.findById(id)
-            .map(entity -> Category.builder().id(id).name(update.name()).build())
+            .map(entity -> Categories.of(id, update))
             .map(this.categoryRepository::saveAndFlush)
             .map(CategoryResponse::from)
             .orElseThrow(() -> new CategoryNotFoundException(id));
