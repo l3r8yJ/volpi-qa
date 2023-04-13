@@ -14,8 +14,7 @@ import ru.volpi.qaadmin.service.CategoryService;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
-final class CategoryServiceImplIT extends TestcontainersTest {
+class CategoryServiceImplTest extends TestcontainersTest {
 
     @Autowired
     private CategoryService categoryService;
@@ -48,7 +47,6 @@ final class CategoryServiceImplIT extends TestcontainersTest {
     @DisplayName("Updates existing category")
     void updatesExistingCategory() {
         CategoryResponse update = this.categoryService.update(1230L, new CategoryUpdate("Новая Категория"));
-        System.out.println(update);
         assertThat(update.name()).isEqualTo("Новая Категория");
     }
 
@@ -84,7 +82,7 @@ final class CategoryServiceImplIT extends TestcontainersTest {
     @Test
     @DisplayName("Deletes existing category")
     void deletesExistingCategory() {
-        assertThat(this.categoryService.deleteCategoryById(3421L)).isEqualTo(3421L);
+        assertThat(this.categoryService.deleteById(3421L)).isEqualTo(3421L);
     }
 
     @Test
@@ -92,7 +90,7 @@ final class CategoryServiceImplIT extends TestcontainersTest {
     void deletesNonExistingCategoryCorrectly() {
         assertThrows(
             CategoryNotFoundException.class,
-            () -> this.categoryService.deleteCategoryById(43L),
+            () -> this.categoryService.deleteById(43L),
             "Категория с id '43' не найдена\""
         );
     }

@@ -1,6 +1,8 @@
 package ru.volpi.qaadmin;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
@@ -12,8 +14,7 @@ import ru.volpi.qaadmin.annotation.IntegrationTest;
 @IntegrationTest
 public class TestcontainersTest {
 
-    @Container
-    protected static final PostgreSQLContainer<?> CONTAINER
+    private static final PostgreSQLContainer<?> CONTAINER
         = new PostgreSQLContainer<>("postgres:15.1");
 
     private static final String DATASOURCE_URL_PROPERTY = "spring.datasource.url";

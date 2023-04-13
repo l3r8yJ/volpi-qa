@@ -3,6 +3,7 @@ package ru.volpi.qaadmin.domain.category;
 import lombok.experimental.UtilityClass;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryUpdate;
+import ru.volpi.qaadmin.dto.question.QuestionsCategory;
 
 @UtilityClass
 public class Categories {
@@ -16,5 +17,9 @@ public class Categories {
 
     public static Category of(final Long id, final CategoryUpdate update) {
         return Category.builder().id(id).name(update.name()).build();
+    }
+
+    public static Category from(QuestionsCategory category) {
+        return Category.builder().id(category.id()).name(category.name()).build();
     }
 }

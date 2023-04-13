@@ -60,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Transactional
     @Override
-    public Long deleteCategoryById(final Long id) {
+    public Long deleteById(final Long id) {
         if (!this.categoryRepository.existsById(id)) {
             throw new CategoryNotFoundException(id);
         }
