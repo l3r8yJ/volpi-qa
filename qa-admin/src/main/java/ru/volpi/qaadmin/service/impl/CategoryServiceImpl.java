@@ -7,16 +7,13 @@ import ru.volpi.qaadmin.domain.category.Category;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
 import ru.volpi.qaadmin.dto.category.CategoryUpdate;
-import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.exception.category.CategoryAlreadyExistException;
 import ru.volpi.qaadmin.exception.category.CategoryNotFoundException;
-import ru.volpi.qaadmin.mapper.CategoryMapper;
 import ru.volpi.qaadmin.repository.CategoryRepository;
 import ru.volpi.qaadmin.service.CategoryService;
 import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @TransactionalService
@@ -25,13 +22,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    private final CategoryMapper categoryMapper;
-
     @Transactional
     @Override
     public List<CategoryResponse> findAll() {
         return this.categoryRepository.findAll()
-            .stream().map(this.categoryMapper::toCategoryResponse).toList();
+            .stream().map(CategoryResponse::from).toList();
     }
 
     @Transactional
@@ -40,9 +35,8 @@ public class CategoryServiceImpl implements CategoryService {
         if (this.categoryRepository.existsByName(registration.name())) {
             throw new CategoryAlreadyExistException(registration.name());
         }
-        final Category category =
-            Category.builder().name(registration.name()).build();
-        return this.categoryMapper.toCategoryResponse(
+        final Category category = Category.from(registration);
+        return CategoryResponse.from(
             this.categoryRepository.save(category)
         );
     }
@@ -53,20 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
         return this.categoryRepository.findById(id)
             .map(entity -> Category.builder().id(id).name(update.name()).build())
             .map(this.categoryRepository::saveAndFlush)
-            .map(
-                entity -> new CategoryResponse(
-                    entity.getName(),
-                    entity.getQuestions()
-                        .stream().map(
-                            question ->
-                                new QuestionResponse(
-                                    question.getText(),
-                                    question.getAnswer(),
-                                    question.getCategory().getName()
-                                )
-                        ).collect(Collectors.toSet())
-                )
-            )
+            .map(CategoryResponse::from)
             .orElseThrow(() -> new CategoryNotFoundException(id));
     }
 
@@ -74,20 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse findCategoryByName(final String name) {
         return this.categoryRepository.findByNameIgnoreCase(name)
-            .map(ent ->
-                new CategoryResponse(
-                    ent.getName(),
-                    ent.getQuestions()
-                        .stream()
-                        .map(
-                            question -> new QuestionResponse(
-                                question.getText(),
-                                question.getAnswer(),
-                                question.getCategory().getName()
-                            )
-                        ).collect(Collectors.toSet())
-                )
-            )
+            .map(CategoryResponse::from)
             .orElseThrow(() -> new CategoryNotFoundException(name));
     }
 

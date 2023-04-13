@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'jacoco'
 	id 'org.springframework.boot' version '3.0.5'
 	id 'io.spring.dependency-management' version '1.1.0'
 }
@@ -44,6 +45,16 @@ dependencyManagement {
 	imports {
 		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
 	}
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+	}
+}
+
+test {
+	finalizedBy jacocoTestReport
 }
 
 tasks.named('test') {

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 import ru.volpi.qaadmin.domain.question.Question;
+import ru.volpi.qaadmin.dto.category.CategoryRegistration;
+import ru.volpi.qaadmin.dto.category.CategoryUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -38,6 +40,14 @@ public class Category implements Serializable {
     @ToString.Exclude
     @Builder.Default
     private Set<Question> questions = new HashSet<>(0);
+
+    public static Category from(CategoryRegistration registration) {
+        return Category.builder().name(registration.name()).build();
+    }
+
+    public static Category from(CategoryUpdate update) {
+        return Category.builder().name(update.name()).build();
+    }
 
     @Override
     public boolean equals(final Object obj) {
