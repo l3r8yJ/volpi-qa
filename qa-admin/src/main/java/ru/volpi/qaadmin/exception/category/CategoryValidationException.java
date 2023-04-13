@@ -5,7 +5,6 @@ import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 
 import java.io.Serial;
 import java.util.Collection;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CategoryValidationException extends RuntimeException {
