@@ -1,0 +1,3 @@
+rootProject.name = 'volpi-qa'
+include 'qa-rest'
+include 'qa-admin'
