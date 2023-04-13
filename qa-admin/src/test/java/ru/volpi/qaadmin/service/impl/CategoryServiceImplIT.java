@@ -47,9 +47,9 @@ final class CategoryServiceImplIT extends TestcontainersTest {
     @Test
     @DisplayName("Updates existing category")
     void updatesExistingCategory() {
-        assertThat(
-            this.categoryService.update(1230L, new CategoryUpdate(1230L, "Новая Категория")).name()
-        ).isEqualTo("Новая Категория");
+        CategoryResponse update = this.categoryService.update(1230L, new CategoryUpdate("Новая Категория"));
+        System.out.println(update);
+        assertThat(update.name()).isEqualTo("Новая Категория");
     }
 
     @Test
@@ -57,7 +57,7 @@ final class CategoryServiceImplIT extends TestcontainersTest {
     void updatesNonExistingCategoryCorrectly() {
         assertThrows(
             CategoryNotFoundException.class,
-            () -> this.categoryService.update(43L, new CategoryUpdate(43L, "Новая Категория")),
+            () -> this.categoryService.update(43L, new CategoryUpdate("Новая Категория")),
             "Категория с id '43' не найдена\""
         );
     }
