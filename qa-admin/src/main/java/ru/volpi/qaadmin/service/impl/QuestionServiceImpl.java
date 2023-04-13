@@ -3,7 +3,6 @@ package ru.volpi.qaadmin.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
-import ru.volpi.qaadmin.domain.category.Category;
 import ru.volpi.qaadmin.domain.question.Question;
 import ru.volpi.qaadmin.domain.question.Questions;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;

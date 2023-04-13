@@ -1,7 +1,5 @@
 package ru.volpi.qaadmin.dto.question;
 
-import ru.volpi.qaadmin.dto.category.CategoryUpdate;
-
 import java.io.Serializable;
 
 /**

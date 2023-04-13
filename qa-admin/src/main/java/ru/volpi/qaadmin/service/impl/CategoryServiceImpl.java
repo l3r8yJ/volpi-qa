@@ -1,5 +1,7 @@
 package ru.volpi.qaadmin.service.impl;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,11 +12,14 @@ import ru.volpi.qaadmin.dto.category.CategoryResponse;
 import ru.volpi.qaadmin.dto.category.CategoryUpdate;
 import ru.volpi.qaadmin.exception.category.CategoryAlreadyExistException;
 import ru.volpi.qaadmin.exception.category.CategoryNotFoundException;
+import ru.volpi.qaadmin.exception.category.CategoryValidationException;
 import ru.volpi.qaadmin.repository.CategoryRepository;
 import ru.volpi.qaadmin.service.CategoryService;
 import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @TransactionalService
@@ -22,6 +27,8 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+
+    private final Validator validator;
 
     @Transactional
     @Override
@@ -36,13 +43,26 @@ public class CategoryServiceImpl implements CategoryService {
         if (this.categoryRepository.existsByName(registration.name())) {
             throw new CategoryAlreadyExistException(registration.name());
         }
+        final Set<ConstraintViolation<CategoryRegistration>> violations
+            = this.validator.validate(registration);
+        if (!violations.isEmpty()) {
+            throw new CategoryValidationException(violations);
+        }
         final Category category = Categories.from(registration);
         return CategoryResponse.from(this.categoryRepository.save(category));
     }
 
     @Transactional
     @Override
-    public CategoryResponse update(Long id, CategoryUpdate update) {
+    public CategoryResponse update(final Long id, final CategoryUpdate update) {
+        final Set<ConstraintViolation<CategoryUpdate>> violations
+            = this.validator.validate(update);
+        if (!violations.isEmpty()) {
+            throw new CategoryValidationException(
+                violations.stream().map(ConstraintViolation::getMessage)
+                    .collect(Collectors.joining("\n"))
+            );
+        }
         return this.categoryRepository.findById(id)
             .map(entity -> Categories.of(id, update))
             .map(this.categoryRepository::saveAndFlush)

@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 import ru.volpi.qaadmin.domain.question.Question;
-import ru.volpi.qaadmin.dto.category.CategoryRegistration;
-import ru.volpi.qaadmin.dto.category.CategoryUpdate;
 
 import java.io.Serial;
 import java.io.Serializable;
