@@ -1,1 +1,21 @@
-
+spring:
+  application:
+    name: qa-admin
+  datasource:
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  devtools:
+    livereload:
+      enabled: true
+server:
+  port: 8081
