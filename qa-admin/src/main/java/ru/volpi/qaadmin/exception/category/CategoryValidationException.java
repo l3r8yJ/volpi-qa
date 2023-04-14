@@ -12,7 +12,7 @@ public class CategoryValidationException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = -4353270059351408062L;
 
-    public CategoryValidationException(String message) {
+    public CategoryValidationException(final String message) {
         super(message);
     }
 

@@ -10,6 +10,8 @@ public interface QuestionService {
 
     List<QuestionResponse> findAll();
 
+    List<QuestionResponse> findQuestionsByCategoryName(String category);
+
     QuestionResponse findById(Long id);
 
     QuestionResponse update(Long id, QuestionUpdate update);
