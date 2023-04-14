@@ -19,16 +19,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class QuestionsRestControllerTest extends TestcontainersTest {
 
     private static final String QUESTIONS
-        = "/api/v1/questions";
+        = "/api/v1/admin/questions";
 
     private static final String QUESTIONS_BY_FIRST_CATEGORY
-        = "/api/v1/questions/by-category/Первая категория";
+        = "/api/v1/admin/questions/by-category/Первая категория";
 
     private static final String FIRST_QUESTION_ID
-        = "/api/v1/questions/324";
+        = "/api/v1/admin/questions/324";
 
     private static final String SECOND_QUESTION_ID
-        = "/api/v1/questions/431";
+        = "/api/v1/admin/questions/431";
 
     @Autowired
     private MockMvc mockMvc;

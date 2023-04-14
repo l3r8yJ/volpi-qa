@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
-import ru.volpi.qaadmin.dto.category.CategoryUpdate;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
 import ru.volpi.qaadmin.service.CategoryService;
@@ -21,7 +20,7 @@ import ru.volpi.qaadmin.service.QuestionService;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/questions")
+@RequestMapping("/api/v1/admin/questions")
 @RestController
 public class QuestionsRestController {
 

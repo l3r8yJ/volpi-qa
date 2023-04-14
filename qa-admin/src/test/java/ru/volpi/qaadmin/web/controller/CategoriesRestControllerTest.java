@@ -18,17 +18,23 @@ import static ru.volpi.qaadmin.validation.message.CategoryMessages.CATEGORY_CANN
 @AutoConfigureMockMvc
 final class CategoriesRestControllerTest extends TestcontainersTest {
 
-    private static final String CATEGORIES = "/api/v1/categories";
+    private static final String CATEGORIES
+        = "/api/v1/admin/categories";
 
-    private static final String FIRST_CATEGORY = "/api/v1/categories/Первая категория";
+    private static final String FIRST_CATEGORY
+        = "/api/v1/admin/categories/Первая категория";
 
-    private static final String FIRST_CATEGORY_ID = "/api/v1/categories/1230";
+    private static final String FIRST_CATEGORY_ID
+        = "/api/v1/admin/categories/1230";
 
-    private static final String SECOND_CATEGORY_ID = "/api/v1/categories/3421";
+    private static final String SECOND_CATEGORY_ID
+        = "/api/v1/admin/categories/3421";
 
-    private static final String NON_EXISTING_CATEGORY = "/api/v1/categories/mess";
+    private static final String NON_EXISTING_CATEGORY
+        = "/api/v1/admin/categories/mess";
 
-    private static final String NON_EXISTING_CATEGORY_ID = "/api/v1/categories/101";
+    private static final String NON_EXISTING_CATEGORY_ID
+        = "/api/v1/admin/categories/101";
 
     @Autowired
     private MockMvc mockMvc;
