@@ -31,7 +31,6 @@ class GatlingTestSimulation extends Simulation {
         .check(status is 409)
     )
   setUp(
-    all_categories.inject(atOnceUsers(1000)),
-    put_category.inject(atOnceUsers(1000))
+    all_categories.inject(atOnceUsers(3000)),
   )
 }
