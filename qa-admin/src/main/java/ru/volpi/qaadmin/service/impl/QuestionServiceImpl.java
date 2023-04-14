@@ -1,5 +1,7 @@
 package ru.volpi.qaadmin.service.impl;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,11 +11,15 @@ import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
 import ru.volpi.qaadmin.exception.question.QuestionNotFoundException;
+import ru.volpi.qaadmin.exception.question.QuestionValidationException;
 import ru.volpi.qaadmin.repository.QuestionRepository;
 import ru.volpi.qaadmin.service.QuestionService;
 import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @TransactionalService
@@ -22,10 +28,19 @@ public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
 
+    private final Validator validator;
+
     @Transactional
     @Override
     public List<QuestionResponse> findAll() {
         return this.questionRepository.findAll()
+            .stream().map(QuestionResponse::from).toList();
+    }
+
+    @Transactional
+    @Override
+    public List<QuestionResponse> findQuestionsByCategoryName(final String category) {
+        return this.questionRepository.findQuestionsByCategoryName(category)
             .stream().map(QuestionResponse::from).toList();
     }
 
@@ -43,6 +58,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     @Override
     public QuestionResponse update(final Long id, final QuestionUpdate update) {
+        final Set<ConstraintViolation<Object>> violations
+            = this.validator.validate(update);
+        validationExceptionIfNotEmpty(violations.isEmpty(), violations);
         return this.questionRepository.findById(id)
             .map(question -> Questions.of(id, update))
             .map(this.questionRepository::saveAndFlush)
@@ -53,6 +71,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     @Override
     public QuestionResponse save(final QuestionRegistration registration) {
+        final Set<ConstraintViolation<Object>> violations
+            = this.validator.validate(registration);
+        validationExceptionIfNotEmpty(violations.isEmpty(), violations);
         final Question saved = this.questionRepository.save(Questions.from(registration));
         return QuestionResponse.from(saved);
     }
@@ -65,5 +86,17 @@ public class QuestionServiceImpl implements QuestionService {
         }
         this.questionRepository.deleteById(id);
         return id;
+    }
+
+    private static void validationExceptionIfNotEmpty(
+        final boolean violations,
+        final Collection<ConstraintViolation<Object>> list
+    ) {
+        if (!violations) {
+            throw new QuestionValidationException(
+                list.stream().map(ConstraintViolation::getMessage)
+                    .collect(Collectors.joining("\n"))
+            );
+        }
     }
 }

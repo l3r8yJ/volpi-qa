@@ -34,11 +34,19 @@ class QuestionServiceImplTest extends TestcontainersTest {
     }
 
     @Test
+    @DisplayName("Finds questions by category")
+    void findsQuestionsByCategoryName() {
+        assertThat(this.questionService.findQuestionsByCategoryName("Первая категория"))
+            .hasSize(1);
+    }
+
+    @Test
     @DisplayName("Finds question by id")
     void findsByIdCorrectly() {
         assertThat(this.questionService.findById(324L))
             .isEqualTo(
                 new QuestionResponse(
+                    324L,
                     "Вопрос уровня а",
                     "Ответ уровня а",
                     "Первая категория"

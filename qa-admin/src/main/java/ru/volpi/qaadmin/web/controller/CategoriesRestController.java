@@ -11,7 +11,7 @@ import ru.volpi.qaadmin.service.CategoryService;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/api/v1/admin/categories")
 @RestController
 public class CategoriesRestController {
 

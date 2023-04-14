@@ -6,4 +6,7 @@ import lombok.experimental.UtilityClass;
 public class CategoryMessages {
     public static final String CATEGORY_CANNOT_BE_EMPTY
         = "Название категории не может быть путым!";
+
+    public static final String CATEGORY_NOT_PROVIDED
+        = "Категория не указана";
 }

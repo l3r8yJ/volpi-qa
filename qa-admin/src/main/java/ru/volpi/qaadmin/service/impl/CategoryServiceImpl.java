@@ -87,4 +87,12 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepository.deleteById(id);
         return id;
     }
+
+    @Transactional
+    @Override
+    public Long categoryIdByName(final String name) {
+        return this.categoryRepository.findByNameIgnoreCase(name)
+            .map(Category::getId)
+            .orElseThrow(() -> new CategoryNotFoundException(name));
+    }
 }
