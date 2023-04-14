@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.volpi.qaadmin.dto.category.CategoryResponse;
+import ru.volpi.qaadmin.dto.category.CategoryUpdate;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
+import ru.volpi.qaadmin.service.CategoryService;
 import ru.volpi.qaadmin.service.QuestionService;
 
 @Slf4j
@@ -23,6 +26,8 @@ import ru.volpi.qaadmin.service.QuestionService;
 public class QuestionsRestController {
 
     private final QuestionService questionService;
+
+    private final CategoryService categoryService;
 
     @GetMapping
     public ResponseEntity<?> allQuestions() {
@@ -41,12 +46,19 @@ public class QuestionsRestController {
 
     @PutMapping
     public ResponseEntity<?> createQuestion(@RequestBody final QuestionRegistration registration) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.questionService.save(registration));
+        final CategoryResponse category = this.categoryService.findCategoryByName(registration.category().name());
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(this.questionService.save(QuestionRegistration.from(registration, category.id())));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateQuestionById(@PathVariable final Long id, final QuestionUpdate update) {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.questionService.update(id, update));
+    public ResponseEntity<?> updateQuestionById(
+        @PathVariable final Long id,
+        @RequestBody final QuestionUpdate update
+    ) {
+        final Long categoryId = this.categoryService.categoryIdByName(update.category().name());
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+            .body(this.questionService.update(id, QuestionUpdate.from(update, categoryId)));
     }
 
     @DeleteMapping("/{id}")

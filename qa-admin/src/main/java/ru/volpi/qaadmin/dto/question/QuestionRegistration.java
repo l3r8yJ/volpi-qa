@@ -3,6 +3,8 @@ package ru.volpi.qaadmin.dto.question;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import ru.volpi.qaadmin.domain.question.Question;
+import ru.volpi.qaadmin.dto.category.CategoryRegistration;
+import ru.volpi.qaadmin.dto.category.CategoryResponse;
 
 import java.io.Serializable;
 
@@ -19,6 +21,14 @@ public record QuestionRegistration(
             question.getText(),
             question.getAnswer(),
             QuestionsCategory.from(question.getCategory())
+        );
+    }
+
+    public static QuestionRegistration from(@Valid final QuestionRegistration registration, final Long categoryId) {
+        return new QuestionRegistration(
+            registration.text(),
+            registration.answer(),
+            new QuestionsCategory(categoryId, registration.category().name())
         );
     }
 }

@@ -16,6 +16,7 @@ import ru.volpi.qaadmin.repository.QuestionRepository;
 import ru.volpi.qaadmin.service.QuestionService;
 import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -57,14 +58,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     @Override
     public QuestionResponse update(final Long id, final QuestionUpdate update) {
-        final Set<ConstraintViolation<QuestionUpdate>> violations
+        final Set<ConstraintViolation<Object>> violations
             = this.validator.validate(update);
-        if (!violations.isEmpty()) {
-            throw new QuestionValidationException(
-                violations.stream().map(ConstraintViolation::getMessage)
-                    .collect(Collectors.joining("\n"))
-            );
-        }
+        validationExceptionIfNotEmpty(violations.isEmpty(), violations);
         return this.questionRepository.findById(id)
             .map(question -> Questions.of(id, update))
             .map(this.questionRepository::saveAndFlush)
@@ -75,14 +71,9 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     @Override
     public QuestionResponse save(final QuestionRegistration registration) {
-        final Set<ConstraintViolation<QuestionRegistration>> violations
+        final Set<ConstraintViolation<Object>> violations
             = this.validator.validate(registration);
-        if (!violations.isEmpty()) {
-            throw new QuestionValidationException(
-                violations.stream().map(ConstraintViolation::getMessage)
-                    .collect(Collectors.joining("\n"))
-            );
-        }
+        validationExceptionIfNotEmpty(violations.isEmpty(), violations);
         final Question saved = this.questionRepository.save(Questions.from(registration));
         return QuestionResponse.from(saved);
     }
@@ -95,5 +86,17 @@ public class QuestionServiceImpl implements QuestionService {
         }
         this.questionRepository.deleteById(id);
         return id;
+    }
+
+    private static void validationExceptionIfNotEmpty(
+        final boolean violations,
+        final Collection<ConstraintViolation<Object>> list
+    ) {
+        if (!violations) {
+            throw new QuestionValidationException(
+                list.stream().map(ConstraintViolation::getMessage)
+                    .collect(Collectors.joining("\n"))
+            );
+        }
     }
 }
