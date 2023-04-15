@@ -1,10 +1,10 @@
-package ru.volpi.qaadmin.dto.question;
+package ru.volpi.qarest.dto.question;
 
-import ru.volpi.qaadmin.domain.question.Question;
+import ru.volpi.qarest.domain.question.Question;
 
 import java.io.Serializable;
 
-public record QuestionResponse(Long id, String text, String answer, String categoryName)
+public record QuestionResponse(Long id, String text, String answer, String category)
     implements Serializable {
     public static QuestionResponse from(final Question question) {
         return new QuestionResponse(
