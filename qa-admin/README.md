@@ -1,8 +1,8 @@
-# Documentation for CategoriesRestController
+# Documentation for QA Admin
 This REST API allows users to perform CRUD (create, read, update, delete) operations on category objects.
 
 <!-- TOC -->
-* [Documentation for CategoriesRestController](#documentation-for-categoriesrestcontroller)
+* [Documentation for QA Admin](#documentation-for-qa-admin)
   * [Endpoints](#endpoints)
     * [Get all categories](#get-all-categories)
     * [Get category by name](#get-category-by-name)
