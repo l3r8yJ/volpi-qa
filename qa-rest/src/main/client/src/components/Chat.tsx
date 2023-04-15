@@ -5,7 +5,7 @@ import {TextInputForm} from "./TextInputForm";
 
 export const Chat: FC = () => {
     return (
-        <div className={"min-w-[250px] w-[370px] rounded-lg overflow-hidden text-zinc-900 border relative"}>
+        <div className={"min-w-[250px] w-[370px] rounded-lg overflow-hidden text-zinc-900 relative"}>
             <ChatHeader/>
             <div className={"h-[450px] p-4 space-y-4 overflow-y-auto bg-white"}>
                 <div>
