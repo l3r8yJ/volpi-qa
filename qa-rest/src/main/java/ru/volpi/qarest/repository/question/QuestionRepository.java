@@ -10,9 +10,7 @@ import java.util.Optional;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
-    Optional<Question> findById(Long id);
-
-    Optional<Question> findQuestionByName(String name);
+    Optional<Question> findQuestionByText(String text);
 
     List<Question> findQuestionsByCategoryNameIgnoreCase(String name);
 }

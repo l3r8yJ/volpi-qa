@@ -27,9 +27,9 @@ public class ReadQuestionServiceImpl implements ReadQuestionService {
 
     @Transactional
     @Override
-    public QuestionResponse findQuestionByName(final String name) {
-        return this.questionRepository.findQuestionByName(name)
-            .map(QuestionResponse::from).orElseThrow(() -> new QuestionNotFoundException(name));
+    public QuestionResponse findQuestionByName(final String text) {
+        return this.questionRepository.findQuestionByText(text)
+            .map(QuestionResponse::from).orElseThrow(() -> new QuestionNotFoundException(text));
     }
 
     @Transactional

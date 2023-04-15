@@ -8,7 +8,7 @@ public class QuestionNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 114750981203583355L;
 
     public QuestionNotFoundException(final String name) {
-        super("Вопрос с именем '%s' не найден".formatted(name));
+        super("Вопрос '%s' не найден".formatted(name));
     }
 
     public QuestionNotFoundException(final Long id) {
