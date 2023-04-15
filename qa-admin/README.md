@@ -1,6 +1,19 @@
 # Documentation for CategoriesRestController
 This REST API allows users to perform CRUD (create, read, update, delete) operations on category objects.
 
+<!-- TOC -->
+* [Documentation for CategoriesRestController](#documentation-for-categoriesrestcontroller)
+  * [Endpoints](#endpoints)
+    * [Get all categories](#get-all-categories)
+    * [Get category by name](#get-category-by-name)
+    * [Create category](#create-category)
+    * [Update category](#update-category)
+    * [Delete category](#delete-category)
+  * [Data models](#data-models)
+    * [CategoryResponse](#categoryresponse)
+    * [QuestionResponse](#questionresponse)
+<!-- TOC -->
+
 ## Endpoints
 ### Get all categories
 Returns a list of all categories.
