@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {Dialog} from '@headlessui/react';
+import {XMarkIcon} from "@heroicons/react/24/outline";
 
 interface ModalProps {
     children: React.ReactNode
@@ -13,15 +14,17 @@ export const Modal: FC<ModalProps> = ({children, isOpen, setIsOpen}) => {
         <Dialog
             open={isOpen}
             onClose={() => setIsOpen(false)}
-            className="relative z-[1001]"
+            className="relative z-[1001] absolute"
         >
-            {/* The backdrop, rendered as a fixed sibling to the panel container */}
             <div className="fixed inset-0 bg-black/30" aria-hidden="true"/>
-
-            {/* Full-screen container to center the panel */}
-            <div className="fixed inset-0 flex items-center justify-center p-4">
-                {/* The actual dialog panel  */}
-                <Dialog.Panel className="rounded-lg">
+            <div className="fixed bottom-0 right-0 flex items-center justify-center p-4">
+                <Dialog.Panel className="rounded-lg relative">
+                    <button
+                        className={"absolute text-white top-4 right-4 z-10 hover:text-neutral-300"}
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <XMarkIcon className={"w-6 h-6"}/>
+                    </button>
                     {children}
                 </Dialog.Panel>
             </div>
