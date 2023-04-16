@@ -14,7 +14,7 @@ export const Modal: FC<ModalProps> = ({children, isOpen, setIsOpen}) => {
         <Dialog
             open={isOpen}
             onClose={() => setIsOpen(false)}
-            className="relative z-[1001] absolute"
+            className="relative z-[1001]"
         >
             <div className="fixed inset-0 bg-black/30" aria-hidden="true"/>
             <div className="fixed bottom-0 right-0 flex items-center justify-center p-4">
