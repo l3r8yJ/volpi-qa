@@ -5,9 +5,9 @@ import {TextInputForm} from "./TextInputForm";
 
 export const Chat: FC = () => {
     return (
-        <div className={"min-w-[250px] w-[370px] rounded-lg overflow-hidden text-zinc-900 border relative"}>
+        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[calc(100vh-4vh)] lg:h-auto"}>
             <ChatHeader/>
-            <div className={"h-[450px] p-4 space-y-4 overflow-y-auto bg-white"}>
+            <div className={"h-full lg:h-auto lg:max-h-[450px] p-4 space-y-4 overflow-y-auto bg-white"}>
                 <div>
                     Здравствуйте! Я постараюсь вам помочь и найти ответы на вопросы связанные с поступлением в
                     наш Политех. <br/> Выберите категорию вопроса, который вас интересует:
