@@ -2,10 +2,10 @@ spring:
   application:
     name: qa-admin
   datasource:
-    username: postgres
-    password: root
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://${PG_HOST}:5432/postgres
   jpa:
     properties:
       hibernate:
@@ -17,5 +17,12 @@ spring:
   devtools:
     livereload:
       enabled: true
-server:
-  port: 8081
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /system

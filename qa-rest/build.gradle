@@ -46,3 +46,7 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+jar {
+    baseName = 'qa-rest'
+}
