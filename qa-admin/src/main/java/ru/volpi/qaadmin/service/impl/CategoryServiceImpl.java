@@ -39,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Transactional
     @Override
-    public CategoryResponse save(CategoryRegistration registration) {
+    public CategoryResponse save(final CategoryRegistration registration) {
         if (this.categoryRepository.existsByName(registration.name())) {
             throw new CategoryAlreadyExistException(registration.name());
         }
