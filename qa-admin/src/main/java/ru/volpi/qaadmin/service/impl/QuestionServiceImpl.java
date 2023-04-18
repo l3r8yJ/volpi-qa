@@ -60,7 +60,7 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionResponse update(final Long id, final QuestionUpdate update) {
         final Set<ConstraintViolation<Object>> violations
             = this.validator.validate(update);
-        validationExceptionIfNotEmpty(violations.isEmpty(), violations);
+        validationExceptionIfNotEmpty(violations);
         return this.questionRepository.findById(id)
             .map(question -> Questions.of(id, update))
             .map(this.questionRepository::saveAndFlush)
@@ -73,7 +73,7 @@ public class QuestionServiceImpl implements QuestionService {
     public QuestionResponse save(final QuestionRegistration registration) {
         final Set<ConstraintViolation<Object>> violations
             = this.validator.validate(registration);
-        validationExceptionIfNotEmpty(violations.isEmpty(), violations);
+        validationExceptionIfNotEmpty(violations);
         final Question saved = this.questionRepository.save(Questions.from(registration));
         return QuestionResponse.from(saved);
     }
@@ -89,10 +89,9 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     private static void validationExceptionIfNotEmpty(
-        final boolean violations,
         final Collection<ConstraintViolation<Object>> list
     ) {
-        if (!violations) {
+        if (!list.isEmpty()) {
             throw new QuestionValidationException(
                 list.stream().map(ConstraintViolation::getMessage)
                     .collect(Collectors.joining("\n"))
