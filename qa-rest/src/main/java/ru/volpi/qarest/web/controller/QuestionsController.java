@@ -27,9 +27,9 @@ public class QuestionsController {
         return ResponseEntity.ok(this.questionService.findQuestionById(id));
     }
 
-    @GetMapping("/by-text/{name}")
-    public final ResponseEntity<?> questionByText(@PathVariable final String name) {
-        return ResponseEntity.ok(this.questionService.findQuestionByText(name));
+    @GetMapping("/by-text/{text}")
+    public final ResponseEntity<?> questionByText(@PathVariable final String text) {
+        return ResponseEntity.ok(this.questionService.findQuestionByText(text));
     }
 
     @GetMapping("/by-category/{category}")
