@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import ru.volpi.qarest.TestcontainersTest;
+import ru.volpi.qarest.web.controller.util.AssertUtil;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @AutoConfigureMockMvc
 class CategoriesControllerTest extends TestcontainersTest {
@@ -30,30 +31,34 @@ class CategoriesControllerTest extends TestcontainersTest {
     @Test
     @DisplayName("Gets all categories")
     void getsAllCategories() throws Exception {
-        this.mockMvc.perform(get(ALL_CATEGORIES)).andExpect(status().isOk());
+        this.assertUrl(ALL_CATEGORIES, status().isOk());
     }
 
     @Test
     @DisplayName("Gets category by name")
     void getsCategoryByName() throws Exception {
-        this.mockMvc.perform(get(EXISTING_CATEGORY_BY_NAME)).andExpect(status().isOk());
+        this.assertUrl(EXISTING_CATEGORY_BY_NAME, status().isOk());
     }
 
     @Test
     @DisplayName("Returns not found when category not found by name")
     void getsNotExistingCategoryByName() throws Exception {
-        this.mockMvc.perform(get(NOT_EXISTING_CATEGORY_BY_NAME)).andExpect(status().isNotFound());
+        this.assertUrl(NOT_EXISTING_CATEGORY_BY_NAME, status().isNotFound());
     }
 
     @Test
     @DisplayName("Gets category by id")
     void getsCategoryById() throws Exception {
-        this.mockMvc.perform(get(EXISTING_CATEGORY_BY_ID)).andExpect(status().isOk());
+        this.assertUrl(EXISTING_CATEGORY_BY_ID, status().isOk());
     }
 
     @Test
     @DisplayName("Returns not found when category not found by id")
     void getsNotExistingCategoryById() throws Exception {
-        this.mockMvc.perform(get(NOT_EXISTING_CATEGORY_BY_ID)).andExpect(status().isNotFound());
+        this.assertUrl(NOT_EXISTING_CATEGORY_BY_ID, status().isNotFound());
+    }
+
+    private void assertUrl(final String url, final ResultMatcher matcher) throws Exception {
+        AssertUtil.assertUrlWithMock(this.mockMvc, url, matcher);
     }
 }
