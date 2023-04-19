@@ -34,6 +34,6 @@ public class QuestionsController {
 
     @GetMapping("/by-category/{category}")
     public final ResponseEntity<?> questionsByCategoryName(@PathVariable final String category) {
-        return ResponseEntity.ok(this.questionService.findAllQuestionsByCategoryName(category));
+        return ResponseEntity.ok(this.questionService.findQuestionsByCategoryName(category));
     }
 }

@@ -12,5 +12,5 @@ public interface ReadQuestionService {
 
     List<QuestionResponse> findAllQuestions();
 
-    List<QuestionResponse> findAllQuestionsByCategoryName(String name);
+    List<QuestionResponse> findQuestionsByCategoryName(String name);
 }

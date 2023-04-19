@@ -41,7 +41,7 @@ public class ReadQuestionServiceImpl implements ReadQuestionService {
 
     @Transactional
     @Override
-    public List<QuestionResponse> findAllQuestionsByCategoryName(final String name) {
+    public List<QuestionResponse> findQuestionsByCategoryName(final String name) {
         return this.questionRepository.findQuestionsByCategoryNameIgnoreCase(name)
             .stream().map(QuestionResponse::from).toList();
     }
