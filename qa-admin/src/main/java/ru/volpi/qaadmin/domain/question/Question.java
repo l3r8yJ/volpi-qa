@@ -52,14 +52,16 @@ public class Question implements Serializable {
 
     @Override
     public boolean equals(final Object obj) {
+        final boolean result;
         if (this == obj) {
-            return true;
+            result = true;
+        } else if (obj == null || !Objects.equals(Hibernate.getClass(this), Hibernate.getClass(obj))) {
+            result = false;
+        } else {
+            final Question question = (Question) obj;
+            result = this.id != null && Objects.equals(this.id, question.id);
         }
-        if (obj == null || !Objects.equals(Hibernate.getClass(this), Hibernate.getClass(obj))) {
-            return false;
-        }
-        final Question question = (Question) obj;
-        return this.id != null && Objects.equals(this.id, question.id);
+        return result;
     }
 
     @Override
