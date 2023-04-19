@@ -8,7 +8,7 @@ public interface ReadQuestionService {
 
     QuestionResponse findQuestionById(Long id);
 
-    QuestionResponse findQuestionByName(String name);
+    QuestionResponse findQuestionByText(String text);
 
     List<QuestionResponse> findAllQuestions();
 
