@@ -1,11 +1,11 @@
-package ru.volpi.qaadmin;
+package ru.volpi.qarest;
 
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-import ru.volpi.qaadmin.annotation.IntegrationTest;
+import ru.volpi.qarest.annotation.IntegrationTest;
 
 @Sql("classpath:sql/data.sql")
 @IntegrationTest
@@ -21,8 +21,8 @@ public class TestcontainersTest {
 
     @DynamicPropertySource
     static void postgresProperties(final DynamicPropertyRegistry registry) {
-        registry.add(DATASOURCE_URL_PROPERTY, CONTAINER::getJdbcUrl);
-        registry.add(DATASOURCE_USERNAME_PROPERTY, CONTAINER::getUsername);
-        registry.add(DATASOURCE_PASSWORD_PROPERTY, CONTAINER::getPassword);
+        registry.add(TestcontainersTest.DATASOURCE_URL_PROPERTY, TestcontainersTest.CONTAINER::getJdbcUrl);
+        registry.add(TestcontainersTest.DATASOURCE_USERNAME_PROPERTY, TestcontainersTest.CONTAINER::getUsername);
+        registry.add(TestcontainersTest.DATASOURCE_PASSWORD_PROPERTY, TestcontainersTest.CONTAINER::getPassword);
     }
 }
