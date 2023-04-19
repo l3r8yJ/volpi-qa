@@ -1,7 +1,7 @@
 import {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {fetchCategories} from "../store/actions/categoryAction";
-import {Category} from "./Category";
+import {CategoryRow} from "./CategoryRow";
 import {CategoriesListHead} from "./CategoriesListHead";
 
 export const CategoriesList: FC = () => {
@@ -15,7 +15,7 @@ export const CategoriesList: FC = () => {
             <CategoriesListHead/>
             <ul className={""}>
                 {categories.map(c => (
-                    <Category key={c.id} id={c.id} name={c.name} questions={c.questions}/>
+                    <CategoryRow key={c.id} id={c.id} name={c.name} questions={c.questions}/>
                 ))}
             </ul>
         </div>
