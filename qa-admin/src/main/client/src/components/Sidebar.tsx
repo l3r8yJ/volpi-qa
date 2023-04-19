@@ -11,6 +11,7 @@ export const Sidebar: FC = () => {
         if(inputValue){
             await dispatch(createCategory(inputValue))
             dispatch(fetchCategories())
+            setInputValue("")
         }
     }
     return (
