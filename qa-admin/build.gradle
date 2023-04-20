@@ -65,7 +65,3 @@ test {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-jar {
-	baseName = 'qa-admin'
-}
