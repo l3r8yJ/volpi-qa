@@ -1,4 +1,4 @@
-package ru.volpi.qaadmin.annotation;
+package ru.volpi.qarest.annotation;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -14,8 +14,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @ActiveProfiles("test")
-@Testcontainers
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
+@Testcontainers
 @Transactional
 @SpringBootTest
 public @interface IntegrationTest {
