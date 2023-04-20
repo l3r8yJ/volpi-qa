@@ -27,13 +27,13 @@ public class QuestionsController {
         return ResponseEntity.ok(this.questionService.findQuestionById(id));
     }
 
-    @GetMapping("/by-name/{name}")
-    public final ResponseEntity<?> questionByName(@PathVariable final String name) {
-        return ResponseEntity.ok(this.questionService.findQuestionByName(name));
+    @GetMapping("/by-text/{text}")
+    public final ResponseEntity<?> questionByText(@PathVariable final String text) {
+        return ResponseEntity.ok(this.questionService.findQuestionByText(text));
     }
 
     @GetMapping("/by-category/{category}")
     public final ResponseEntity<?> questionsByCategoryName(@PathVariable final String category) {
-        return ResponseEntity.ok(this.questionService.findAllQuestionsByCategoryName(category));
+        return ResponseEntity.ok(this.questionService.findQuestionsByCategoryName(category));
     }
 }

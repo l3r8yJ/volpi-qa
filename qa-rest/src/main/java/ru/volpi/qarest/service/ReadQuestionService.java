@@ -8,9 +8,9 @@ public interface ReadQuestionService {
 
     QuestionResponse findQuestionById(Long id);
 
-    QuestionResponse findQuestionByName(String name);
+    QuestionResponse findQuestionByText(String text);
 
     List<QuestionResponse> findAllQuestions();
 
-    List<QuestionResponse> findAllQuestionsByCategoryName(String name);
+    List<QuestionResponse> findQuestionsByCategoryName(String name);
 }
