@@ -15,4 +15,4 @@ spring:
       ddl-auto: none
     open-in-view: false
 server:
-  port: 6532
+  port: ${QA_ADMIN_PORT}
