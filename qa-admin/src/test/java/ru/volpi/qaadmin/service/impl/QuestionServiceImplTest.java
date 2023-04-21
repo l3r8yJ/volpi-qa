@@ -81,13 +81,13 @@ class QuestionServiceImplTest extends TestcontainersTest {
         );
         assertThat(saved).isNotNull();
         assertThat(saved.categoryName()).isEqualTo("Первая категория");
-        final Set<String> category =
+        final Set<String> questionNames =
             this.categoryService.findCategoryByName("Первая категория")
                 .questions()
                 .stream()
                 .map(QuestionResponse::text)
                 .collect(Collectors.toSet());
-        assertThat(category)
+        assertThat(questionNames)
             .contains("Новый вопрос");
     }
 
