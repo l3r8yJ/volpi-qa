@@ -19,7 +19,6 @@ import ru.volpi.qaadmin.service.annotation.TransactionalService;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 @TransactionalService
@@ -58,9 +57,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     @Override
     public QuestionResponse update(final Long id, final QuestionUpdate update) {
-        final Set<ConstraintViolation<Object>> violations
-            = this.validator.validate(update);
-        validationExceptionIfNotEmpty(violations);
+        checkViolations(this.validator.validate(update));
         return this.questionRepository.findById(id)
             .map(question -> Questions.of(id, update))
             .map(this.questionRepository::saveAndFlush)
@@ -71,9 +68,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     @Override
     public QuestionResponse save(final QuestionRegistration registration) {
-        final Set<ConstraintViolation<Object>> violations
-            = this.validator.validate(registration);
-        validationExceptionIfNotEmpty(violations);
+        checkViolations(this.validator.validate(registration));
         final Question saved = this.questionRepository.save(Questions.from(registration));
         return QuestionResponse.from(saved);
     }
@@ -88,14 +83,9 @@ public class QuestionServiceImpl implements QuestionService {
         return id;
     }
 
-    private static void validationExceptionIfNotEmpty(
-        final Collection<ConstraintViolation<Object>> list
-    ) {
-        if (!list.isEmpty()) {
-            throw new QuestionValidationException(
-                list.stream().map(ConstraintViolation::getMessage)
-                    .collect(Collectors.joining("\n"))
-            );
+    private static void checkViolations(final Collection<ConstraintViolation<Object>> violations) {
+        if (!violations.isEmpty()) {
+            throw new QuestionValidationException(violations);
         }
     }
 }

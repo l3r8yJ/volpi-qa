@@ -19,7 +19,6 @@ import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 @TransactionalService
@@ -43,11 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (this.categoryRepository.existsByName(registration.name())) {
             throw new CategoryAlreadyExistException(registration.name());
         }
-        final Set<ConstraintViolation<CategoryRegistration>> violations
-            = this.validator.validate(registration);
-        if (!violations.isEmpty()) {
-            throw new CategoryValidationException(violations);
-        }
+        checkViolations(this.validator.validate(registration));
         final Category category = Categories.from(registration);
         return CategoryResponse.from(this.categoryRepository.save(category));
     }
@@ -55,14 +50,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public CategoryResponse update(final Long id, final CategoryUpdate update) {
-        final Set<ConstraintViolation<CategoryUpdate>> violations
-            = this.validator.validate(update);
-        if (!violations.isEmpty()) {
-            throw new CategoryValidationException(
-                violations.stream().map(ConstraintViolation::getMessage)
-                    .collect(Collectors.joining("\n"))
-            );
-        }
+        checkViolations(this.validator.validate(update));
         return this.categoryRepository.findById(id)
             .map(entity -> Categories.of(id, update))
             .map(this.categoryRepository::saveAndFlush)
@@ -94,5 +82,11 @@ public class CategoryServiceImpl implements CategoryService {
         return this.categoryRepository.findByNameIgnoreCase(name)
             .map(Category::getId)
             .orElseThrow(() -> new CategoryNotFoundException(name));
+    }
+
+    private static void checkViolations(final Set<ConstraintViolation<Object>> violations) {
+        if (!violations.isEmpty()) {
+            throw new CategoryValidationException(violations);
+        }
     }
 }
