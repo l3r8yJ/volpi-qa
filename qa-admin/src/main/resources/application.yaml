@@ -36,6 +36,9 @@ spring:
   config:
     activate:
       on-profile: dev
+  devtools:
+    livereload:
+      enabled: true
 server:
   port: 8080
 ---
