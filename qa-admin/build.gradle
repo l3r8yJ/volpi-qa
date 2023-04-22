@@ -66,3 +66,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+tasks.register('bootDev') {
+	bootRun.systemProperty('spring.profiles.active', 'dev')
+	dependsOn 'bootRun'
+}

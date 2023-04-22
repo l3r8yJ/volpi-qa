@@ -20,6 +20,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class QuestionServiceImplTest extends TestcontainersTest {
 
+    private static final long QUESTION_ID = 324L;
+
+    private static final long DELETION_QUESTION_ID = 431L;
+
+    private static final long CATEGORY_ID = 1230L;
+
+    private static final int NUMBER_OF_QUESTIONS = 2;
+
+    private static final int NUMBER_OF_QUESTIONS_WITH_FIRST_CATEGORY = 1;
+
+    private static final String FIRST_CATEGORY_NAME = "Первая категория";
+
     @Autowired
     private QuestionService questionService;
 
@@ -29,27 +41,26 @@ class QuestionServiceImplTest extends TestcontainersTest {
     @Test
     @DisplayName("Finds all questions")
     void findsAllQuestions() {
-        assertThat(this.questionService.findAll())
-            .hasSize(2);
+        assertThat(this.questionService.findAll()).hasSize(NUMBER_OF_QUESTIONS);
     }
 
     @Test
     @DisplayName("Finds questions by category")
     void findsQuestionsByCategoryName() {
-        assertThat(this.questionService.findQuestionsByCategoryName("Первая категория"))
-            .hasSize(1);
+        assertThat(this.questionService.findQuestionsByCategoryName(FIRST_CATEGORY_NAME))
+            .hasSize(NUMBER_OF_QUESTIONS_WITH_FIRST_CATEGORY);
     }
 
     @Test
     @DisplayName("Finds question by id")
     void findsByIdCorrectly() {
-        assertThat(this.questionService.findById(324L))
+        assertThat(this.questionService.findById(QUESTION_ID))
             .isEqualTo(
                 new QuestionResponse(
-                    324L,
+                    QUESTION_ID,
                     "Вопрос уровня а",
                     "Ответ уровня а",
-                    "Первая категория"
+                    FIRST_CATEGORY_NAME
                 )
             );
     }
@@ -58,11 +69,11 @@ class QuestionServiceImplTest extends TestcontainersTest {
     @DisplayName("Updates correctly")
     void updatesCorrectly() {
         final QuestionResponse updated = this.questionService.update(
-            324L,
+            QUESTION_ID,
             new QuestionUpdate(
                 "Обновленный вопрос уровня а",
                 "Обновленный ответ уровня а",
-                new QuestionsCategory(1230L, "Первая категория")
+                new QuestionsCategory(CATEGORY_ID, FIRST_CATEGORY_NAME)
             )
         );
         assertThat(updated).isNotNull();
@@ -76,30 +87,29 @@ class QuestionServiceImplTest extends TestcontainersTest {
             new QuestionRegistration(
                 "Новый вопрос",
                 "Новый ответ",
-                new QuestionsCategory(1230L, "Первая категория")
+                new QuestionsCategory(CATEGORY_ID, FIRST_CATEGORY_NAME)
             )
         );
         assertThat(saved).isNotNull();
-        assertThat(saved.categoryName()).isEqualTo("Первая категория");
-        final Set<String> category =
-            this.categoryService.findCategoryByName("Первая категория")
+        assertThat(saved.categoryName()).isEqualTo(FIRST_CATEGORY_NAME);
+        final Set<String> questionNames =
+            this.categoryService.findCategoryByName(FIRST_CATEGORY_NAME)
                 .questions()
                 .stream()
                 .map(QuestionResponse::text)
                 .collect(Collectors.toSet());
-        assertThat(category)
-            .contains("Новый вопрос");
+        assertThat(questionNames).contains("Новый вопрос");
     }
 
     @Test
     @DisplayName("Deletes by id correctly")
     void deletesCorrectly() {
-        assertThat(this.questionService.findById(431L)).isNotNull();
-        assertThat(this.questionService.deleteById(431L)).isEqualTo(431L);
+        assertThat(this.questionService.findById(DELETION_QUESTION_ID)).isNotNull();
+        assertThat(this.questionService.deleteById(DELETION_QUESTION_ID)).isEqualTo(DELETION_QUESTION_ID);
         assertThrows(
             QuestionNotFoundException.class,
-            () -> this.questionService.findById(431L),
-            "Вопрос с id '431' не найден!"
+            () -> this.questionService.findById(DELETION_QUESTION_ID),
+            "Вопрос с id '%d' не найден!".formatted(DELETION_QUESTION_ID)
         );
     }
 }

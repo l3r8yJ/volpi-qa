@@ -1,3 +1,23 @@
+---
+spring:
+  application:
+    name: qa-admin
+  datasource:
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST}:5432/postgres
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+server:
+  port: ${QA_REST_PORT}
+---
 spring:
   application:
     name: qa-admin
@@ -14,8 +34,12 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: false
+  config:
+    activate:
+      on-profile: dev
   devtools:
     livereload:
       enabled: true
 server:
   port: 8081
+---
