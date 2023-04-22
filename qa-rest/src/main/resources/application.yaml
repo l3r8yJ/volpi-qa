@@ -1,3 +1,4 @@
+---
 spring:
   application:
     name: qa-admin
@@ -16,3 +17,26 @@ spring:
     open-in-view: false
 server:
   port: ${QA_REST_PORT}
+---
+spring:
+  application:
+    name: qa-admin
+  datasource:
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 8081
+---
