@@ -22,7 +22,7 @@ export const Sidebar: FC = () => {
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder={"Название категории"}
                 />
-                <PrimaryButton title={"Новая категория"} onClick={btnHandler}/>
+                <PrimaryButton onClick={btnHandler}>Новая категория</PrimaryButton>
             </div>
         </div>
     );
