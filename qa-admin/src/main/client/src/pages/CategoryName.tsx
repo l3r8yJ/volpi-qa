@@ -26,7 +26,7 @@ const CategoryName: FC = () => {
     }, [])
     return (
         <MainLayout>
-            <div className={"text-3xl w-full border-b py-4"}>
+            <div className={"text-3xl w-full border-b border-neutral-500/50 py-4"}>
                 <span className={"opacity-60"}>Категория:</span> {name}
             </div>
             {loading === "pending"
