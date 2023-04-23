@@ -1,9 +1,9 @@
 import {FC} from 'react';
-import {ICategory} from "../types/ICategory";
 import {XMarkIcon} from "@heroicons/react/24/outline";
-import {useAppDispatch} from "../hooks/redux";
-import {deleteCategory, fetchCategories} from "../store/actions/categoryAction";
 import {Link} from "react-router-dom";
+import {ICategory} from "../../types/ICategory";
+import {useAppDispatch} from "../../hooks/redux";
+import {deleteCategory, fetchCategories} from "../../store/actions/categoryAction";
 
 export const CategoryRow: FC<ICategory> = ({id, questions, name}) => {
     const dispatch = useAppDispatch()

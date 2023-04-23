@@ -1,8 +1,8 @@
 import {FC, useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import {fetchCategories} from "../store/actions/categoryAction";
 import {CategoryRow} from "./CategoryRow";
 import {CategoriesListHead} from "./CategoriesListHead";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {fetchCategories} from "../../store/actions/categoryAction";
 
 export const CategoriesList: FC = () => {
     const {categories} = useAppSelector(state => state.category)
