@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {MainLayout} from "../components/layouts/MainLayout";
 import {Sidebar} from "../components/Sidebar";
-import {CategoriesList} from "../components/CategoriesList";
+import {CategoriesList} from "../components/categories/CategoriesList";
 
 const Categories: FC = () => {
     return (
