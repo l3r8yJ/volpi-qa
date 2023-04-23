@@ -10,7 +10,7 @@ import {clearCurrentCategory} from "../store/reducers/categorySlice";
 
 const CategoryName: FC = () => {
     const {name} = useParams()
-    const {questions, loading} = useAppSelector(state => state.question)
+    const {questions} = useAppSelector(state => state.question)
     const dispatch = useAppDispatch()
     if (!name)
         return (
@@ -29,24 +29,18 @@ const CategoryName: FC = () => {
             <div className={"text-3xl w-full border-b border-neutral-500/50 py-4"}>
                 <span className={"opacity-60"}>Категория:</span> {name}
             </div>
-            {loading === "pending"
-                ? <div>Загрузка...</div>
-                : <>
-                    {questions.length !== 0
-                        ? <div className={"mt-4"}>
-                            <Sidebar><QuestionsForm categoryName={name}/></Sidebar>
-                            <div className={"ml-64 xl:ml-72"}>
-                            <QuestionsList questions={questions}/>
-                            </div>
-                        </div>
-                        : <div className={"mt-4 space-y-4"}>
-                            <div>В этой категории нет ещё ни одного вопроса</div>
-                            <QuestionsForm categoryName={name}/>
-                        </div>
-                    }</>
+            {questions.length !== 0
+                ? <div className={"mt-4"}>
+                    <Sidebar><QuestionsForm categoryName={name}/></Sidebar>
+                    <div className={"ml-64 xl:ml-72"}>
+                        <QuestionsList questions={questions}/>
+                    </div>
+                </div>
+                : <div className={"mt-4 space-y-4"}>
+                    <div>В этой категории нет ещё ни одного вопроса</div>
+                    <QuestionsForm categoryName={name}/>
+                </div>
             }
-
-
         </MainLayout>
     );
 }

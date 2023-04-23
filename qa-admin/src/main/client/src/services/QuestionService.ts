@@ -20,7 +20,7 @@ export class QuestionService {
     }
 
     static updateQuestion(question: IQuestion): Promise<AxiosResponse<IQuestion>> {
-        return $api.patch<IQuestion>("questions/" + question.id, {question})
+        return $api.patch<IQuestion>("questions/" + question.id, question)
     }
 
     static fetchQuestionsByCategory(categoryName: string): Promise<AxiosResponse<IQuestion[]>> {
