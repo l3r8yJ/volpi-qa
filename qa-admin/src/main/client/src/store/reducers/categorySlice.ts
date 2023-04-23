@@ -24,7 +24,11 @@ const initialState:CategoryState = {
 const categorySlice = createSlice({
     name: "category",
     initialState,
-    reducers: {},
+    reducers: {
+        clearCurrentCategory:(state) =>{
+            state.currentCategory = {} as ICategory
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchCategories.pending, (state) => {
             state.loading = "pending"
@@ -76,3 +80,5 @@ const categorySlice = createSlice({
 })
 
 export default categorySlice.reducer
+
+export const {clearCurrentCategory} = categorySlice.actions
