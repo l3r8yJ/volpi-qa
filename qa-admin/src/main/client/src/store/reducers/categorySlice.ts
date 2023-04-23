@@ -82,3 +82,4 @@ const categorySlice = createSlice({
 export default categorySlice.reducer
 
 export const {clearCurrentCategory} = categorySlice.actions
+

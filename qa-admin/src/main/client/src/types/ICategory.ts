@@ -8,5 +8,3 @@ export interface ICategoryNoQuestions{
 export interface ICategory extends ICategoryNoQuestions{
     questions: IQuestion[]
 }
-
-
