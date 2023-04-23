@@ -8,6 +8,8 @@ Built with
 <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" width="60" alt="Docker">
 <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postgresql-icon.png" width="50" alt="PostgreSQL">
 
+[![codecov](https://codecov.io/gh/l3r8yJ/volpi-qa/branch/master/graph/badge.svg?token=WNHGQAGT4L)](https://codecov.io/gh/l3r8yJ/volpi-qa)
+
 ### Architecture
 
 This is a SOA application that has two services

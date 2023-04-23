@@ -16,7 +16,7 @@ public class CategoryValidationException extends RuntimeException {
         super(message);
     }
 
-    public CategoryValidationException(final Collection<ConstraintViolation<CategoryRegistration>> violations) {
+    public CategoryValidationException(final Collection<ConstraintViolation<Object>> violations) {
         super(
             violations
                 .stream()

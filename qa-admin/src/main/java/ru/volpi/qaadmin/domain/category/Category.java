@@ -41,14 +41,16 @@ public class Category implements Serializable {
 
     @Override
     public boolean equals(final Object obj) {
+        final boolean result;
         if (this == obj) {
-            return true;
+            result = true;
+        } else if (obj == null || !Objects.equals(Hibernate.getClass(this), Hibernate.getClass(obj))) {
+            result = false;
+        } else {
+            final Category category = (Category) obj;
+            result = this.id != null && Objects.equals(this.id, category.id);
         }
-        if (obj == null || !Objects.equals(Hibernate.getClass(this), Hibernate.getClass(obj))) {
-            return false;
-        }
-        final Category category = (Category) obj;
-        return this.id != null && Objects.equals(this.id, category.id);
+        return result;
     }
 
     @Override

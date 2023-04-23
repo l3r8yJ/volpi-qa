@@ -46,7 +46,7 @@ class CategoryServiceImplTest extends TestcontainersTest {
     @Test
     @DisplayName("Updates existing category")
     void updatesExistingCategory() {
-        CategoryResponse update = this.categoryService.update(1230L, new CategoryUpdate("Новая Категория"));
+        final CategoryResponse update = this.categoryService.update(1230L, new CategoryUpdate("Новая Категория"));
         assertThat(update.name()).isEqualTo("Новая Категория");
     }
 

@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: qa-postgres
+    image: postgres:15.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    networks:
+      - volpi-qa
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  qa-admin:
+    container_name: qa-admin-container
+    env_file:
+      - docker.env
+    build:
+      context: ./qa-admin
+      dockerfile: Dockerfile
+    image: qa-admin:latest
+    ports:
+      - '6532:6532'
+    networks:
+      - volpi-qa
+    depends_on:
+      - postgres
+  qa-rest:
+    container_name: qa-rest-container
+    env_file:
+      - docker.env
+    build:
+      context: ./qa-rest
+      dockerfile: Dockerfile
+    image: qa-rest:latest
+    ports:
+      - '6533:6533'
+    networks:
+      - volpi-qa
+    depends_on:
+      - qa-admin
+volumes:
+  postgres:
+    driver: local
+  minio:
+    driver: local
+networks:
+  volpi-qa:
+    driver: bridge

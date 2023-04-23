@@ -9,18 +9,18 @@ export class CategoryService {
     }
 
     static fetchCategoryByName(name: string): Promise<AxiosResponse<ICategory>> {
-        return $api.get<ICategory>("category/" + name)
+        return $api.get<ICategory>("categories/" + name)
     }
 
     static createCategory(name: string): Promise<AxiosResponse<ICategory>> {
-        return $api.post<ICategory>("categories", name)
+        return $api.put<ICategory>("categories", {name})
     }
 
     static updateCategory(updatedCategory: ICategory): Promise<AxiosResponse<ICategory>> {
-        return $api.patch<ICategory>("categories" + updatedCategory.id, updatedCategory)
+        return $api.patch<ICategory>("categories/" + updatedCategory.id, updatedCategory)
     }
 
     static deleteCategory(id: number):Promise<AxiosResponse<ICategory>>{
-        return $api.delete<ICategory>("categories" + id)
+        return $api.delete<ICategory>("categories/" + id)
     }
 }
