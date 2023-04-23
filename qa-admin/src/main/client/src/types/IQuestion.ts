@@ -1,6 +1,11 @@
-export interface IQuestion{
-    id: number
+import {ICategoryNoQuestions} from "./ICategory";
+
+export interface IQuestionNoID{
     text: string
     answer: string
-    categoryName: string
+    category: ICategoryNoQuestions
+}
+
+export interface IQuestion extends IQuestionNoID{
+    id: number
 }
