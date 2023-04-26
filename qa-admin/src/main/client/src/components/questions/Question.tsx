@@ -3,7 +3,7 @@ import {IQuestion, IQuestionNoID} from "../../types/IQuestion";
 import {PencilSquareIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {deleteQuestion, fetchQuestionsByCategory, updateQuestion} from "../../store/actions/questionAction";
-import {Input} from "../UI/Input";
+import {Input} from "../UI/Input/Input";
 import {PrimaryButton} from "../UI/PrimaryButton";
 
 interface QuestionProps {

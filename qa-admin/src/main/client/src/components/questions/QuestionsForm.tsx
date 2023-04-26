@@ -1,5 +1,5 @@
 import {FC, FormEvent, useEffect, useState} from 'react';
-import {Input} from "../UI/Input";
+import {Input} from "../UI/Input/Input";
 import {PrimaryButton} from "../UI/PrimaryButton";
 import {PlusIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
