@@ -38,6 +38,7 @@ describe("PrimaryButton", () => {
 
         it("renders correctly default title", () => {
             expect(buttonElement).toHaveTextContent(buttonTitle)
+            expect(buttonElement).toMatchSnapshot()
         })
     })
     describe("user iteraction", () => {
