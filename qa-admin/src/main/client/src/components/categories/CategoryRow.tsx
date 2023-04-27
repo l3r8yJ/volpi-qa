@@ -1,11 +1,11 @@
 import {FC} from 'react';
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Link} from "react-router-dom";
-import {ICategory} from "../../types/ICategory";
+import {ICategoryNoQuestions} from "../../types/ICategory";
 import {useAppDispatch} from "../../hooks/redux";
 import {deleteCategory, fetchCategories} from "../../store/actions/categoryAction";
 
-export const CategoryRow: FC<ICategory> = ({id, questions, name}) => {
+export const CategoryRow: FC<ICategoryNoQuestions> = ({id, name}) => {
     const dispatch = useAppDispatch()
     const deleteBtnHandler = async () => {
         await dispatch(deleteCategory(id))
