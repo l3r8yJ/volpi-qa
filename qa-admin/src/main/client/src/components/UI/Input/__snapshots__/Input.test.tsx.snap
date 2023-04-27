@@ -1,5 +1,3 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Input > Basic props and behaviour > renders correctly 1`] = `<input />`;
-
 exports[`Input > basic props and behaviour > renders correctly 1`] = `<input />`;
