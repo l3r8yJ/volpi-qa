@@ -9,6 +9,8 @@ describe("PrimaryButton", () => {
     const buttonTitle = "42"
     let renderOption: RenderResult
     const buttonOnClick = vi.fn()
+    const buttonOnHover = vi.fn()
+    const buttonOnBlur = vi.fn()
 
     describe("default behaviour", () => {
         beforeEach(() => {
@@ -44,6 +46,8 @@ describe("PrimaryButton", () => {
                 <PrimaryButton
                     data-testid={buttonTestID}
                     onClick={buttonOnClick}
+                    onMouseLeave={buttonOnBlur}
+                    onMouseEnter={buttonOnHover}
                 >
                     {buttonTitle}
                 </PrimaryButton>)
@@ -57,6 +61,15 @@ describe("PrimaryButton", () => {
         it("handle click correctly", async () => {
             await userEvent.click(buttonElement)
             expect(buttonOnClick).toHaveBeenCalledOnce()
+        })
+
+        it("hover and blur effects works correctly", async () => {
+            await userEvent.hover(buttonElement)
+            expect(buttonOnHover).toHaveBeenCalledOnce()
+            expect(buttonOnBlur).not.toBeCalled()
+
+            await userEvent.unhover(buttonElement)
+            expect(buttonOnBlur).toHaveBeenCalledOnce()
         })
     })
 })
