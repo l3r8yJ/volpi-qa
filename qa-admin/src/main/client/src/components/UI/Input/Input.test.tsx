@@ -1,4 +1,4 @@
-import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
+import {afterEach, beforeEach, describe, expect, it, vi} from "vitest";
 import {render, RenderResult, screen} from "@testing-library/react";
 import {Input} from "./Input";
 import userEvent from "@testing-library/user-event";
@@ -30,14 +30,14 @@ describe("Input", () => {
             vi.clearAllMocks()
         })
 
-        test("renders correctly", () => {
+        it("renders correctly", () => {
             const {container} = render(<input/>)
             expect(inputElement.value).toBe("42")
             expect(container.firstChild).toMatchSnapshot()
 
         })
 
-        test("default value assigned correctly", () => {
+        it("default value assigned correctly", () => {
             expect(inputElement.value).toBe('42')
         })
     })
@@ -55,7 +55,7 @@ describe("Input", () => {
             )
             inputElement = screen.getByTestId(inputTestID)
         })
-        test("hover and blur effects works correctly", async () => {
+        it("hover and blur effects works correctly", async () => {
             await userEvent.hover(inputElement)
             expect(onHoverInput).toBeCalled()
             expect(onBlurInput).not.toBeCalled()
@@ -64,14 +64,14 @@ describe("Input", () => {
             expect(onBlurInput).toBeCalled()
         })
 
-        test("handles user input correctly", async () => {
+        it("handles user input correctly", async () => {
             await userEvent.type(inputElement, "90")
             expect(onChangeInput).toBeCalledWith("429")
             expect(onChangeInput).toBeCalledWith("420")
         })
     })
 
-    test("renders label correctly", () => {
+    it("renders label correctly", () => {
         render(
             <Input
                 label={"login as administrator"}
