@@ -1,5 +1,5 @@
 import {FC, useEffect} from 'react';
-import {CategoryRow} from "./CategoryRow";
+import {CategoryRow} from "./CategoryRow/CategoryRow";
 import {CategoriesListHead} from "./CategoriesListHead";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchCategories} from "../../store/actions/categoryAction";
