@@ -2,10 +2,10 @@ import {afterEach, beforeEach, describe, expect, it, vi} from "vitest";
 import {render, RenderResult, screen} from "@testing-library/react";
 import {Input} from "./Input";
 import userEvent from "@testing-library/user-event";
+import {InputTestID} from "../../../constants/testIDs";
 
 
 describe("Input", () => {
-    const inputTestID = 'dflhsldfhla;ksfd'
     const inputValue = 42
     const onChangeInput = vi.fn()
     const onHoverInput = vi.fn()
@@ -16,14 +16,14 @@ describe("Input", () => {
         beforeEach(() => {
             renderOption = render(
                 <input
-                    data-testid={inputTestID}
+                    data-testid={InputTestID}
                     value={inputValue}
                     onMouseEnter={onHoverInput}
                     onMouseLeave={onBlurInput}
                     onChange={(e) => onChangeInput(e.target.value)}
                 />
             )
-            inputElement = screen.getByTestId(inputTestID)
+            inputElement = screen.getByTestId(InputTestID)
         })
 
         afterEach(() => {
@@ -46,14 +46,14 @@ describe("Input", () => {
         beforeEach(() => {
             renderOption = render(
                 <Input
-                    data-testid={inputTestID}
+                    data-testid={InputTestID}
                     value={inputValue}
                     onMouseEnter={onHoverInput}
                     onMouseLeave={onBlurInput}
                     onChange={(e) => onChangeInput(e.target.value)}
                 />
             )
-            inputElement = screen.getByTestId(inputTestID)
+            inputElement = screen.getByTestId(InputTestID)
         })
         it("hover and blur effects works correctly", async () => {
             await userEvent.hover(inputElement)

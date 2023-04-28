@@ -4,20 +4,20 @@ import {CategoryRow} from "./CategoryRow";
 import {Provider} from "react-redux";
 import {createStore} from "../../../store/store";
 import {BrowserRouter} from "react-router-dom";
+import {CategoryRowTestID} from "../../../constants/testIDs";
 
 
 describe("CategoryRow", () => {
     const idProp = 321
     const nameProp = "some category name"
-    const testID = "sfk.jlsdf;sdg"
     const {queryByText} = render(
         <Provider store={createStore()}>
             <BrowserRouter>
-                <CategoryRow id={idProp} name={nameProp} testID={testID}/>
+                <CategoryRow id={idProp} name={nameProp} testID={CategoryRowTestID}/>
             </BrowserRouter>
         </Provider>
     )
-    const liElement = screen.getByTestId(testID)
+    const liElement = screen.getByTestId(CategoryRowTestID)
 
     it("correctly render props", () => {
         const id = queryByText(idProp)
