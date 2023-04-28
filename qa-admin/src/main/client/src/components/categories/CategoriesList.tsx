@@ -15,7 +15,7 @@ export const CategoriesList: FC = () => {
             <CategoriesListHead/>
             <ul className={""}>
                 {categories.map(c => (
-                    <CategoryRow key={c.id} id={c.id} name={c.name} questions={c.questions}/>
+                    <CategoryRow key={c.id} id={c.id} name={c.name}/>
                 ))}
             </ul>
         </div>
