@@ -1,6 +1,6 @@
 import {FC, FormEvent, useEffect, useState} from 'react';
-import {Input} from "../UI/Input";
-import {PrimaryButton} from "../UI/PrimaryButton";
+import {Input} from "../UI/Input/Input";
+import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {PlusIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {createQuestion, fetchQuestionsByCategory} from "../../store/actions/questionAction";
