@@ -5,9 +5,9 @@ name: client build and test
 
 on:
   push:
-    branches: [ "client-ci-testing" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "client-ci-testing" ]
+    branches: [ "master" ]
 
 jobs:
   admin-build:
