@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import {ICategoryNoQuestions} from "../../../types/ICategory";
 import {useAppDispatch} from "../../../hooks/redux";
 import {deleteCategory, fetchCategories} from "../../../store/actions/categoryAction";
+import {Popup} from "../../UI/Popup/Popup";
+import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
 
 interface CategoryRowProps extends ICategoryNoQuestions {
     testID?: string
@@ -26,14 +28,22 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID}) => {
                     <div>{name}</div>
                 </div>
             </Link>
-            <div className={"flex space-x-2"}>
-                <button
-                    className={"px-2 hover:text-red-600 cursor-pointer duration-150"}
-                    onClick={deleteBtnHandler}
-                >
-                    <XMarkIcon className={"w-6 h-6"}/>
-                </button>
-            </div>
+            <Popup
+                title={"Вы уверены, что хотите удалить категорию?"}
+                ButtonElement={
+                    <XMarkIcon className={"w-14 h-6 px-4 hover:text-red-600"}/>
+                }
+                optionButtons={[
+                    <button
+                        className={"px-4 py-2 bg-red-700 duration-150 rounded-lg hover:bg-red-600"}
+                        onClick={deleteBtnHandler}
+                    >
+                        Удалить
+                    </button>,
+                    <PrimaryButton>Не удалять</PrimaryButton>
+                ]}
+            >
+            </Popup>
         </li>
     );
 }

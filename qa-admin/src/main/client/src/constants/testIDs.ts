@@ -5,3 +5,5 @@ export const InputTestID = "Input-testID"
 export const PrimaryButtonTestID = "PrimaryButton-testID"
 
 export const CategoryRowTestID = "CategoryRow-testID"
+
+export const PopupTestID = "Popup-testID"
