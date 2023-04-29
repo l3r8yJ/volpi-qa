@@ -4,7 +4,7 @@ import {Popover} from "@headlessui/react";
 
 interface PopupProps {
     ButtonElement: ReactElement
-    children: ReactNode
+    children?: ReactNode
     optionButtons?: ReactElement[]
     title?: string
 }
