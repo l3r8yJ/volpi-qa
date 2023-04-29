@@ -1,10 +1,11 @@
 import {FC, useState} from 'react';
-import {IQuestion, IQuestionNoID} from "../../types/IQuestion";
+import {IQuestion} from "../../types/IQuestion";
 import {PencilSquareIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {deleteQuestion, fetchQuestionsByCategory, updateQuestion} from "../../store/actions/questionAction";
 import {Input} from "../UI/Input/Input";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
+import {Popup} from "../UI/Popup/Popup";
 
 interface QuestionProps {
     question: IQuestion
@@ -75,14 +76,26 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             className={"w-7 h-7 cursor-pointer hover:bg-neutral-700 p-1 rounded-full duration-150"}
                             onClick={() => setIsEditMode(true)}
                         />
-                        <XMarkIcon
-                            className={"w-7 h-7 cursor-pointer hover:bg-neutral-700 p-1 rounded-full duration-150"}
-                            onClick={deleteHandler}
-                        />
+                        <Popup
+                            ButtonElement={
+                                <XMarkIcon
+                                    className={"w-7 h-7 cursor-pointer hover:bg-neutral-700 p-1 rounded-full duration-150"}/>
+                            }
+                            optionButtons={[
+                                <button
+                                    className={"px-4 py-2 bg-red-700 duration-150 rounded-lg hover:bg-red-600"}
+                                    onClick={deleteHandler}
+                                >
+                                    Удалить
+                                </button>,
+                                <PrimaryButton>Не удалять</PrimaryButton>
+                            ]}
+                            title={"Уверены, что хотите удалить вопрос?"}
+                        >
+                        </Popup>
                     </div>
                 </>
             }
-
         </div>
     );
 }
