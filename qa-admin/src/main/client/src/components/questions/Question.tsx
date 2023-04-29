@@ -5,7 +5,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {deleteQuestion, fetchQuestionsByCategory, updateQuestion} from "../../store/actions/questionAction";
 import {Input} from "../UI/Input/Input";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
-import {Popup} from "../UI/Popup/Popup";
+import {Popup} from "../UI/Popup";
 
 interface QuestionProps {
     question: IQuestion
