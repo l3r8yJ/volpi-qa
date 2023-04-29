@@ -15,7 +15,7 @@ export const Popup: FC<PopupProps> = ({ButtonElement, children, title, optionBut
         <Popover className="relative flex" data-testid={testID}>
             <Popover.Button>{ButtonElement}</Popover.Button>
             <Popover.Panel
-                className="absolute z-10 right-0 top-8 bg-neutral-800 shadow-lg shadow-black/40 p-4 rounded-lg min-w-[250px] space-y-4"
+                className="absolute z-10 right-0 top-10 bg-neutral-900 shadow-lg shadow-black/40 p-4 rounded-lg min-w-[250px] space-y-4"
             >
                 {title && <div className={"text-xl"}>{title}</div>}
                 {children}
