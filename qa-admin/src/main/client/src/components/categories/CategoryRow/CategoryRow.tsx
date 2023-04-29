@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {ICategoryNoQuestions} from "../../../types/ICategory";
 import {useAppDispatch} from "../../../hooks/redux";
 import {deleteCategory, fetchCategories} from "../../../store/actions/categoryAction";
-import {Popup} from "../../UI/Popup/Popup";
+import {Popup} from "../../UI/Popup";
 import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
 
 interface CategoryRowProps extends ICategoryNoQuestions {

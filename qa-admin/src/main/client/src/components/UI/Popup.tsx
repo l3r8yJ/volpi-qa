@@ -1,5 +1,5 @@
 import {FC, ReactElement, ReactNode} from 'react';
-import {PopupTestID} from "../../../constants/testIDs";
+import {PopupTestID} from "../../constants/testIDs";
 import {Popover} from "@headlessui/react";
 
 interface PopupProps {
@@ -12,8 +12,8 @@ interface PopupProps {
 export const Popup: FC<PopupProps> = ({ButtonElement, children, title, optionButtons}) => {
     const testID = process.env.NODE_ENV === "test" ? PopupTestID : undefined
     return (
-        <Popover className="relative flex" data-testid={testID}>
-            <Popover.Button>{ButtonElement}</Popover.Button>
+        <Popover className="relative flex outline-none" data-testid={testID}>
+            <Popover.Button className={"outline-none"}>{ButtonElement}</Popover.Button>
             <Popover.Panel
                 className="absolute z-10 right-0 top-10 bg-neutral-900 shadow-lg shadow-black/40 p-4 rounded-lg min-w-[250px] space-y-4"
             >
@@ -22,7 +22,7 @@ export const Popup: FC<PopupProps> = ({ButtonElement, children, title, optionBut
                 {optionButtons &&
                     <div className={"space-x-2 flex justify-between"}>
                         {optionButtons.map(btn => (
-                            <Popover.Button>{btn}</Popover.Button>
+                            <Popover.Button key={Math.random()} as={"div"}>{btn}</Popover.Button>
                         ))}
                     </div>
                 }
