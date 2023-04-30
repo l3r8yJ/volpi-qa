@@ -17,6 +17,12 @@ jobs:
       - uses: docker-practice/actions-setup-docker@master
         timeout-minutes: 12
       - run: gradle b
+      - name: install admin-client deps
+        working-directory: qa-admin/src/main/client
+        run: npm ci
+      - name: admin-client coverage
+        working-directory: qa-admin/src/main/client
+        run: npm coverage
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
