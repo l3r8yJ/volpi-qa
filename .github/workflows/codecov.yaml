@@ -22,7 +22,7 @@ jobs:
         run: npm ci
       - name: admin-client coverage
         working-directory: qa-admin/src/main/client
-        run: npm coverage
+        run: npm run coverage
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
