@@ -17,8 +17,14 @@ jobs:
       - uses: docker-practice/actions-setup-docker@master
         timeout-minutes: 12
       - run: gradle b
+      - name: install admin-client deps
+        working-directory: qa-admin/src/main/client
+        run: npm ci
+      - name: admin-client coverage
+        working-directory: qa-admin/src/main/client
+        run: npm run coverage
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./qa-admin/build/reports/jacoco/test/jacocoTestReport.xml, ./qa-rest/build/reports/jacoco/test/jacocoTestReport.xml
+          files: ./qa-admin/build/reports/jacoco/test/jacocoTestReport.xml, ./qa-rest/build/reports/jacoco/test/jacocoTestReport.xml, ./qa-admin/src/main/client/coverage/clover.xml
           fail_ci_if_error: true
