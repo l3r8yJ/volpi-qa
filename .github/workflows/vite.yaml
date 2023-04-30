@@ -27,6 +27,4 @@ jobs:
     - name: run tests
       working-directory: qa-admin/src/main/client
       run: npm run test
-    - name: run coverage
-      working-directory: qa-admin/src/main/client
-      run: npm run coverage
+
