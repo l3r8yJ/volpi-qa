@@ -1,9 +1,9 @@
-FROM bellsoft/liberica-openjdk-alpine:17 as build
+FROM bellsoft/liberica-openjdk-alpine:20 as build
 WORKDIR application
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
-FROM bellsoft/liberica-openjdk-alpine:17
+FROM bellsoft/liberica-openjdk-alpine:20
 WORKDIR application
 COPY --from=build application/dependencies/ ./
 COPY --from=build application/spring-boot-loader/ ./
