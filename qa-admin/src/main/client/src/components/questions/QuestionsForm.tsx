@@ -17,8 +17,8 @@ const validateInputValue = createValidateInputValueFunc()
 export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     const [text, setText] = useState("")
     const [answer, setAnswer] = useState("")
-    const [textValid, setTextValid] = useState("")
-    const [answerValid, setAnswerValid] = useState("")
+    const [textValid, setTextValid] = useState(false)
+    const [answerValid, setAnswerValid] = useState(false)
     const [showValidation, setShowValidation] = useState(false)
     const dispatch = useAppDispatch()
     const {currentCategory} = useAppSelector(state => state.category)
@@ -26,17 +26,9 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
         dispatch(fetchCategoryByName(categoryName))
     }, [])
 
-    useEffect(() => {
-        setTextValid(validateInputValue(text))
-    }, [text])
-
-    useEffect(() => {
-        setAnswerValid(validateInputValue(answer))
-    }, [answer])
-
     const formHandler = async (e: FormEvent) => {
         e.preventDefault()
-        if (textValid !== "выглядит хорошо!" || answerValid !== "выглядит хорошо!") return setShowValidation(true)
+        if(!textValid || !answerValid) return setShowValidation(true)
         const newQuestion: IQuestionNoID = {
             answer,
             text,
@@ -57,15 +49,19 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                 label={"Вопрос"}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                validateResult={showValidation? textValid : ""}
+                setIsValid={setTextValid}
+                validateFunc={validateInputValue}
+                showValidation={showValidation}
             />
             <Input
                 label={"Ответ"}
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                validateResult={showValidation ? answerValid : ""}
+                setIsValid={setAnswerValid}
+                validateFunc={validateInputValue}
+                showValidation={showValidation}
             />
-            <PrimaryButton className={"flex justify-center items-center space-x-1"}>
+            <PrimaryButton className={"flex justify-center items-center space-x-1"} type={"submit"}>
                 <PlusIcon className={"w-5 h-5"}/>
                 <span>Создать</span>
             </PrimaryButton>
