@@ -1,6 +1,6 @@
 import {afterEach, beforeEach, describe, expect, it, vi} from "vitest";
 import {render, RenderResult, screen} from "@testing-library/react";
-import {Input} from "./Input";
+import {ValidatedInput} from "./ValidatedInput";
 import userEvent from "@testing-library/user-event";
 import {InputTestID} from "../../../constants/testIDs";
 import {createValidateInputValueFunc} from "../../../utils/createValidateInputValue/createValidateInputValueFunc";
@@ -19,7 +19,7 @@ describe("Input", () => {
     describe("basic props and behaviour", () => {
         beforeEach(() => {
             renderOption = render(
-                <Input
+                <ValidatedInput
                     data-testid={InputTestID}
                     value={inputValue}
                     onMouseEnter={onHoverInput}
@@ -52,7 +52,7 @@ describe("Input", () => {
     describe("user interaction", () => {
         beforeEach(() => {
             renderOption = render(
-                <Input
+                <ValidatedInput
                     data-testid={InputTestID}
                     value={inputValue}
                     onMouseEnter={onHoverInput}
@@ -83,7 +83,7 @@ describe("Input", () => {
 
     it("renders label correctly", () => {
         render(
-            <Input
+            <ValidatedInput
                 label={"login as administrator"}
                 validateFunc={validateFunc}
                 showValidation={showValidation}

@@ -1,5 +1,5 @@
 import {FC, FormEvent, useEffect, useState} from 'react';
-import {Input} from "../UI/Input/Input";
+import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {PlusIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
@@ -45,7 +45,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     }
     return (
         <form className={"flex flex-col space-y-4"} onSubmit={formHandler}>
-            <Input
+            <ValidatedInput
                 label={"Вопрос"}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
@@ -53,7 +53,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                 validateFunc={validateInputValue}
                 showValidation={showValidation}
             />
-            <Input
+            <ValidatedInput
                 label={"Ответ"}
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}

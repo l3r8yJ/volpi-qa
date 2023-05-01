@@ -1,7 +1,7 @@
 import React, {FC, FormEvent, useState} from 'react';
 import {useAppDispatch} from "../../hooks/redux";
 import {createCategory, fetchCategories} from "../../store/actions/categoryAction";
-import {Input} from "../UI/Input/Input";
+import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 
@@ -22,7 +22,7 @@ export const CategoriesForm: FC = () => {
     }
     return (
         <form className={"space-y-4 flex flex-col items-center"} onSubmit={formHandler}>
-            <Input
+            <ValidatedInput
                 value={categoryName}
                 onChange={(e) => setCategoryName(e.target.value)}
                 label={"Название категории"}

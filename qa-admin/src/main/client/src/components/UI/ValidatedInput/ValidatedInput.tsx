@@ -8,7 +8,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     showValidation: boolean
 }
 
-export const Input: FC<InputProps> = ({
+export const ValidatedInput: FC<InputProps> = ({
                                           className,
                                           label,
                                           value = "",
