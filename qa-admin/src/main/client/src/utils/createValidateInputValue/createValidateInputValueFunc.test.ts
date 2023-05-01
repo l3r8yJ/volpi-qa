@@ -1,6 +1,6 @@
 import {describe, expect, it} from "vitest";
 import {bigString, stringWith200Chars, stringWith201Chars} from "./testData";
-import {createValidateInputValueFunc} from "./validateInputValue";
+import {createValidateInputValueFunc} from "./createValidateInputValueFunc";
 
 
 describe("validateInputValue", () => {

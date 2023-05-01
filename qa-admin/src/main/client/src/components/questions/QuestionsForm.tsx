@@ -6,7 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {createQuestion, fetchQuestionsByCategory} from "../../store/actions/questionAction";
 import {IQuestionNoID} from "../../types/IQuestion";
 import {fetchCategoryByName} from "../../store/actions/categoryAction";
-import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/validateInputValue";
+import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 
 interface QuestionsFormProps {
     categoryName: string
