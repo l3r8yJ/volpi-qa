@@ -9,6 +9,10 @@ describe("validateInputValue", () =>{
             expect(validateInputValue("some default value")).toBe("success")
         })
 
+        it("empty string gives 'cannot be empty' result", () => {
+            expect(validateInputValue("")).toBe("cannot be empty")
+        })
+
         it("string with length = maxLength gives 'success' result", () => {
             const result = validateInputValue(stringWith200Chars)
             expect(stringWith200Chars.length).toBe(200)
