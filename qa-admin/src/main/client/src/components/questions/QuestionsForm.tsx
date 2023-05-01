@@ -6,11 +6,13 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {createQuestion, fetchQuestionsByCategory} from "../../store/actions/questionAction";
 import {IQuestionNoID} from "../../types/IQuestion";
 import {fetchCategoryByName} from "../../store/actions/categoryAction";
-import {validateInputValue} from "../../utils/validateInputValue/validateInputValue";
+import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/validateInputValue";
 
 interface QuestionsFormProps {
     categoryName: string
 }
+
+const validateInputValue = createValidateInputValueFunc()
 
 export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     const [text, setText] = useState("")

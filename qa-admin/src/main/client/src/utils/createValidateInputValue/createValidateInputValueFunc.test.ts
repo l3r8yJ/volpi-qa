@@ -1,9 +1,10 @@
 import {describe, expect, it} from "vitest";
 import {bigString, stringWith200Chars, stringWith201Chars} from "./testData";
-import {validateInputValue} from "./validateInputValue";
+import {createValidateInputValueFunc} from "./validateInputValue";
 
 
-describe("validateInputValue", () =>{
+describe("validateInputValue", () => {
+    const validateInputValue = createValidateInputValueFunc()
     describe("check with default maxLength = 200", () => {
         it("string with length < maxLength gives 'выглядит хорошо' result", () => {
             expect(validateInputValue("some default value")).toBe("выглядит хорошо!")
