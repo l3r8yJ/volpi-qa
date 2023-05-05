@@ -51,3 +51,5 @@ const categorySlice = createSlice({
         })
     }
 })
+
+export const categoryReducer = categorySlice.reducer
