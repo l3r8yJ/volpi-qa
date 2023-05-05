@@ -12,7 +12,7 @@ export class QuestionService{
         return $api.get<IQuestion>(`questions/${id}`)
     }
 
-    static fetchQuestionByText(text:number):Promise<AxiosResponse<IQuestion>>{
+    static fetchQuestionByText(text:string):Promise<AxiosResponse<IQuestion>>{
         return $api.get<IQuestion>(`questions/by-text/${text}`)
     }
 
