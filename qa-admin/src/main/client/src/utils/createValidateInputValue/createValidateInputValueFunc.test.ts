@@ -1,31 +1,19 @@
 import {describe, expect, it} from "vitest";
-import {bigString, stringWith200Chars, stringWith201Chars} from "./testData";
 import {createValidateInputValueFunc} from "./createValidateInputValueFunc";
-
+import {generateRandomString} from "../generateRandomString/generateRandomString";
 
 describe("validateInputValue", () => {
     const validateInputValue = createValidateInputValueFunc()
     describe("check with default maxLength = 200", () => {
-        it("string with length < maxLength gives 'выглядит хорошо' result", () => {
-            expect(validateInputValue("some default value")).toBe("выглядит хорошо!")
-        })
-
-        it("empty string gives 'не может быть пустым' result", () => {
-            expect(validateInputValue("")).toBe("не может быть пустым")
-        })
-
-        it("string with length = maxLength gives 'выглядит хорошо!' result", () => {
-            const result = validateInputValue(stringWith200Chars)
-            expect(stringWith200Chars.length).toBe(200)
-            expect(result).toBe('выглядит хорошо!')
-        })
-
-        it("string with length > maxLength gives 'слишком длинное' result", () => {
-            expect(stringWith201Chars.length).toBe(201)
-            expect(bigString.length).toBeGreaterThan(1000)
-
-            expect(validateInputValue(stringWith201Chars)).toBe("слишком длинное")
-            expect(validateInputValue(bigString)).toBe("слишком длинное")
+        it.each([
+            {str: generateRandomString(Math.floor(Math.random() * 100)), expected: "выглядит хорошо!"},
+            {str: generateRandomString(200), expected: "выглядит хорошо!"},
+            {str: generateRandomString(1), expected: "выглядит хорошо!"},
+            {str: generateRandomString(201), expected: "слишком длинное"},
+            {str: generateRandomString(Math.floor(Math.random() * 1000 + 200)), expected: "слишком длинное"},
+            {str: generateRandomString(0), expected: "не может быть пустым"},
+        ])("string with length $str.length should gives %s", ({str, expected}) => {
+            expect(validateInputValue(str)).toBe(expected)
         })
     })
 
