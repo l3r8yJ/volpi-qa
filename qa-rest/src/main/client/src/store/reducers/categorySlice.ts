@@ -27,7 +27,7 @@ const categorySlice = createSlice({
             state.categories = action.payload
         }).addCase(fetchAllCategories.rejected, (state, action) => {
             state.loading = "failed"
-            console.log(action.payload);
+            console.log(action.error);
         })
 
         builder.addCase(fetchCategoryById.pending, (state) => {
@@ -37,7 +37,7 @@ const categorySlice = createSlice({
             state.currentCategory = action.payload
         }).addCase(fetchCategoryById.rejected, (state, action) => {
             state.loading = "failed"
-            console.log(action.payload);
+            console.log(action.error);
         })
 
         builder.addCase(fetchCategoryByName.pending, (state) => {
@@ -47,7 +47,7 @@ const categorySlice = createSlice({
             state.currentCategory = action.payload
         }).addCase(fetchCategoryByName.rejected, (state,action) => {
             state.loading = "failed"
-            console.log(action.payload);
+            console.log(action.error);
         })
     }
 })

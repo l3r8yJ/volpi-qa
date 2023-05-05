@@ -61,7 +61,7 @@ const questionSlice = createSlice({
             state.currentQuestion = action.payload
         }).addCase(fetchQuestionByText.rejected, (state, action) => {
             state.loading = "failed"
-            console.log(action.payload);
+            console.log(action.error);
         })
     }
 })
