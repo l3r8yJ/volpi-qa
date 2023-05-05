@@ -27,7 +27,7 @@ export const ValidatedInput: FC<InputProps> = ({
         const isValid = validateResult === "выглядит хорошо!"
         if (showValidation) setInputStatusClasses(isValid ? "border-green-500/50" : "border-red-500/50")
         setIsValid(isValid)
-    }, [validateResult])
+    }, [validateResult, showValidation])
 
     return (
         <label className={"max-w-[250px]"}>
