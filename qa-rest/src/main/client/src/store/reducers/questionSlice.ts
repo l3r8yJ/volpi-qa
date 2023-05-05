@@ -66,4 +66,4 @@ const questionSlice = createSlice({
     }
 })
 
-export default questionSlice.reducer
+export const questionReducer =  questionSlice.reducer
