@@ -1,10 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
-import questionReducer from "./reducers/questionSlice"
+import {questionReducer} from "./reducers/questionSlice"
+import {categoryReducer} from "./reducers/categorySlice";
 
 
 export const store = configureStore({
     reducer:{
-        question: questionReducer
+        question: questionReducer,
+        category: categoryReducer
     }
 })
 
