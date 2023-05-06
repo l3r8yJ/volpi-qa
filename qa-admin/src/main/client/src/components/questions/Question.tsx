@@ -3,18 +3,24 @@ import {IQuestion} from "../../types/IQuestion";
 import {PencilSquareIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {deleteQuestion, fetchQuestionsByCategory, updateQuestion} from "../../store/actions/questionAction";
-import {Input} from "../UI/Input/Input";
+import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {Popup} from "../UI/Popup";
+import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 
 interface QuestionProps {
     question: IQuestion
 }
 
+const validateInputValue = createValidateInputValueFunc()
+
 export const Question: FC<QuestionProps> = ({question}) => {
     const [isEditMode, setIsEditMode] = useState(false)
     const [text, setText] = useState(question.text)
     const [answer, setAnswer] = useState(question.answer)
+    const [showValidation, setShowValidation] = useState(false)
+    const [isTextValid, setIsTextValid] = useState(false)
+    const [isAnswerValid, setIsAnswerValid] = useState(false)
     const dispatch = useAppDispatch()
     const {currentCategory} = useAppSelector(state => state.category)
     const deleteHandler = async () => {
@@ -40,15 +46,21 @@ export const Question: FC<QuestionProps> = ({question}) => {
             {isEditMode
                 ? <div >
                     <div className={"flex flex-col space-y-2"}>
-                        <Input
+                        <ValidatedInput
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             label={"Вопрос"}
+                            validateFunc={validateInputValue}
+                            setIsValid={setIsTextValid}
+                            showValidation={showValidation}
                         />
-                        <Input
+                        <ValidatedInput
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
                             label={"Ответ"}
+                            validateFunc={validateInputValue}
+                            setIsValid={setIsTextValid}
+                            showValidation={showValidation}
                         />
                     </div>
                     <div className={"flex space-x-2 mt-4"}>
