@@ -1,12 +1,8 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {MainLayout} from "../components/layouts/MainLayout";
 import {Sidebar} from "../components/Sidebar";
 import {CategoriesList} from "../components/categories/CategoriesList/CategoriesList";
-import {ValidatedInput} from "../components/UI/ValidatedInput/ValidatedInput";
-import {PrimaryButton} from "../components/UI/PrimaryButton/PrimaryButton";
-import {useAppDispatch} from "../hooks/redux";
-import {createCategory, fetchCategories} from "../store/actions/categoryAction";
-import {CategoriesForm} from "../components/categories/CategoriesForm";
+import {CategoriesForm} from "../components/categories/CategoriesForm/CategoriesForm";
 
 const Categories: FC = () => {
 
