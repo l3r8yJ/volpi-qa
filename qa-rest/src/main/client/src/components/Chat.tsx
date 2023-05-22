@@ -1,6 +1,6 @@
 import {FC, useEffect} from 'react';
 import {ChatHeader} from "./ChatHeader";
-import {Category} from "./CategoryOption";
+import {CategoryOption} from "./CategoryOption";
 import {TextInputForm} from "./TextInputForm";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {fetchAllCategories} from "../store/actions/categoryAction";
@@ -21,7 +21,7 @@ export const Chat: FC = () => {
                 </div>
                 <div className={"space-y-4"}>
                     {categories.map((category) => (
-                        <Category key={category.id} category={category}/>
+                        <CategoryOption key={category.id} category={category}/>
                     ))}
                 </div>
             </div>
