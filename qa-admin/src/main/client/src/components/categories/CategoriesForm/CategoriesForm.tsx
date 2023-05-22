@@ -1,9 +1,9 @@
 import React, {FC, FormEvent, useState} from 'react';
-import {useAppDispatch} from "../../hooks/redux";
-import {createCategory, fetchCategories} from "../../store/actions/categoryAction";
-import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
-import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
-import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
+import {useAppDispatch} from "../../../hooks/redux";
+import {createCategory, fetchCategories} from "../../../store/actions/categoryAction";
+import {ValidatedInput} from "../../UI/ValidatedInput/ValidatedInput";
+import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
+import {createValidateInputValueFunc} from "../../../utils/createValidateInputValue/createValidateInputValueFunc";
 
 const validateInputValue = createValidateInputValueFunc()
 
