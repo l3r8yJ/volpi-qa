@@ -1,13 +1,11 @@
 import React, {FC} from 'react';
-import {useAppSelector} from "../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {ArrowLeftIcon, XMarkIcon} from "@heroicons/react/24/outline";
+import {setIsOpen} from "../store/reducers/modalSlice";
 
-interface ChatHeaderProps {
-    setModalIsOpen: (visible: boolean) => void
-}
-
-export const ChatHeader: FC<ChatHeaderProps> = ({setModalIsOpen}) => {
+export const ChatHeader: FC = () => {
     const {currentCategory} = useAppSelector(state => state.view)
+    const dispatch = useAppDispatch()
     return (
         <div className={"p-4 text-xl text-white flex items-center justify-between bg-zinc-800"}>
             <button
@@ -21,7 +19,7 @@ export const ChatHeader: FC<ChatHeaderProps> = ({setModalIsOpen}) => {
             }
             <button
                 className={"text-white hover:text-neutral-300"}
-                onClick={() => setModalIsOpen(false)}
+                onClick={() => dispatch(setIsOpen(false))}
             >
                 <XMarkIcon className={"w-6 h-6"}/>
             </button>

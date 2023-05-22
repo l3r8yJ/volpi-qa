@@ -6,11 +6,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {fetchAllCategories} from "../store/actions/categoryAction";
 import {CategoryView} from "./CategoryView";
 
-interface ChatProps {
-    setIsVisible: (visible: boolean) => void
-}
-
-export const Chat: FC<ChatProps> = ({setIsVisible}) => {
+export const Chat: FC = () => {
     const dispatch = useAppDispatch()
     const {categories, loading} = useAppSelector(state => state.category)
     const {currentCategory} = useAppSelector(state => state.view)
@@ -20,7 +16,7 @@ export const Chat: FC<ChatProps> = ({setIsVisible}) => {
 
     return (
         <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[calc(100vh-4vh)] sm:h-[600px]"}>
-            <ChatHeader setModalIsOpen={setIsVisible}/>
+            <ChatHeader/>
             <div className={"h-full p-4 space-y-4 overflow-y-auto bg-white"}>
                 {currentCategory === null
                     ? <>

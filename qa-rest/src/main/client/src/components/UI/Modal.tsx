@@ -1,18 +1,19 @@
 import React, {FC} from 'react';
 import {Dialog} from '@headlessui/react';
-import {ArrowLeftIcon, XMarkIcon} from "@heroicons/react/24/outline";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {setIsOpen} from "../../store/reducers/modalSlice";
 
 interface ModalProps {
     children: React.ReactNode
-    isOpen: boolean
-    setIsOpen: (visible: boolean) => void
 }
 
-export const Modal: FC<ModalProps> = ({children, isOpen, setIsOpen}) => {
+export const Modal: FC<ModalProps> = ({children}) => {
+    const {isOpen} = useAppSelector(state => state.modal)
+    const dispatch = useAppDispatch()
     return (
         <Dialog
             open={isOpen}
-            onClose={() => setIsOpen(false)}
+            onClose={() => dispatch(setIsOpen(false))}
             className="relative z-[1001]"
         >
             <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true"/>
