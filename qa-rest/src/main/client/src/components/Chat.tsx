@@ -1,6 +1,6 @@
 import {FC, useEffect} from 'react';
 import {ChatHeader} from "./ChatHeader";
-import {Category} from "./Category";
+import {Category} from "./CategoryOption";
 import {TextInputForm} from "./TextInputForm";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {fetchAllCategories} from "../store/actions/categoryAction";
