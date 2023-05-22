@@ -15,11 +15,8 @@ function App() {
                     <button onClick={() => setChatVisible(!chatVisible)}>
                         <ChatBubbleBottomCenterTextIcon className={"w-10 h-10"}/>
                     </button>
-                    <Modal
-                        isOpen={chatVisible}
-                        setIsOpen={setChatVisible}
-                    >
-                        <Chat/>
+                    <Modal isOpen={chatVisible} setIsOpen={setChatVisible}>
+                        <Chat setIsVisible={setChatVisible}/>
                     </Modal>
                 </div>
                 :
@@ -31,7 +28,7 @@ function App() {
                         isOpen={chatVisible}
                         setIsOpen={setChatVisible}
                     >
-                        <Chat/>
+                        <Chat setIsVisible={setChatVisible}/>
                     </Modal>
                 </>
             }
