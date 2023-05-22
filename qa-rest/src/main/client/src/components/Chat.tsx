@@ -12,7 +12,7 @@ export const Chat: FC = () => {
         dispatch(fetchAllCategories())
     }, [])
     return (
-        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[calc(100vh-4vh)] lg:h-auto"}>
+        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[calc(100vh-4vh)] md:h-auto"}>
             <ChatHeader/>
             <div className={"h-full lg:h-auto lg:max-h-[450px] p-4 space-y-4 overflow-y-auto bg-white"}>
                 <div>
