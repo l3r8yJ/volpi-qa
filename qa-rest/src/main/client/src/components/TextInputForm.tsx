@@ -1,36 +1,38 @@
-import {FC, useEffect, useRef, useState} from 'react';
+import {FC, Fragment, useEffect, useState} from 'react';
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
 import {Combobox} from "@headlessui/react";
 import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
-
-const people = [
-    'Durward Reynolds',
-    'Kenton Towne',
-    'Therese Wunsch',
-    'Benedict Kessler',
-    'Katelyn Rohan',
-]
+import {useAppSelector} from "../hooks/redux";
 
 export const TextInputForm: FC = () => {
-    const [selectedPerson, setSelectedPerson] = useState("")
+    const [questionsAndCategories, setQuestionsAndCategories] = useState<Array<string>>([])
+    const [selectedValue, setSelectedValue] = useState("")
     const [query, setQuery] = useState('')
+
+    const {categories} = useAppSelector(state => state.category)
+    useEffect(() => {
+        setQuestionsAndCategories([
+            ...categories.flatMap(category => category.questions.map(question => question.text))
+        ])
+    }, [categories])
 
     const filteredPeople =
         query === ''
-            ? people
-            : people.filter((person) => {
-                return person.toLowerCase().includes(query.toLowerCase())
+            ? questionsAndCategories
+            : questionsAndCategories.filter((questionOrCategory) => {
+                return questionOrCategory.toLowerCase().includes(query.toLowerCase())
             })
 
     return (
         <div className={"bg-white"}>
-            <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+            <Combobox value={selectedValue} onChange={setSelectedValue}>
                 <Combobox.Options
                     className={"max-h-36 overflow-y-auto rounded-lg overflow-hidden border py-1.5 mb-3 mx-2 shadow-lg shadow-neutral-500/50"}>
                     {filteredPeople.map((person) => (
                         <Combobox.Option
                             key={person}
                             value={person}
+                            as={Fragment}
                         >
                             {({active, selected}) => (
                                 <li
@@ -45,15 +47,11 @@ export const TextInputForm: FC = () => {
                                                 <span>{person}</span>
                                             )}
                                     </span>
-                                    {selected ? (
-                                        <span
-                                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                                active ? 'text-white' : 'text-blue-600'
-                                            }`}
-                                        >
-                                            <CheckIcon className="h-5 w-5" aria-hidden="true"/>
+                                    <span
+                                        className={"absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 ui-active:text-white"}
+                                    >
+                                            <CheckIcon className="h-5 w-5 hidden ui-selected:block" aria-hidden="true"/>
                                         </span>
-                                    ) : null}
                                 </li>
                             )}
                         </Combobox.Option>
@@ -65,7 +63,7 @@ export const TextInputForm: FC = () => {
                         <Combobox.Input
                             className={"w-full outline-none"}
                             onChange={(event) => setQuery(event.target.value)}
-                            placeholder={"Категория или вопрос..."}
+                            placeholder={"Спросите что-нибудь..."}
                         />
                         <Combobox.Button>
                             <ChevronUpDownIcon className={"w-6 h-6 hover:text-neutral-500 duration-150"}/>
