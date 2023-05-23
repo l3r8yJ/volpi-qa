@@ -6,7 +6,7 @@ export const CategoryView: FC = () => {
     const {currentCategory} = useAppSelector(state => state.view)
     if (currentCategory === null) return <div>Произошла ошибка при получении категории</div>
     return (
-        <div>
+        <div className={"overflow-y-auto"}>
             {currentCategory.questions.length > 0
                 ? <div className={"flex flex-col space-y-4"}>
                     {currentCategory.questions.map(question => (
