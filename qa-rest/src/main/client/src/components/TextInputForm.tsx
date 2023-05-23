@@ -1,18 +1,19 @@
-import {FC, Fragment, useEffect, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
 import {Combobox} from "@headlessui/react";
 import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
 import {useAppSelector} from "../hooks/redux";
+import {IQuestion} from "../types/IQuestion";
 
 export const TextInputForm: FC = () => {
-    const [questions, setQuestions] = useState<Array<string>>([])
+    const [questions, setQuestions] = useState<Array<IQuestion>>([])
     const [selectedValue, setSelectedValue] = useState("")
     const [query, setQuery] = useState('')
 
     const {categories} = useAppSelector(state => state.category)
     useEffect(() => {
         setQuestions([
-            ...categories.flatMap(category => category.questions.map(question => question.text))
+            ...categories.flatMap(category => category.questions)
         ])
     }, [categories])
 
@@ -20,7 +21,7 @@ export const TextInputForm: FC = () => {
         query === ''
             ? questions
             : questions.filter((question) => {
-                return question.toLowerCase().includes(query.toLowerCase())
+                return question.text.toLowerCase().includes(query.toLowerCase())
             })
 
     return (
@@ -34,13 +35,13 @@ export const TextInputForm: FC = () => {
                             Ничего не найдено.
                         </div>
                     ) : (
-                        filteredQuestions.map((person) => (
+                        filteredQuestions.map((question) => (
                             <Combobox.Option
-                                key={person}
-                                value={person}
+                                key={question.id}
+                                value={question.text}
                                 className={"cursor-pointer select-none flex p-2 pl-10 pr-2 relative text-zinc-900 ui-active:bg-blue-600 ui-active:text-white"}
                             >
-                                <span className={"ui-selected:font-semibold"}>{person}</span>
+                                <span className={"ui-selected:font-semibold"}>{question.text}</span>
                                 <span
                                     className={"absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 ui-active:text-white"}
                                 >
@@ -61,9 +62,10 @@ export const TextInputForm: FC = () => {
                             <ChevronUpDownIcon className={"w-6 h-6 hover:text-neutral-500 duration-150"}/>
                         </Combobox.Button>
                     </div>
-                    <button className={"ml-2"}>
+                    <button className={"ml-2 "}>
                         <PaperAirplaneIcon
-                            className={"w-6 h-6 cursor-pointer text-blue-400 hover:text-blue-600 duration-200 "}/>
+                            className={"w-6 h-6 cursor-pointer text-blue-400 hover:text-blue-600 duration-200 "}
+                        />
                     </button>
                 </form>
             </Combobox>
