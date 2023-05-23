@@ -1,34 +1,59 @@
-import {FC, useEffect, useRef} from 'react';
+import {FC, useEffect, useRef, useState} from 'react';
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
+import {Combobox} from "@headlessui/react";
+import {ChevronUpDownIcon} from "@heroicons/react/24/outline";
+
+const people = [
+    'Durward Reynolds',
+    'Kenton Towne',
+    'Therese Wunsch',
+    'Benedict Kessler',
+    'Katelyn Rohan',
+]
 
 export const TextInputForm: FC = () => {
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
-    useEffect(() => {
-        handleTextareaInput()
-    }, [])
+    const [selectedPerson, setSelectedPerson] = useState("")
+    const [query, setQuery] = useState('')
 
-    const handleTextareaInput = () => {
-        const textarea = textareaRef.current;
-        if(textarea){
-            textarea.style.height = "10px"; // Сбросим высоту до автоматической
-            textarea.style.height = `${textarea.scrollHeight}px`; // Установим высоту равную высоте содержимого
-        }
-    };
+    const filteredPeople =
+        query === ''
+            ? people
+            : people.filter((person) => {
+                return person.toLowerCase().includes(query.toLowerCase())
+            })
 
     return (
-        <form className={"sticky bottom-0 py-4 px-2 border-t bg-zinc-50"}>
-            <div className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
-                <textarea
-                    ref={textareaRef}
-                    className={"w-full outline-none px-2 max-h-[150px] resize-none flex items-center"}
-                    placeholder={"Напишите что-нибудь..."}
-                    onInput={handleTextareaInput}
-                />
-                <button>
+        <div className={"bg-white"}>
+        <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+            <Combobox.Options className={"max-h-36 overflow-y-auto rounded-lg overflow-hidden border py-1.5 mb-3 mx-2 shadow-lg shadow-neutral-500/50"}>
+                {filteredPeople.map((person) => (
+                    <Combobox.Option
+                        key={person}
+                        value={person}
+                        className={({active}) =>
+                            `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                active ? 'bg-blue-600 text-white' : 'text-gray-900'}`}
+                    >
+                        {person}
+                    </Combobox.Option>
+                ))}
+            </Combobox.Options>
+            <form className={"flex py-4 px-2 bg-zinc-50 border-t"}>
+                <div
+                    className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
+                    <Combobox.Input
+                        className={"w-full outline-none"}
+                        onChange={(event) => setQuery(event.target.value)}
+                        placeholder={"Категория или вопрос..."}
+                    />
+                    <Combobox.Button><ChevronUpDownIcon className={"w-6 h-6"}/></Combobox.Button>
+                </div>
+                <button className={"ml-2"}>
                     <PaperAirplaneIcon
                         className={"w-6 h-6 cursor-pointer text-blue-400 hover:text-blue-600 duration-200 "}/>
                 </button>
-            </div>
-        </form>
+            </form>
+        </Combobox>
+        </div>
     );
 }
