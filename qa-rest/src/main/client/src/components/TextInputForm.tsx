@@ -16,13 +16,6 @@ export const TextInputForm: FC = () => {
         ])
     }, [categories])
 
-    const filteredPeople =
-        query === ''
-            ? questionsAndCategories
-            : questionsAndCategories.filter((questionOrCategory) => {
-                return questionOrCategory.toLowerCase().includes(query.toLowerCase())
-            })
-
     return (
         <div className={"bg-white"}>
             <Combobox value={selectedValue} onChange={setSelectedValue}>
