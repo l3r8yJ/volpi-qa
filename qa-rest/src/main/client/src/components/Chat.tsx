@@ -15,9 +15,9 @@ export const Chat: FC = () => {
     }, [])
 
     return (
-        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[calc(100vh-4vh)] sm:h-[600px]"}>
+        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[600px] flex flex-col"}>
             <ChatHeader/>
-            <div className={"h-full p-4 space-y-4 overflow-y-auto bg-white"}>
+            <div className={"flex-grow space-y-4 overflow-y-auto bg-white p-4"}>
                 {currentCategory === null
                     ? <>
                         <div>
