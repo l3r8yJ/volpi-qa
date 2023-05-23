@@ -38,28 +38,14 @@ export const TextInputForm: FC = () => {
                             <Combobox.Option
                                 key={person}
                                 value={person}
-                                as={Fragment}
+                                className={"cursor-pointer select-none flex p-2 pl-10 pr-2 relative text-zinc-900 ui-active:bg-blue-600 ui-active:text-white"}
                             >
-                                {({active, selected}) => (
-                                    <li
-                                        className={`cursor-pointer select-none flex p-2 pl-10 pr-2 relative
-                                    ${active ? 'bg-blue-600 text-white ' : ' text-gray-900'}`}
-                                    >
-                                    <span>
-                                        {selected ? (
-                                                <span className={"font-semibold"}>{person}</span>
-                                            )
-                                            : (
-                                                <span>{person}</span>
-                                            )}
-                                    </span>
-                                        <span
-                                            className={"absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 ui-active:text-white"}
-                                        >
-                                            <CheckIcon className="h-5 w-5 hidden ui-selected:block" aria-hidden="true"/>
-                                        </span>
-                                    </li>
-                                )}
+                                <span className={"ui-selected:font-semibold"}>{person}</span>
+                                <span
+                                    className={"absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 ui-active:text-white"}
+                                >
+                                    <CheckIcon className="h-5 w-5 hidden ui-selected:block" aria-hidden="true"/>
+                                </span>
                             </Combobox.Option>
                         )))}
                 </Combobox.Options>
