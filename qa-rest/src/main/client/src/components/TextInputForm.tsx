@@ -5,23 +5,30 @@ import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
 import {useAppSelector} from "../hooks/redux";
 
 export const TextInputForm: FC = () => {
-    const [questionsAndCategories, setQuestionsAndCategories] = useState<Array<string>>([])
+    const [questions, setQuestions] = useState<Array<string>>([])
     const [selectedValue, setSelectedValue] = useState("")
     const [query, setQuery] = useState('')
 
     const {categories} = useAppSelector(state => state.category)
     useEffect(() => {
-        setQuestionsAndCategories([
+        setQuestions([
             ...categories.flatMap(category => category.questions.map(question => question.text))
         ])
     }, [categories])
+
+    const filteredQuestions =
+        query === ''
+            ? questions
+            : questions.filter((question) => {
+                return question.toLowerCase().includes(query.toLowerCase())
+            })
 
     return (
         <div className={"bg-white"}>
             <Combobox value={selectedValue} onChange={setSelectedValue}>
                 <Combobox.Options
                     className={"max-h-36 overflow-y-auto rounded-lg overflow-hidden border py-1.5 mb-3 mx-2 shadow-lg shadow-neutral-500/50"}>
-                    {filteredPeople.map((person) => (
+                    {filteredQuestions.map((person) => (
                         <Combobox.Option
                             key={person}
                             value={person}
