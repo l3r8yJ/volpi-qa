@@ -1,7 +1,7 @@
 import {FC, useEffect, useRef, useState} from 'react';
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
 import {Combobox} from "@headlessui/react";
-import {ChevronUpDownIcon} from "@heroicons/react/24/outline";
+import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
 
 const people = [
     'Durward Reynolds',
@@ -24,36 +24,59 @@ export const TextInputForm: FC = () => {
 
     return (
         <div className={"bg-white"}>
-        <Combobox value={selectedPerson} onChange={setSelectedPerson}>
-            <Combobox.Options className={"max-h-36 overflow-y-auto rounded-lg overflow-hidden border py-1.5 mb-3 mx-2 shadow-lg shadow-neutral-500/50"}>
-                {filteredPeople.map((person) => (
-                    <Combobox.Option
-                        key={person}
-                        value={person}
-                        className={({active}) =>
-                            `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
-                                active ? 'bg-blue-600 text-white' : 'text-gray-900'}`}
-                    >
-                        {person}
-                    </Combobox.Option>
-                ))}
-            </Combobox.Options>
-            <form className={"flex py-4 px-2 bg-zinc-50 border-t"}>
-                <div
-                    className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
-                    <Combobox.Input
-                        className={"w-full outline-none"}
-                        onChange={(event) => setQuery(event.target.value)}
-                        placeholder={"Категория или вопрос..."}
-                    />
-                    <Combobox.Button><ChevronUpDownIcon className={"w-6 h-6"}/></Combobox.Button>
-                </div>
-                <button className={"ml-2"}>
-                    <PaperAirplaneIcon
-                        className={"w-6 h-6 cursor-pointer text-blue-400 hover:text-blue-600 duration-200 "}/>
-                </button>
-            </form>
-        </Combobox>
+            <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+                <Combobox.Options
+                    className={"max-h-36 overflow-y-auto rounded-lg overflow-hidden border py-1.5 mb-3 mx-2 shadow-lg shadow-neutral-500/50"}>
+                    {filteredPeople.map((person) => (
+                        <Combobox.Option
+                            key={person}
+                            value={person}
+                        >
+                            {({active, selected}) => (
+                                <li
+                                    className={`cursor-pointer select-none flex p-2 pl-10 pr-2 relative
+                                    ${active ? 'bg-blue-600 text-white ' : ' text-gray-900'}`}
+                                >
+                                    <span>
+                                        {selected ? (
+                                                <span className={"font-semibold"}>{person}</span>
+                                            )
+                                            : (
+                                                <span>{person}</span>
+                                            )}
+                                    </span>
+                                    {selected ? (
+                                        <span
+                                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                                                active ? 'text-white' : 'text-blue-600'
+                                            }`}
+                                        >
+                                            <CheckIcon className="h-5 w-5" aria-hidden="true"/>
+                                        </span>
+                                    ) : null}
+                                </li>
+                            )}
+                        </Combobox.Option>
+                    ))}
+                </Combobox.Options>
+                <form className={"flex py-4 px-2 bg-zinc-50 border-t"}>
+                    <div
+                        className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
+                        <Combobox.Input
+                            className={"w-full outline-none"}
+                            onChange={(event) => setQuery(event.target.value)}
+                            placeholder={"Категория или вопрос..."}
+                        />
+                        <Combobox.Button>
+                            <ChevronUpDownIcon className={"w-6 h-6 hover:text-neutral-500 duration-150"}/>
+                        </Combobox.Button>
+                    </div>
+                    <button className={"ml-2"}>
+                        <PaperAirplaneIcon
+                            className={"w-6 h-6 cursor-pointer text-blue-400 hover:text-blue-600 duration-200 "}/>
+                    </button>
+                </form>
+            </Combobox>
         </div>
     );
 }
