@@ -31,6 +31,8 @@ export const TextInputForm: FC = () => {
             return alert("Пожалуйста, выберите вопрос из выпадающего списка")
         dispatch(setCurrentView("question"))
         dispatch(setCurrentQuestion(questions.find(q => q.text === selectedValue) ?? null))
+        setSelectedValue("")
+        setQuery("")
     }
 
     return (
