@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {fetchAllCategories} from "../store/actions/categoryAction";
 import {CategoryView} from "./CategoryView";
 import {Layout} from "./Layout";
+import {Loader} from "./UI/Loader";
 
 export const Chat: FC = () => {
     const dispatch = useAppDispatch()
@@ -12,6 +13,8 @@ export const Chat: FC = () => {
     useEffect(() => {
         dispatch(fetchAllCategories())
     }, [])
+
+    if(loading === "pending") return <Layout><Loader/></Layout>
 
     return (
         <Layout>
