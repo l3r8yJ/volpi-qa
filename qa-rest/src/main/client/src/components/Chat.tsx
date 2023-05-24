@@ -14,7 +14,7 @@ export const Chat: FC = () => {
         dispatch(fetchAllCategories())
     }, [])
 
-    if(loading === "pending") return <Layout><Loader/></Layout>
+    if(loading === "pending" && categories.length === 0) return <Layout><Loader/></Layout>
 
     return (
         <Layout>
