@@ -75,7 +75,7 @@ export const TextInputForm: FC = () => {
                     <div
                         className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
                         <Combobox.Input
-                            className={"w-full outline-none"}
+                            className={"w-full outline-none bg-white"}
                             onChange={(event) => setQuery(event.target.value)}
                             placeholder={"Спросите что-нибудь..."}
                             autoComplete={"off"}
