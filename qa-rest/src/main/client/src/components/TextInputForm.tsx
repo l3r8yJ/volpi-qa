@@ -6,12 +6,27 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {IQuestion} from "../types/IQuestion";
 import {setCurrentQuestion, setCurrentView} from "../store/reducers/viewSlice";
 
+
 export const TextInputForm: FC = () => {
     const [questions, setQuestions] = useState<Array<IQuestion>>([])
     const [selectedValue, setSelectedValue] = useState("")
     const [query, setQuery] = useState('')
     const dispatch = useAppDispatch()
     const {categories} = useAppSelector(state => state.category)
+    const goToQuestionView = () => {
+        if (selectedValue !== "") {
+            if (!questions.find(q => q.text === selectedValue))
+                return alert("Пожалуйста, выберите вопрос из выпадающего списка")
+            dispatch(setCurrentView("question"))
+            dispatch(setCurrentQuestion(questions.find(q => q.text === selectedValue) ?? null))
+            setSelectedValue("")
+            setQuery("")
+        }
+    }
+    useEffect(() => {
+        goToQuestionView()
+    }, [selectedValue])
+
     useEffect(() => {
         setQuestions([
             ...categories.flatMap(category => category.questions)
@@ -27,12 +42,7 @@ export const TextInputForm: FC = () => {
 
     const formHandler = (e: FormEvent) => {
         e.preventDefault()
-        if (!questions.find(q => q.text === selectedValue))
-            return alert("Пожалуйста, выберите вопрос из выпадающего списка")
-        dispatch(setCurrentView("question"))
-        dispatch(setCurrentQuestion(questions.find(q => q.text === selectedValue) ?? null))
-        setSelectedValue("")
-        setQuery("")
+        goToQuestionView()
     }
 
     return (
