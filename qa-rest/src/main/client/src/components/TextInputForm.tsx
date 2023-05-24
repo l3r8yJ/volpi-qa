@@ -1,15 +1,16 @@
-import {FC, useEffect, useState} from 'react';
+import {FC, FormEvent, useEffect, useState} from 'react';
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
 import {Combobox} from "@headlessui/react";
 import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
-import {useAppSelector} from "../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {IQuestion} from "../types/IQuestion";
+import {setCurrentQuestion, setCurrentView} from "../store/reducers/viewSlice";
 
 export const TextInputForm: FC = () => {
     const [questions, setQuestions] = useState<Array<IQuestion>>([])
     const [selectedValue, setSelectedValue] = useState("")
     const [query, setQuery] = useState('')
-
+    const dispatch = useAppDispatch()
     const {categories} = useAppSelector(state => state.category)
     useEffect(() => {
         setQuestions([
@@ -23,6 +24,14 @@ export const TextInputForm: FC = () => {
             : questions.filter((question) => {
                 return question.text.toLowerCase().includes(query.toLowerCase())
             })
+
+    const formHandler = (e: FormEvent) => {
+        e.preventDefault()
+        if (!questions.find(q => q.text === selectedValue))
+            return alert("Пожалуйста, выберите вопрос из выпадающего списка")
+        dispatch(setCurrentView("question"))
+        dispatch(setCurrentQuestion(questions.find(q => q.text === selectedValue) ?? null))
+    }
 
     return (
         <div className={"bg-white"}>
@@ -50,7 +59,7 @@ export const TextInputForm: FC = () => {
                             </Combobox.Option>
                         )))}
                 </Combobox.Options>
-                <form className={"flex py-4 px-2 bg-zinc-50 border-t"}>
+                <form className={"flex py-4 px-2 bg-zinc-50 border-t"} onSubmit={formHandler}>
                     <div
                         className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
                         <Combobox.Input
@@ -62,7 +71,7 @@ export const TextInputForm: FC = () => {
                             <ChevronUpDownIcon className={"w-6 h-6 hover:text-neutral-500 duration-150"}/>
                         </Combobox.Button>
                     </div>
-                    <button className={"ml-2 "}>
+                    <button className={"ml-2"} type={"submit"}>
                         <PaperAirplaneIcon
                             className={"w-6 h-6 cursor-pointer text-blue-400 hover:text-blue-600 duration-200 "}
                         />

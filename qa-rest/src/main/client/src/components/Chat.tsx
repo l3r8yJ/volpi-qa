@@ -1,37 +1,27 @@
-import {FC, useEffect} from 'react';
-import {CategoryOption} from "./CategoryOption";
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import {fetchAllCategories} from "../store/actions/categoryAction";
-import {CategoryView} from "./CategoryView";
+import {FC} from 'react';
 import {Layout} from "./Layout";
-import {Loader} from "./UI/Loader";
+import {DefaultView} from "./DefaultView";
+import {useAppSelector} from "../hooks/redux";
+import {CategoryView} from "./CategoryView";
+import {QuestionView} from "./QuestionView";
 
 export const Chat: FC = () => {
-    const dispatch = useAppDispatch()
-    const {categories, loading} = useAppSelector(state => state.category)
-    const {currentView} = useAppSelector(state => state.view)
-    useEffect(() => {
-        dispatch(fetchAllCategories())
-    }, [])
-
-    if(loading === "pending" && categories.length === 0) return <Layout><Loader/></Layout>
+    const {currentViewName} = useAppSelector(state => state.view)
+    let View: FC
+    switch (currentViewName) {
+        case "category":
+            View = CategoryView
+            break
+        case "question":
+            View = QuestionView
+            break
+        default:
+            View = DefaultView
+    }
 
     return (
         <Layout>
-            {currentView === "default"
-                ? <>
-                    <div>
-                        Здравствуйте! Я постараюсь вам помочь и найти ответы на вопросы связанные с поступлением в
-                        наш Политех. <br/> Выберите категорию вопроса, который вас интересует:
-                    </div>
-                    <div className={"space-y-4"}>
-                        {categories.map((category) => (
-                            <CategoryOption key={category.id} category={category}/>
-                        ))}
-                    </div>
-                </>
-                : <CategoryView/>
-            }
+            <View/>
         </Layout>
     );
 }
