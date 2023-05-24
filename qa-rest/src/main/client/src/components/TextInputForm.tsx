@@ -78,6 +78,7 @@ export const TextInputForm: FC = () => {
                             className={"w-full outline-none"}
                             onChange={(event) => setQuery(event.target.value)}
                             placeholder={"Спросите что-нибудь..."}
+                            autoComplete={"off"}
                         />
                         <Combobox.Button>
                             <ChevronUpDownIcon className={"w-6 h-6 hover:text-neutral-500 duration-150"}/>
