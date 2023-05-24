@@ -1,6 +1,6 @@
 import {FC} from "react"
-import {useAppSelector} from "../hooks/redux";
-import {Question} from "./Question";
+import {useAppSelector} from "../../hooks/redux";
+import {Question} from "../Question";
 
 export const CategoryView: FC = () => {
     const {currentViewName, currentCategory} = useAppSelector(state => state.view)

@@ -1,5 +1,5 @@
 import {FC} from "react"
-import {useAppSelector} from "../hooks/redux";
+import {useAppSelector} from "../../hooks/redux";
 
 export const QuestionView: FC = () => {
     const {currentQuestion, currentViewName} = useAppSelector(state => state.view)

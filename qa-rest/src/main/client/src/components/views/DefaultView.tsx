@@ -1,10 +1,10 @@
 import {FC, useEffect} from "react"
-import {CategoryOption} from "./CategoryOption";
-import {ICategory} from "../types/ICategory";
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import {fetchAllCategories} from "../store/actions/categoryAction";
-import {Layout} from "./Layout";
-import {Loader} from "./UI/Loader";
+import {CategoryOption} from "../CategoryOption";
+import {ICategory} from "../../types/ICategory";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {fetchAllCategories} from "../../store/actions/categoryAction";
+import {Layout} from "../Layout";
+import {Loader} from "../UI/Loader";
 
 export const DefaultView: FC = () => {
     const {categories, loading} = useAppSelector(state => state.category)

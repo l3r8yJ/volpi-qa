@@ -1,9 +1,9 @@
 import {FC} from 'react';
 import {Layout} from "./Layout";
-import {DefaultView} from "./DefaultView";
+import {DefaultView} from "./views/DefaultView";
 import {useAppSelector} from "../hooks/redux";
-import {CategoryView} from "./CategoryView";
-import {QuestionView} from "./QuestionView";
+import {CategoryView} from "./views/CategoryView";
+import {QuestionView} from "./views/QuestionView";
 
 export const Chat: FC = () => {
     const {currentViewName} = useAppSelector(state => state.view)
