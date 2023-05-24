@@ -40,10 +40,10 @@ export const TextInputForm: FC = () => {
                 return question.text.toLowerCase().includes(query.toLowerCase())
             })
 
-    const formHandler = (e: FormEvent) => {
-        e.preventDefault()
-        goToQuestionView()
-    }
+    // const formHandler = (e: FormEvent) => {
+    //     e.preventDefault()
+    //     goToQuestionView()
+    // }
 
     return (
         <div className={"bg-white"}>
@@ -71,7 +71,7 @@ export const TextInputForm: FC = () => {
                             </Combobox.Option>
                         )))}
                 </Combobox.Options>
-                <form className={"flex py-4 px-2 bg-zinc-50 border-t"} onSubmit={formHandler}>
+                <form className={"flex py-4 px-2 bg-zinc-50 border-t"}>
                     <div
                         className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
                         <Combobox.Input
@@ -84,11 +84,6 @@ export const TextInputForm: FC = () => {
                             <ChevronUpDownIcon className={"w-6 h-6 hover:text-neutral-500 duration-150"}/>
                         </Combobox.Button>
                     </div>
-                    <button className={"ml-2"} type={"submit"}>
-                        <PaperAirplaneIcon
-                            className={"w-6 h-6 cursor-pointer text-blue-400 hover:text-blue-600 duration-200 "}
-                        />
-                    </button>
                 </form>
             </Combobox>
         </div>
