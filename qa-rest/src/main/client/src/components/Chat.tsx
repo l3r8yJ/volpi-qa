@@ -9,7 +9,7 @@ import {Loader} from "./UI/Loader";
 export const Chat: FC = () => {
     const dispatch = useAppDispatch()
     const {categories, loading} = useAppSelector(state => state.category)
-    const {currentCategory} = useAppSelector(state => state.view)
+    const {currentView} = useAppSelector(state => state.view)
     useEffect(() => {
         dispatch(fetchAllCategories())
     }, [])
@@ -18,7 +18,7 @@ export const Chat: FC = () => {
 
     return (
         <Layout>
-            {currentCategory === null
+            {currentView === "default"
                 ? <>
                     <div>
                         Здравствуйте! Я постараюсь вам помочь и найти ответы на вопросы связанные с поступлением в

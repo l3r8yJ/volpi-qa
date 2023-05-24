@@ -3,8 +3,8 @@ import {useAppSelector} from "../hooks/redux";
 import {Question} from "./Question";
 
 export const CategoryView: FC = () => {
-    const {currentCategory} = useAppSelector(state => state.view)
-    if (currentCategory === null) return <div>Произошла ошибка при получении категории</div>
+    const {currentView, currentCategory} = useAppSelector(state => state.view)
+    if (currentView !== "category" || currentCategory === null) return <div>Произошла ошибка при получении категории</div>
     return (
         <div className={"overflow-y-auto"}>
             {currentCategory.questions.length > 0
