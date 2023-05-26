@@ -9,9 +9,9 @@ export const Question: FC<Omit<IQuestion, "id" | "category">> = ({text, answer})
             <div
                 className={"w-full flex justify-center flex-col"}>
                 <Disclosure.Button className={"p-2 flex justify-between items-center bg-neutral-100 hover:bg-neutral-200 rounded-lg"}>
-                    <span className={"font-medium"}>{text}</span>
+                    <div className={"font-medium text-left w-5/6"}>{text}</div>
                     <ChevronDownIcon
-                        className={"w-4 h-4 ui-open:rotate-180 ui-not-open:rotate-0 ui-open:transform ui-open:duration-150"}/>
+                        className={"w-4 h-4 ml-2 ui-open:rotate-180 ui-not-open:rotate-0 ui-open:transform ui-open:duration-150"}/>
                 </Disclosure.Button>
                 <Disclosure.Panel className={"px-2 pt-2 text-neutral-900/60 text-sm"}>{answer}</Disclosure.Panel>
             </div>

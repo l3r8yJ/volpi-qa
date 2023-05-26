@@ -1,39 +1,27 @@
-import {FC, useEffect, useState} from 'react';
-import {ChatHeader} from "./ChatHeader";
-import {CategoryOption} from "./CategoryOption";
-import {TextInputForm} from "./TextInputForm";
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import {fetchAllCategories} from "../store/actions/categoryAction";
-import {CategoryView} from "./CategoryView";
+import {FC} from 'react';
+import {Layout} from "./Layout";
+import {DefaultView} from "./views/DefaultView";
+import {useAppSelector} from "../hooks/redux";
+import {CategoryView} from "./views/CategoryView";
+import {QuestionView} from "./views/QuestionView";
 
 export const Chat: FC = () => {
-    const dispatch = useAppDispatch()
-    const {categories, loading} = useAppSelector(state => state.category)
-    const {currentCategory} = useAppSelector(state => state.view)
-    useEffect(() => {
-        dispatch(fetchAllCategories())
-    }, [])
+    const {currentViewName} = useAppSelector(state => state.view)
+    let View: FC
+    switch (currentViewName) {
+        case "category":
+            View = CategoryView
+            break
+        case "question":
+            View = QuestionView
+            break
+        default:
+            View = DefaultView
+    }
 
     return (
-        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[600px] flex flex-col"}>
-            <ChatHeader/>
-            <div className={"flex-grow space-y-4 overflow-y-auto bg-white p-4"}>
-                {currentCategory === null
-                    ? <>
-                        <div>
-                            Здравствуйте! Я постараюсь вам помочь и найти ответы на вопросы связанные с поступлением в
-                            наш Политех. <br/> Выберите категорию вопроса, который вас интересует:
-                        </div>
-                        <div className={"space-y-4"}>
-                            {categories.map((category) => (
-                                <CategoryOption key={category.id} category={category}/>
-                            ))}
-                        </div>
-                    </>
-                    : <CategoryView/>
-                }
-            </div>
-            <TextInputForm/>
-        </div>
+        <Layout>
+            <View/>
+        </Layout>
     );
 }

@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {ICategory} from "../types/ICategory";
 import {useAppDispatch} from "../hooks/redux";
-import {setCurrentCategory} from "../store/reducers/viewSlice";
+import {setCurrentCategory, setCurrentView} from "../store/reducers/viewSlice";
 
 interface CategoryProps {
     category: ICategory
@@ -10,6 +10,7 @@ interface CategoryProps {
 export const CategoryOption: FC<CategoryProps> = ({category}) => {
     const dispatch = useAppDispatch()
     const chooseCategoryHandler = () => {
+        dispatch(setCurrentView("category"))
         dispatch(setCurrentCategory(category))
     }
     return (

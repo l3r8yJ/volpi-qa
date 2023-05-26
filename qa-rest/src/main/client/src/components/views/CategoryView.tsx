@@ -1,10 +1,10 @@
 import {FC} from "react"
-import {useAppSelector} from "../hooks/redux";
-import {Question} from "./Question";
+import {useAppSelector} from "../../hooks/redux";
+import {Question} from "../Question";
 
 export const CategoryView: FC = () => {
-    const {currentCategory} = useAppSelector(state => state.view)
-    if (currentCategory === null) return <div>Произошла ошибка при получении категории</div>
+    const {currentViewName, currentCategory} = useAppSelector(state => state.view)
+    if (currentViewName !== "category" || currentCategory === null) return <div>Произошла ошибка при получении категории</div>
     return (
         <div className={"overflow-y-auto"}>
             {currentCategory.questions.length > 0
