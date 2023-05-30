@@ -1,10 +1,11 @@
 import {FC} from "react"
+import {MainLayout} from "../components/layouts/MainLayout";
 
 const Login: FC = () => {
     return (
-        <div>
+        <MainLayout isHeader={false}>
             login
-        </div>
+        </MainLayout>
     );
 };
 
