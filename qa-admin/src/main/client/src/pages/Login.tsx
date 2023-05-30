@@ -6,8 +6,8 @@ import {LoginForm} from "../components/LoginForm";
 const Login: FC = () => {
     return (
         <MainLayout isHeader={false}>
-            <div className={"min-h-screen flex flex-col justify-center items-center"}>
-                <h1 className={"text-4xl font-semibold mb-10"}>
+            <div className={"min-h-screen flex flex-col items-center"}>
+                <h1 className={"text-4xl font-semibold mb-10 mt-28"}>
                     Volpi-QA <span className={"text-indigo-600"}>admin</span>
                 </h1>
                 <LoginForm/>
