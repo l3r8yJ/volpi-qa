@@ -31,7 +31,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
         setIsEditMode(false)
     }
     const updateHandler = async () => {
-        const newQuestion:IQuestion = {
+        const newQuestion: IQuestion = {
             id: question.id,
             text,
             answer,
@@ -44,7 +44,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
     return (
         <div className={"p-4 bg-neutral-800 rounded-lg flex space-x-6"}>
             {isEditMode
-                ? <div >
+                ? <div>
                     <div className={"flex flex-col space-y-2"}>
                         <ValidatedInput
                             value={text}

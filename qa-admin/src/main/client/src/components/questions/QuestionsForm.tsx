@@ -28,7 +28,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
 
     const formHandler = async (e: FormEvent) => {
         e.preventDefault()
-        if(!textValid || !answerValid) return setShowValidation(true)
+        if (!textValid || !answerValid) return setShowValidation(true)
         const newQuestion: IQuestionNoID = {
             answer,
             text,

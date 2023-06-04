@@ -1,4 +1,5 @@
 import {lazy, ReactElement} from "react";
+
 const Categories = lazy(() => import("../pages/Categories"))
 const CategoryName = lazy(() => import("../pages/CategoryName"))
 
@@ -9,5 +10,5 @@ interface IRoute {
 
 export const authorizedRoutes: IRoute[] = [
     {path: "/", element: <Categories/>},
-    {path: "/categories/:name", element: <CategoryName/>}
+    {path: "/categories/:username", element: <CategoryName/>}
 ]

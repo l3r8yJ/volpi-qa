@@ -1,7 +1,6 @@
 package ru.volpi.qaadmin.exception.category;
 
 import jakarta.validation.ConstraintViolation;
-import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 
 import java.io.Serial;
 import java.util.Collection;

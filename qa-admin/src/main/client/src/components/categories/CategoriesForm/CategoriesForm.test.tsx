@@ -1,4 +1,4 @@
-import {describe, expect, beforeEach, it} from "vitest";
+import {beforeEach, describe, expect, it} from "vitest";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {Provider} from "react-redux";
 import {createStore} from "../../../store/store";
@@ -7,7 +7,7 @@ import {generateRandomString} from "../../../utils/generateRandomString/generate
 
 
 describe("CategoriesForm", () => {
-    let buttonElement:HTMLButtonElement
+    let buttonElement: HTMLButtonElement
     beforeEach(async () => {
         render(
             <Provider store={createStore()}>
@@ -29,7 +29,7 @@ describe("CategoriesForm", () => {
         const randomString = generateRandomString(100)
         fireEvent.change(inputElement, {target: {value: randomString}})
         fireEvent.click(buttonElement)
-        
+
     })
 
 })

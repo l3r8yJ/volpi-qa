@@ -29,6 +29,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final Validator validator;
 
+    private static void checkViolations(final Set<ConstraintViolation<Object>> violations) {
+        if (!violations.isEmpty()) {
+            throw new CategoryValidationException(violations);
+        }
+    }
+
     @Transactional
     @Override
     public List<CategoryResponse> findAll() {
@@ -82,11 +88,5 @@ public class CategoryServiceImpl implements CategoryService {
         return this.categoryRepository.findByNameIgnoreCase(name)
             .map(Category::getId)
             .orElseThrow(() -> new CategoryNotFoundException(name));
-    }
-
-    private static void checkViolations(final Set<ConstraintViolation<Object>> violations) {
-        if (!violations.isEmpty()) {
-            throw new CategoryValidationException(violations);
-        }
     }
 }

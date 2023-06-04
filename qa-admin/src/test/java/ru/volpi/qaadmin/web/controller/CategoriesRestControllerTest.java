@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.volpi.qaadmin.TestcontainersTest;
 
@@ -40,6 +41,7 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Gets all categories")
     void getsAllCategories() throws Exception {
         final String content = this.mockMvc.perform(get(CATEGORIES))
@@ -51,7 +53,8 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
-    @DisplayName("Gets first category by name")
+    @WithMockUser("admin")
+    @DisplayName("Gets first category by username")
     void getsCategoryByName() throws Exception {
         final String content = this.mockMvc.perform(get(FIRST_CATEGORY))
             .andExpect(status().isOk())
@@ -62,12 +65,14 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Not found when category not exist")
     void getsNonExistingCategoryByName() throws Exception {
         this.mockMvc.perform(get(NON_EXISTING_CATEGORY)).andExpect(status().isNotFound());
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Correctly creates category")
     void createsCategory() throws Exception {
         final String content = this.mockMvc.perform(
@@ -81,6 +86,7 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Handles existing category creation")
     void triesCreateExistingCategory() throws Exception {
         final String content = this.mockMvc.perform(
@@ -94,6 +100,7 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Handles empty category creation")
     void triesCreateEmptyCategory() throws Exception {
         final String content = this.mockMvc.perform(
@@ -107,17 +114,19 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Patches category")
     void patchesCategory() throws Exception {
         this.mockMvc.perform(
-                patch(FIRST_CATEGORY_ID)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("{ \"name\": \"Новая первая категория\" }")
-                    .characterEncoding(StandardCharsets.UTF_8)
-            ).andExpect(status().isAccepted());
+            patch(FIRST_CATEGORY_ID)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{ \"name\": \"Новая первая категория\" }")
+                .characterEncoding(StandardCharsets.UTF_8)
+        ).andExpect(status().isAccepted());
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Patches not existing category")
     void patchesNonExistingCategory() throws Exception {
         final String content = this.mockMvc.perform(
@@ -131,6 +140,7 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Patches not valid data")
     void patchesNotValidData() throws Exception {
         final String content = this.mockMvc.perform(
@@ -144,6 +154,7 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Delete category")
     void deleteCategory() throws Exception {
         this.mockMvc.perform(delete(SECOND_CATEGORY_ID))

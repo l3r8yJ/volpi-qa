@@ -1,13 +1,11 @@
-import {FC, FormEvent, useState} from 'react';
-import {PencilSquareIcon, XMarkIcon} from "@heroicons/react/24/outline";
+import {FC} from 'react';
+import {XMarkIcon} from "@heroicons/react/24/outline";
 import {Link} from "react-router-dom";
 import {ICategoryNoQuestions} from "../../../types/ICategory";
 import {useAppDispatch} from "../../../hooks/redux";
-import {createCategory, deleteCategory, fetchCategories, updateCategory} from "../../../store/actions/categoryAction";
+import {deleteCategory, fetchCategories} from "../../../store/actions/categoryAction";
 import {Popup} from "../../UI/Popup";
 import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
-import {ValidatedInput} from "../../UI/ValidatedInput/ValidatedInput";
-import {createValidateInputValueFunc} from "../../../utils/createValidateInputValue/createValidateInputValueFunc";
 
 interface CategoryRowProps extends ICategoryNoQuestions {
     testID?: string

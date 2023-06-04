@@ -15,7 +15,7 @@ interface CategoryState {
     loading: "idle" | "pending" | "succeeded" | "failed"
 }
 
-const initialState:CategoryState = {
+const initialState: CategoryState = {
     categories: [],
     currentCategory: {} as ICategory,
     loading: "idle",
@@ -25,7 +25,7 @@ const categorySlice = createSlice({
     name: "category",
     initialState,
     reducers: {
-        clearCurrentCategory:(state) =>{
+        clearCurrentCategory: (state) => {
             state.currentCategory = {} as ICategory
         }
     },

@@ -1,8 +1,8 @@
 import {FC, ReactNode} from 'react';
 import {Header} from "../Header";
 
-interface MainLayoutProps{
-    children:ReactNode
+interface MainLayoutProps {
+    children: ReactNode
 }
 
 export const MainLayout: FC<MainLayoutProps> = ({children}) => {

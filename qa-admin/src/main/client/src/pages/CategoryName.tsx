@@ -10,7 +10,7 @@ import {clearCurrentCategory} from "../store/reducers/categorySlice";
 import {ValidatedInput} from "../components/UI/ValidatedInput/ValidatedInput";
 import {createValidateInputValueFunc} from "../utils/createValidateInputValue/createValidateInputValueFunc";
 import {PencilSquareIcon} from "@heroicons/react/24/outline";
-import {createCategory, fetchCategories, updateCategory} from "../store/actions/categoryAction";
+import {fetchCategories, updateCategory} from "../store/actions/categoryAction";
 
 const CategoryName: FC = () => {
     const navigate = useNavigate()
@@ -35,7 +35,7 @@ const CategoryName: FC = () => {
         }
     }, [])
 
-    const updateCategoryNameHandler = async (e:FormEvent) => {
+    const updateCategoryNameHandler = async (e: FormEvent) => {
         e.preventDefault()
         console.log(currentCategory)
         if (!isValidCategoryName || !categoryName) return setShowValidation(true)
@@ -43,7 +43,7 @@ const CategoryName: FC = () => {
         dispatch(fetchCategories())
         navigate("/categories/" + categoryName)
         setShowValidation(false)
-        setEditCategoryNameMode( false)
+        setEditCategoryNameMode(false)
     }
     return (
         <MainLayout>
@@ -61,7 +61,9 @@ const CategoryName: FC = () => {
                     </form>
                     : < >
                         <span className={"ml-2"}>{name}</span>
-                        <PencilSquareIcon className={"ml-2 w-7 h-7 cursor-pointer hover:bg-neutral-700 p-1 rounded-full duration-150"} onClick={() => setEditCategoryNameMode(true)}/>
+                        <PencilSquareIcon
+                            className={"ml-2 w-7 h-7 cursor-pointer hover:bg-neutral-700 p-1 rounded-full duration-150"}
+                            onClick={() => setEditCategoryNameMode(true)}/>
                     </>
                 }
             </div>
