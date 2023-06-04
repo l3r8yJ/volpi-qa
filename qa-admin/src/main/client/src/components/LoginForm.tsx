@@ -3,28 +3,32 @@ import {ValidatedInput} from "./UI/ValidatedInput/ValidatedInput";
 import {createValidateInputValueFunc} from "../utils/createValidateInputValue/createValidateInputValueFunc";
 import {PrimaryButton} from "./UI/PrimaryButton/PrimaryButton";
 import {BoltIcon} from "@heroicons/react/24/solid";
+import {useAppDispatch} from "../hooks/redux";
+import {auth} from "../store/actions/authAction";
 
 const validateInputValue = createValidateInputValueFunc()
 
 export const LoginForm: FC = () => {
     const [showValidation, setShowValidation] = useState(false)
-    const [isLoginValid, setIsLoginValid] = useState(false)
-    const [login, setLogin] = useState("")
+    const [isUsernameValid, setIsUsernameValid] = useState(false)
+    const [username, setUsername] = useState("")
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [password, setPassword] = useState("")
+    const dispatch = useAppDispatch()
     const formHandler = (e: FormEvent) => {
         e.preventDefault()
-        if(!isLoginValid || !isPasswordValid) return setShowValidation(true)
+        if(!isUsernameValid || !isPasswordValid) return setShowValidation(true)
+        dispatch(auth({username, password}))
     }
     return (
         <form className={"w-64 p-4 border border-neutral-500/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
             <div className={"space-y-4 flex flex-col"}>
                 <ValidatedInput
                     validateFunc={validateInputValue}
-                    setIsValid={setIsLoginValid}
+                    setIsValid={setIsUsernameValid}
                     showValidation={showValidation}
-                    value={login}
-                    onChange={(e) => setLogin(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     label={"Логин"}
                 />
                 <ValidatedInput
