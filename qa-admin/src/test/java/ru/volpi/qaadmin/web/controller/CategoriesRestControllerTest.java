@@ -51,7 +51,7 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     }
 
     @Test
-    @DisplayName("Gets first category by name")
+    @DisplayName("Gets first category by username")
     void getsCategoryByName() throws Exception {
         final String content = this.mockMvc.perform(get(FIRST_CATEGORY))
             .andExpect(status().isOk())
@@ -110,11 +110,11 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     @DisplayName("Patches category")
     void patchesCategory() throws Exception {
         this.mockMvc.perform(
-                patch(FIRST_CATEGORY_ID)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content("{ \"name\": \"Новая первая категория\" }")
-                    .characterEncoding(StandardCharsets.UTF_8)
-            ).andExpect(status().isAccepted());
+            patch(FIRST_CATEGORY_ID)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{ \"name\": \"Новая первая категория\" }")
+                .characterEncoding(StandardCharsets.UTF_8)
+        ).andExpect(status().isAccepted());
     }
 
     @Test

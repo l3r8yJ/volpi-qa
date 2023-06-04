@@ -17,7 +17,7 @@ export const createQuestion = createAsyncThunk("questions/create", async (questi
     return res.data
 })
 
-export const deleteQuestion = createAsyncThunk("questions/delete", async(id: number) => {
+export const deleteQuestion = createAsyncThunk("questions/delete", async (id: number) => {
     const res = await QuestionService.deleteQuestion(id)
     return res.data
 })
@@ -27,7 +27,7 @@ export const updateQuestion = createAsyncThunk("questions/update", async (questi
     return res.data
 })
 
-export const fetchQuestionsByCategory = createAsyncThunk("questions/getByCategory", async(categoryName: string) => {
+export const fetchQuestionsByCategory = createAsyncThunk("questions/getByCategory", async (categoryName: string) => {
     const res = await QuestionService.fetchQuestionsByCategory(categoryName)
     return res.data
 })

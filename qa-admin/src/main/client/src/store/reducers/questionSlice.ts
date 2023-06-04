@@ -4,26 +4,27 @@ import {
     createQuestion,
     deleteQuestion,
     fetchAllQuestions,
-    fetchQuestionById, fetchQuestionsByCategory,
+    fetchQuestionById,
+    fetchQuestionsByCategory,
     updateQuestion
 } from "../actions/questionAction";
 
-interface QuestionState{
+interface QuestionState {
     questions: IQuestion[]
     currentQuestion: IQuestion
     loading: "idle" | "pending" | "succeeded" | "failed"
 }
 
-const initialState:QuestionState = {
+const initialState: QuestionState = {
     questions: [],
     currentQuestion: {} as IQuestion,
     loading: "idle"
 }
 
 const questionSlice = createSlice({
-    name:"question",
+    name: "question",
     initialState,
-    reducers:{},
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchAllQuestions.pending, (state) => {
             state.loading = "pending"

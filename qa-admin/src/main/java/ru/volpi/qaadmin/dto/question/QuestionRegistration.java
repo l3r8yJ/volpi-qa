@@ -3,8 +3,6 @@ package ru.volpi.qaadmin.dto.question;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import ru.volpi.qaadmin.domain.question.Question;
-import ru.volpi.qaadmin.dto.category.CategoryRegistration;
-import ru.volpi.qaadmin.dto.category.CategoryResponse;
 
 import java.io.Serializable;
 

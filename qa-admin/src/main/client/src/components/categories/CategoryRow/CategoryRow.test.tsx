@@ -9,7 +9,7 @@ import {CategoryRowTestID} from "../../../constants/testIDs";
 
 describe("CategoryRow", () => {
     const idProp = 321
-    const nameProp = "some category name"
+    const nameProp = "some category username"
     const {queryByText} = render(
         <Provider store={createStore()}>
             <BrowserRouter>

@@ -70,7 +70,7 @@ class CategoryServiceImplTest extends TestcontainersTest {
     }
 
     @Test
-    @DisplayName("Finds id by category name")
+    @DisplayName("Finds id by category username")
     void findsIdByName() {
         assertThat(this.categoryService.categoryIdByName("Первая категория")).isEqualTo(1230L);
     }

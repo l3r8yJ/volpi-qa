@@ -4,14 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.volpi.qaadmin.TestcontainersTest;
 
 import java.nio.charset.StandardCharsets;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -40,7 +39,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
-    @DisplayName("Gets questions by category name")
+    @DisplayName("Gets questions by category username")
     void findsQuestionsByCategoryName() throws Exception {
         final String content = this.mockMvc.perform(get(QUESTIONS_BY_FIRST_CATEGORY))
             .andExpect(status().isOk()).andReturn().getResponse()
@@ -59,20 +58,20 @@ class QuestionsRestControllerTest extends TestcontainersTest {
 
     @Test
     @DisplayName("Crates question")
-    void createsQuestion() throws Exception{
+    void createsQuestion() throws Exception {
         this.mockMvc.perform(
             put(QUESTIONS)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
                 .content("""
-                {
-                    "text": "Новый вопрос",
-                    "answer": "Новый вопрос",
-                    "category": {
-                        "name": "Первая категория"
+                    {
+                        "text": "Новый вопрос",
+                        "answer": "Новый вопрос",
+                        "category": {
+                            "name": "Первая категория"
+                        }
                     }
-                }
-                """)
+                    """)
         ).andExpect(status().isCreated());
     }
 

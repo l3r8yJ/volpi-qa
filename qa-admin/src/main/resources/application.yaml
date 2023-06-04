@@ -14,31 +14,10 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: false
+  secret-key:
+    6E5A7234753778214125442A472D4B6150645367566B59703373357638792F42
 server:
   port: ${QA_ADMIN_PORT}
----
-spring:
-  application:
-    name: qa-admin
-  datasource:
-    username: postgres
-    password: root
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres
-  jpa:
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-    hibernate:
-      ddl-auto: none
-    open-in-view: false
-  config:
-    activate:
-      on-profile: dev
-  devtools:
-    livereload:
-      enabled: true
-server:
-  port: 8080
----
+admin:
+  name: ${ADMIN_LOGIN}
+  password: ${ADMIN_PASSWORD}

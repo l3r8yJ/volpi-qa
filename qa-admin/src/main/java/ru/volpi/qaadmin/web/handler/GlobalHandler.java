@@ -15,6 +15,7 @@ import ru.volpi.qaadmin.exception.category.CategoryNotFoundException;
 import ru.volpi.qaadmin.exception.category.CategoryValidationException;
 import ru.volpi.qaadmin.exception.question.QuestionNotFoundException;
 import ru.volpi.qaadmin.exception.question.QuestionValidationException;
+import ru.volpi.qaadmin.exception.user.UserAlreadyExistException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,6 +74,12 @@ public class GlobalHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CategoryValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public final ResponseEntity<?> onCategoryValidation(final CategoryValidationException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
+    }
+
+    @ExceptionHandler(UserAlreadyExistException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ResponseEntity<?> onCategoryValidation(final UserAlreadyExistException exc) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
     }
 }

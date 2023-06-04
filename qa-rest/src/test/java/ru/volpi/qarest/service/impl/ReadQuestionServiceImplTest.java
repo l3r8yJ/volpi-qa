@@ -8,8 +8,6 @@ import ru.volpi.qarest.dto.question.QuestionResponse;
 import ru.volpi.qarest.exception.question.QuestionNotFoundException;
 import ru.volpi.qarest.service.ReadQuestionService;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
