@@ -2,9 +2,10 @@ import React, {FC, Suspense} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {authorizedRoutes, notAuthorizedRoutes} from "../constants/routes";
 import {SimpleLayout} from "./layouts/SimpleLayout";
+import {useAppSelector} from "../hooks/redux";
 
 export const AppRouter: FC = () => {
-    const isAuth = false
+    const {isAuth} = useAppSelector(state => state.auth)
     let routes = isAuth ? authorizedRoutes : notAuthorizedRoutes
     return (
         <Routes>
