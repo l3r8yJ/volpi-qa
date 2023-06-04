@@ -1,5 +1,6 @@
 import {lazy, ReactElement} from "react";
 import {Navigate} from "react-router-dom";
+
 const Categories = lazy(() => import("../pages/Categories"))
 const CategoryName = lazy(() => import("../pages/CategoryName"))
 const Login = lazy(() => import("../pages/Login"))

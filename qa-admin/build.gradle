@@ -1,9 +1,9 @@
 plugins {
-	id 'java'
-	id 'jacoco'
-	id 'io.gatling.gradle' version '3.9.3'
-	id 'org.springframework.boot' version '3.0.6'
-	id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'jacoco'
+    id 'io.gatling.gradle' version '3.9.3'
+    id 'org.springframework.boot' version '3.0.6'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'ru.volpi'
@@ -11,62 +11,67 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 ext {
-	set('testcontainersVersion', "1.17.6")
+    set('testcontainersVersion', "1.17.6")
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
-	implementation 'org.liquibase:liquibase-core'
-	implementation 'org.hibernate.validator:hibernate-validator'
-	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.testcontainers:junit-jupiter'
-	testImplementation 'org.testcontainers:postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
+    implementation 'org.liquibase:liquibase-core'
+    implementation 'org.hibernate.validator:hibernate-validator'
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-	}
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+    }
 }
 
 gatling {
-	logLevel = 'INFO'
+    logLevel = 'INFO'
 }
 
 jacocoTestReport {
-	reports {
-		xml.required = true
-	}
+    reports {
+        xml.required = true
+    }
 }
 
 test {
-	finalizedBy jacocoTestReport
+    finalizedBy jacocoTestReport
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 tasks.register('bootDev') {
-	bootRun.systemProperty('spring.profiles.active', 'dev')
-	dependsOn 'bootRun'
+    bootRun.systemProperty('spring.profiles.active', 'dev')
+    dependsOn 'bootRun'
 }

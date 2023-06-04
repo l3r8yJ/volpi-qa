@@ -18,7 +18,6 @@ import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Slf4j
 @TransactionalService
@@ -28,6 +27,12 @@ public class QuestionServiceImpl implements QuestionService {
     private final QuestionRepository questionRepository;
 
     private final Validator validator;
+
+    private static void checkViolations(final Collection<ConstraintViolation<Object>> violations) {
+        if (!violations.isEmpty()) {
+            throw new QuestionValidationException(violations);
+        }
+    }
 
     @Transactional
     @Override
@@ -81,11 +86,5 @@ public class QuestionServiceImpl implements QuestionService {
         }
         this.questionRepository.deleteById(id);
         return id;
-    }
-
-    private static void checkViolations(final Collection<ConstraintViolation<Object>> violations) {
-        if (!violations.isEmpty()) {
-            throw new QuestionValidationException(violations);
-        }
     }
 }

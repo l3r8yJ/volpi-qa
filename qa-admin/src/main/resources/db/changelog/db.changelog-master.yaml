@@ -3,3 +3,7 @@ databaseChangeLog:
       file: db/changelog/001-initial-schema.sql
   - include:
       file: db/changelog/002-initial-tables.sql
+  - include:
+      file: db/changelog/003-create-user.sql
+  - include:
+      file: db/changelog/004-add-user-role.sql

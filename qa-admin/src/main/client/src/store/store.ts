@@ -3,11 +3,11 @@ import categoryReducer from "./reducers/categorySlice";
 import questionReducer from "./reducers/questionSlice";
 
 export const createStore = () => configureStore({
-        reducer: {
-            category: categoryReducer,
-            question: questionReducer
-        }
-    })
+    reducer: {
+        category: categoryReducer,
+        question: questionReducer
+    }
+})
 
 
 export const store = createStore()

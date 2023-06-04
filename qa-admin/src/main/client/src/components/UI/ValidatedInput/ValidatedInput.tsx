@@ -9,14 +9,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const ValidatedInput: FC<InputProps> = ({
-                                          className,
-                                          label,
-                                          value = "",
-                                          validateFunc,
-                                          setIsValid,
-                                          showValidation,
-                                          ...props
-                                      }) => {
+                                                   className,
+                                                   label,
+                                                   value = "",
+                                                   validateFunc,
+                                                   setIsValid,
+                                                   showValidation,
+                                                   ...props
+                                               }) => {
     const [inputStatusClasses, setInputStatusClasses] = useState("border-neutral-500/50")
     const [validateResult, setValidateResult] = useState<ValidateInputResult>("выглядит хорошо!")
     useEffect(() => {

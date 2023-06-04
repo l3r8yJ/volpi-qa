@@ -4,14 +4,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.volpi.qaadmin.TestcontainersTest;
 
 import java.nio.charset.StandardCharsets;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,13 +34,15 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Gets all questions")
     void findsAllQuestions() throws Exception {
         this.mockMvc.perform(get(QUESTIONS)).andExpect(status().isOk());
     }
 
     @Test
-    @DisplayName("Gets questions by category name")
+    @WithMockUser("admin")
+    @DisplayName("Gets questions by category username")
     void findsQuestionsByCategoryName() throws Exception {
         final String content = this.mockMvc.perform(get(QUESTIONS_BY_FIRST_CATEGORY))
             .andExpect(status().isOk()).andReturn().getResponse()
@@ -49,6 +51,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Get question by id")
     void findsQuestionById() throws Exception {
         final String content = this.mockMvc.perform(get(FIRST_QUESTION_ID))
@@ -58,25 +61,27 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Crates question")
-    void createsQuestion() throws Exception{
+    void createsQuestion() throws Exception {
         this.mockMvc.perform(
             put(QUESTIONS)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
                 .content("""
-                {
-                    "text": "Новый вопрос",
-                    "answer": "Новый вопрос",
-                    "category": {
-                        "name": "Первая категория"
+                    {
+                        "text": "Новый вопрос",
+                        "answer": "Новый вопрос",
+                        "category": {
+                            "name": "Первая категория"
+                        }
                     }
-                }
-                """)
+                    """)
         ).andExpect(status().isCreated());
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Updates question by id")
     void updatesQuestionById() throws Exception {
         this.mockMvc.perform(
@@ -96,6 +101,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Deletes question by id")
     void deletesQuestionById() throws Exception {
         this.mockMvc.perform(delete(SECOND_QUESTION_ID))

@@ -20,7 +20,7 @@ export class CategoryService {
         return $api.patch<ICategory>("categories/" + updatedCategory.id, updatedCategory)
     }
 
-    static deleteCategory(id: number):Promise<AxiosResponse<ICategory>>{
+    static deleteCategory(id: number): Promise<AxiosResponse<ICategory>> {
         return $api.delete<ICategory>("categories/" + id)
     }
 }

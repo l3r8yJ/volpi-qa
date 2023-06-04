@@ -9,22 +9,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.16.0]
+        node-version: [ 18.16.0 ]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: qa-admin/src/main/client/package-lock.json
-    - name: install dependencies
-      working-directory: qa-admin/src/main/client
-      run: npm ci
-    - name: build
-      working-directory: qa-admin/src/main/client
-      run: npm run build --if-present
-    - name: run tests
-      working-directory: qa-admin/src/main/client
-      run: npm run test
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: qa-admin/src/main/client/package-lock.json
+      - name: install dependencies
+        working-directory: qa-admin/src/main/client
+        run: npm ci
+      - name: build
+        working-directory: qa-admin/src/main/client
+        run: npm run build --if-present
+      - name: run tests
+        working-directory: qa-admin/src/main/client
+        run: npm run test
 
