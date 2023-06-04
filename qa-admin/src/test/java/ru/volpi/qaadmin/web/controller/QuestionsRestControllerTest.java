@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.volpi.qaadmin.TestcontainersTest;
 
@@ -33,12 +34,14 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Gets all questions")
     void findsAllQuestions() throws Exception {
         this.mockMvc.perform(get(QUESTIONS)).andExpect(status().isOk());
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Gets questions by category username")
     void findsQuestionsByCategoryName() throws Exception {
         final String content = this.mockMvc.perform(get(QUESTIONS_BY_FIRST_CATEGORY))
@@ -48,6 +51,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Get question by id")
     void findsQuestionById() throws Exception {
         final String content = this.mockMvc.perform(get(FIRST_QUESTION_ID))
@@ -57,6 +61,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Crates question")
     void createsQuestion() throws Exception {
         this.mockMvc.perform(
@@ -76,6 +81,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Updates question by id")
     void updatesQuestionById() throws Exception {
         this.mockMvc.perform(
@@ -95,6 +101,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     }
 
     @Test
+    @WithMockUser("admin")
     @DisplayName("Deletes question by id")
     void deletesQuestionById() throws Exception {
         this.mockMvc.perform(delete(SECOND_QUESTION_ID))

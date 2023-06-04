@@ -8,3 +8,6 @@ VALUES (324, 1230, 'Вопрос уровня а', 'Ответ уровня а')
 
 INSERT INTO questions_storage.questions(id, category_id, question_text, question_answer)
 VALUES (431, 3421, 'Вопрос уровня б', 'Ответ уровня б');
+
+INSERT INTO users_storage.users(id, username, password, role)
+VALUES (101, 'admin', 'admin', 'admin');
