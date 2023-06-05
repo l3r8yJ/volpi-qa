@@ -10,6 +10,7 @@ import ru.volpi.qaadmin.dto.category.CategoryUpdate;
 import ru.volpi.qaadmin.service.CategoryService;
 
 @Slf4j
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/admin/categories")
 @RestController
