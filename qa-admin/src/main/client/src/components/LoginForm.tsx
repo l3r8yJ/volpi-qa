@@ -6,6 +6,7 @@ import {BoltIcon} from "@heroicons/react/24/solid";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {auth} from "../store/actions/authAction";
 import {ExclamationTriangleIcon} from "@heroicons/react/24/outline";
+import {Loader} from "./UI/Loader";
 
 const validateInputValue = createValidateInputValueFunc()
 
@@ -49,8 +50,14 @@ export const LoginForm: FC = () => {
                 />
             </div>
             <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8"}>
-                <BoltIcon className={"w-5 h-5"}/>
-                <span className={"ml-2"}>Войти</span>
+                {loading === "pending"
+                    ? <Loader/>
+                    : <>
+                        <BoltIcon className={"w-5 h-5"}/>
+                        <span className={"ml-2"}>Войти</span>
+                    </>
+                }
+
             </PrimaryButton>
         </form>
     );
