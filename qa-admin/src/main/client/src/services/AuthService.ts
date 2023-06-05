@@ -1,13 +1,13 @@
 import {AxiosResponse} from "axios";
 import {$api} from "../http/api";
-import {AuthRequest} from "../types/Auth";
+import {AuthRequest, UserAuth} from "../types/Auth";
 
 export class AuthService {
-    static register(authRequest: AuthRequest): Promise<AxiosResponse<string>> {
-        return $api.post<string>("/register", authRequest)
+    static register(authRequest: AuthRequest): Promise<AxiosResponse<Omit<UserAuth, "isAuth">>> {
+        return $api.post<Omit<UserAuth, "isAuth">>("/register", authRequest)
     }
 
-    static auth(authRequest: AuthRequest): Promise<AxiosResponse<string>>{
-        return $api.post<string>("/auth", authRequest)
+    static auth(authRequest: AuthRequest): Promise<AxiosResponse<Omit<UserAuth, "isAuth">>>{
+        return $api.post<Omit<UserAuth, "isAuth">>("/auth", authRequest)
     }
 }
