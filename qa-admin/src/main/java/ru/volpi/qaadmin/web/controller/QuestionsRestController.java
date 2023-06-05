@@ -12,6 +12,7 @@ import ru.volpi.qaadmin.service.CategoryService;
 import ru.volpi.qaadmin.service.QuestionService;
 
 @Slf4j
+@CrossOrigin
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/admin/questions")
 @RestController
