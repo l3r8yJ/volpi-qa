@@ -30,15 +30,6 @@ const authSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(register.pending, (state) => {
-            state.loading = "pending"
-        }).addCase(register.fulfilled, (state, action) => {
-            state.token = action.payload.token
-            state.loading = "succeeded"
-        }).addCase(register.rejected, (state, action) => {
-            state.loading = "failed"
-            console.log(action.error)
-        })
         builder.addCase(auth.pending, (state) => {
             state.loading = "pending"
         }).addCase(auth.fulfilled, (state, action) => {
@@ -51,7 +42,6 @@ const authSlice = createSlice({
             console.log(action.error)
         })
     }
-
 })
 
 export const authReducer = authSlice.reducer
