@@ -8,8 +8,11 @@ interface AuthState extends UserAuth {
 
 const initialState = (): AuthState => {
     const token = localStorage.getItem("token");
+    let isAuth = false
+    if(token && token.length !== 0)
+        isAuth = true
     return {
-        isAuth: false,
+        isAuth,
         loading: "idle",
         token
     }
