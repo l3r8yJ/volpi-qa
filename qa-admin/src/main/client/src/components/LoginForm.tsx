@@ -17,7 +17,6 @@ export const LoginForm: FC = () => {
     const [username, setUsername] = useState("")
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [password, setPassword] = useState("")
-    const [isShowPassword, setIsShowPassword] = useState(false)
     const {loading} = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
     const formHandler = (e: FormEvent) => {
@@ -25,9 +24,7 @@ export const LoginForm: FC = () => {
         if (!isUsernameValid || !isPasswordValid) return setShowValidation(true)
         dispatch(auth({username, password}))
     }
-    const toggleIsShowPassword = () => {
-        setIsShowPassword(prev => !prev)
-    }
+
     return (
         <form className={"w-64 p-4 border border-base/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
             {loading === "failed" &&
@@ -46,27 +43,15 @@ export const LoginForm: FC = () => {
                     label={"Логин"}
                     type={"text"}
                 />
-                <div className={"relative"}>
-                    <ValidatedInput
-                        validateFunc={validateInputValue}
-                        setIsValid={setIsPasswordValid}
-                        showValidation={showValidation}
-                        value={password}
-                        type={isShowPassword ? "text" : "password"}
-                        onChange={(e) => setPassword(e.target.value)}
-                        label={"Пароль"}
-                        className={"pr-10"}
-                    />
-                    <div
-                        className={"absolute right-2 top-1/2 h-6 w-6 bg-secondary cursor-pointer hover:text-contrastHov"}
-                        onClick={toggleIsShowPassword}
-                    >
-                        {isShowPassword
-                            ? <EyeSlashIcon className={"w-5 h-5"}/>
-                            : <EyeIcon className={"w-5 h-5"}/>
-                        }
-                    </div>
-                </div>
+                <ValidatedInput
+                    validateFunc={validateInputValue}
+                    setIsValid={setIsPasswordValid}
+                    showValidation={showValidation}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    label={"Пароль"}
+                    isPassword={true}
+                />
             </div>
             <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8 min-h-[40px]"}>
                 {loading === "pending"
