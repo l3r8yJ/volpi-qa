@@ -1,5 +1,7 @@
 package ru.volpi.qaadmin.service.impl;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,8 +11,11 @@ import ru.volpi.qaadmin.domain.user.UserAccount;
 import ru.volpi.qaadmin.dto.user.AuthenticationRequest;
 import ru.volpi.qaadmin.dto.user.AuthenticationResponse;
 import ru.volpi.qaadmin.exception.user.UserAlreadyExistException;
+import ru.volpi.qaadmin.exception.user.UserValidationException;
 import ru.volpi.qaadmin.repository.UserRepository;
 import ru.volpi.qaadmin.web.security.service.JwtService;
+
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -24,9 +29,15 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
 
+    private final Validator validator;
+
     public AuthenticationResponse register(final AuthenticationRequest register) {
         if (this.userRepository.findByUsername(register.username()).isPresent()) {
             throw new UserAlreadyExistException(register.username());
+        }
+        final Set<ConstraintViolation<Object>> violations = this.validator.validate(register);
+        if (!violations.isEmpty()) {
+            throw new UserValidationException(violations);
         }
         final UserAccount account = UserAccount.builder()
             .username(register.username())
