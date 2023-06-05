@@ -2,7 +2,7 @@
 
 exports[`PrimaryButton > default behaviour > renders correctly default title 1`] = `
 <button
-  class="undefined bg-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-600 w-full max-w-[250px]"
+  class="undefined bg-primary hover:bg-primaryHov px-4 py-2 rounded-lg w-full max-w-[250px]"
   data-testid="PrimaryButton-testID"
 >
   42

@@ -24,16 +24,16 @@ describe("PrimaryButton", () => {
         })
 
         it("renders correctly with default and additional classes", () => {
-            expect(buttonElement).toHaveClass("bg-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-600 w-full max-w-[250px]")
+            expect(buttonElement).toHaveClass("bg-primary px-4 py-2 rounded-lg hover:bg-primaryHov w-full max-w-[250px]")
             renderOption.rerender(
                 <PrimaryButton
                     data-testid={PrimaryButtonTestID}
-                    className={"bg-neutral-900 text-neutral-400"}
+                    className={"bg-secondary text-contrast"}
                 >
                     {buttonTitle}
                 </PrimaryButton>
             )
-            expect(buttonElement).toHaveClass("bg-neutral-900 text-neutral-400")
+            expect(buttonElement).toHaveClass("bg-secondary text-contrast")
         })
 
         it("renders correctly default title", () => {

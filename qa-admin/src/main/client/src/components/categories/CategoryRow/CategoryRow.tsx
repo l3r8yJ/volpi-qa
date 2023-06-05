@@ -20,20 +20,20 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID}) => {
     return (
         <li
             data-testid={testID}
-            className={"even:bg-neutral-800 flex justify-between rounded-lg items-center hover:bg-indigo-800 px-4"}
+            className={"even:bg-secondaryEven flex justify-between rounded-lg items-center hover:bg-primaryHov px-4"}
         >
             <Link to={"/categories/" + name} className={"flex w-full py-2"}>
-                <div className={"w-10 text-neutral-400"}>{id}</div>
+                <div className={"w-10 text-pale"}>{id}</div>
                 <div className={"pl-2"}>{name}</div>
             </Link>
             <Popup
                 title={"Вы уверены, что хотите удалить категорию?"}
                 ButtonElement={
-                    <XMarkIcon className={"w-7 h-7 hover:bg-neutral-200/20 p-1 rounded-full duration-150"}/>
+                    <XMarkIcon className={"w-7 h-7 hover:bg-paleHov/20 p-1 rounded-full duration-150"}/>
                 }
                 optionButtons={[
                     <button
-                        className={"px-4 py-2 bg-red-700 duration-150 rounded-lg hover:bg-red-600"}
+                        className={"px-4 py-2 bg-danger rounded-lg hover:bg-dangerHov duration-150"}
                         onClick={deleteBtnHandler}
                     >
                         Удалить
