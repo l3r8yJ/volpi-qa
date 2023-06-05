@@ -35,7 +35,6 @@ const authSlice = createSlice({
         builder.addCase(auth.pending, (state) => {
             state.loading = "pending"
         }).addCase(auth.fulfilled, (state, action) => {
-            console.log(action.payload)
             state.token = action.payload.token
             state.loading = "succeeded"
             state.isAuth = true
