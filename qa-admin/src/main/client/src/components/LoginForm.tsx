@@ -7,6 +7,7 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {auth} from "../store/actions/authAction";
 import {ExclamationTriangleIcon} from "@heroicons/react/24/outline";
 import {Loader} from "./UI/Loader";
+import {LoaderSize} from "../utils/getLoaderSizeByName";
 
 const validateInputValue = createValidateInputValueFunc()
 
@@ -51,7 +52,7 @@ export const LoginForm: FC = () => {
             </div>
             <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8"}>
                 {loading === "pending"
-                    ? <Loader/>
+                    ? <Loader size={LoaderSize.small}/>
                     : <>
                         <BoltIcon className={"w-5 h-5"}/>
                         <span className={"ml-2"}>Войти</span>
