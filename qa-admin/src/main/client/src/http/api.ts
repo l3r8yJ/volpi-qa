@@ -10,6 +10,7 @@ $api.interceptors.request.use((config) => {
     if (config.headers === undefined) {
         config.headers = {} as AxiosRequestHeaders;
     }
-    config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    const token = localStorage.getItem("token")
+    if(token) config.headers.Authorization = `Bearer ${token}`;
     return config;
 });
