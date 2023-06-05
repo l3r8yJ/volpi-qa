@@ -5,7 +5,7 @@ import {PrimaryButton} from "./UI/PrimaryButton/PrimaryButton";
 import {BoltIcon} from "@heroicons/react/24/solid";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {auth} from "../store/actions/authAction";
-import {ExclamationTriangleIcon} from "@heroicons/react/24/outline";
+import {ExclamationTriangleIcon, EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline";
 import {Loader} from "./UI/Loader";
 import {LoaderSize} from "../utils/getLoaderSizeByName";
 
@@ -24,6 +24,7 @@ export const LoginForm: FC = () => {
         if (!isUsernameValid || !isPasswordValid) return setShowValidation(true)
         dispatch(auth({username, password}))
     }
+
     return (
         <form className={"w-64 p-4 border border-base/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
             {loading === "failed" &&
@@ -40,6 +41,7 @@ export const LoginForm: FC = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     label={"Логин"}
+                    type={"text"}
                 />
                 <ValidatedInput
                     validateFunc={validateInputValue}
@@ -48,6 +50,7 @@ export const LoginForm: FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     label={"Пароль"}
+                    isPassword={true}
                 />
             </div>
             <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8 min-h-[40px]"}>
