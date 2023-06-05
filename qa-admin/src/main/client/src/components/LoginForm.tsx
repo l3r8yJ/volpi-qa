@@ -3,8 +3,9 @@ import {ValidatedInput} from "./UI/ValidatedInput/ValidatedInput";
 import {createValidateInputValueFunc} from "../utils/createValidateInputValue/createValidateInputValueFunc";
 import {PrimaryButton} from "./UI/PrimaryButton/PrimaryButton";
 import {BoltIcon} from "@heroicons/react/24/solid";
-import {useAppDispatch} from "../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {auth} from "../store/actions/authAction";
+import {ExclamationTriangleIcon} from "@heroicons/react/24/outline";
 
 const validateInputValue = createValidateInputValueFunc()
 
@@ -14,14 +15,21 @@ export const LoginForm: FC = () => {
     const [username, setUsername] = useState("")
     const [isPasswordValid, setIsPasswordValid] = useState(false)
     const [password, setPassword] = useState("")
+    const {loading} = useAppSelector(state => state.auth)
     const dispatch = useAppDispatch()
     const formHandler = (e: FormEvent) => {
         e.preventDefault()
-        if(!isUsernameValid || !isPasswordValid) return setShowValidation(true)
+        if (!isUsernameValid || !isPasswordValid) return setShowValidation(true)
         dispatch(auth({username, password}))
     }
     return (
         <form className={"w-64 p-4 border border-neutral-500/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
+            {loading === "failed" &&
+                <div className={"text-red-500 flex items-center justify-center py-2 gap-2"}>
+                    <ExclamationTriangleIcon className={"w-5 h-5"}/>
+                    <span>Что-то пошло не так</span>
+                </div>
+            }
             <div className={"space-y-4 flex flex-col"}>
                 <ValidatedInput
                     validateFunc={validateInputValue}
