@@ -6,10 +6,10 @@ import {signOut} from "../store/reducers/authSlice";
 
 export const Header: FC = () => {
     const dispatch = useAppDispatch()
-    // check to disable recursive link on main page
     const signOutHandler = () => {
         dispatch(signOut())
     }
+    // check to disable recursive link on main page
     const isMainPage = window.location.pathname === "/"
     return (
         <header className={"bg-neutral-900/50 py-4 border-b border-neutral-500/50"}>
