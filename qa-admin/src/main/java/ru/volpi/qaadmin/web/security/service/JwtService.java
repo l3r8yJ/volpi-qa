@@ -20,8 +20,11 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    @Value("${spring.secret-key}")
+    @Value("${spring.application.jwt.secret-key}")
     private String secretKey;
+
+    @Value("${spring.application.jwt.expiration}")
+    private long expiration;
 
     public String extractUsername(final String token) {
         return this.extractClaim(token, Claims::getSubject);
@@ -40,12 +43,11 @@ public class JwtService {
         final Map<String, Object> claims,
         final UserDetails userDetails
     ) {
-        final long twentyFourHours = 1000L * 60L * 24L;
         return Jwts.builder()
             .setClaims(claims)
             .setSubject(userDetails.getUsername())
             .setIssuedAt(new Date(System.currentTimeMillis()))
-            .setExpiration(new Date(System.currentTimeMillis() + twentyFourHours))
+            .setExpiration(new Date(System.currentTimeMillis() + this.expiration))
             .signWith(this.getSigningKey(), SignatureAlgorithm.HS256)
             .compact();
     }

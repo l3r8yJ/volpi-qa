@@ -1,6 +1,12 @@
 spring:
   application:
     name: qa-admin
+    jwt:
+      secret-key:
+        6E5A7234753778214125442A472D4B6150645367566B59703373357638792F42
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
   datasource:
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
@@ -14,8 +20,6 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: false
-  secret-key:
-    6E5A7234753778214125442A472D4B6150645367566B59703373357638792F42
 server:
   port: ${QA_ADMIN_PORT}
 admin:
