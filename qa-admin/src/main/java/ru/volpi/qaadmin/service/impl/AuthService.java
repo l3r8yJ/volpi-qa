@@ -5,19 +5,23 @@ import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.volpi.qaadmin.domain.user.UserAccount;
 import ru.volpi.qaadmin.dto.user.AuthenticationRequest;
 import ru.volpi.qaadmin.dto.user.AuthenticationResponse;
 import ru.volpi.qaadmin.exception.user.UserAlreadyExistException;
 import ru.volpi.qaadmin.exception.user.UserValidationException;
 import ru.volpi.qaadmin.repository.UserRepository;
+import ru.volpi.qaadmin.service.annotation.TransactionalService;
 import ru.volpi.qaadmin.web.security.service.JwtService;
 
 import java.util.Set;
 
 @Service
+@TransactionalService
 @RequiredArgsConstructor
 public class AuthService {
 
@@ -31,6 +35,7 @@ public class AuthService {
 
     private final Validator validator;
 
+    @Transactional
     public AuthenticationResponse register(final AuthenticationRequest register) {
         if (this.userRepository.findByUsername(register.username()).isPresent()) {
             throw new UserAlreadyExistException(register.username());
@@ -50,10 +55,14 @@ public class AuthService {
     }
 
     public AuthenticationResponse authenticate(final AuthenticationRequest auth) {
+        final UserAccount user = this.userRepository.findByUsername(auth.username()).orElseThrow(
+            () -> new UsernameNotFoundException(
+                "Пользователь с именем: '%s' не найден ".formatted(auth.username())
+            )
+        );
         this.authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(auth.username(), auth.password())
         );
-        final UserAccount user = this.userRepository.findByUsername(auth.username()).orElseThrow();
         final String token = this.jwtService.generateToken(user);
         return new AuthenticationResponse(token);
     }
