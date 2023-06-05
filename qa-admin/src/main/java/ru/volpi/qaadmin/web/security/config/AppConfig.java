@@ -1,6 +1,7 @@
 package ru.volpi.qaadmin.web.security.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,7 +36,11 @@ public class AppConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> this.userRepository.findByUsername(username)
-            .orElseThrow(() -> new UsernameNotFoundException("Username '%s' not found".formatted(username)));
+            .orElseThrow(
+                () -> new UsernameNotFoundException(
+                    "Пользователь с username: '%s' не найден ".formatted(username)
+                )
+            );
     }
 
     @Bean
