@@ -50,7 +50,7 @@ export const LoginForm: FC = () => {
                     label={"Пароль"}
                 />
             </div>
-            <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8"}>
+            <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8 min-h-[40px]"}>
                 {loading === "pending"
                     ? <Loader size={LoaderSize.small}/>
                     : <>
