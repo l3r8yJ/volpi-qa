@@ -1,5 +1,5 @@
 export type UserAuth = {
-    token: string
+    token: string | null
     isAuth: boolean
 }
 
