@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {UserAuth} from "../../types/Auth";
-import {auth, register} from "../actions/authAction";
+import {auth} from "../actions/authAction";
 
 interface AuthState extends UserAuth {
     loading: "idle" | "pending" | "succeeded" | "failed"
