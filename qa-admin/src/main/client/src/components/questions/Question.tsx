@@ -29,8 +29,13 @@ export const Question: FC<QuestionProps> = ({question}) => {
     }
     const cancelHandler = () => {
         setIsEditMode(false)
+        setText(question.text)
+        setAnswer(question.answer)
     }
     const updateHandler = async () => {
+        if(!isTextValid || !isAnswerValid){
+            return setShowValidation(true)
+        }
         const newQuestion: IQuestion = {
             id: question.id,
             text,
@@ -42,7 +47,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
         setIsEditMode(false)
     }
     return (
-        <div className={"p-4 bg-neutral-800 rounded-lg flex space-x-6"}>
+        <div className={"p-4 bg-base/10 rounded-lg flex space-x-6"}>
             {isEditMode
                 ? <div>
                     <div className={"flex flex-col space-y-2"}>
@@ -59,19 +64,18 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             onChange={(e) => setAnswer(e.target.value)}
                             label={"Ответ"}
                             validateFunc={validateInputValue}
-                            setIsValid={setIsTextValid}
+                            setIsValid={setIsAnswerValid}
                             showValidation={showValidation}
                         />
                     </div>
                     <div className={"flex space-x-2 mt-4"}>
                         <PrimaryButton
-                            className={"bg-green-700 hover:bg-green-600"}
+                            className={"bg-safe hover:bg-safeHov"}
                             onClick={updateHandler}
                         >
                             Сохранить
                         </PrimaryButton>
                         <PrimaryButton
-                            className={"bg-red-700 hover:bg-red-600"}
                             onClick={cancelHandler}
                         >
                             Отменить
@@ -81,21 +85,21 @@ export const Question: FC<QuestionProps> = ({question}) => {
                 : <>
                     <div>
                         <div className={"text-xl"}>{question.text}</div>
-                        <div className={"text-neutral-400"}>{question.answer}</div>
+                        <div className={"text-pale"}>{question.answer}</div>
                     </div>
                     <div className={"flex items-start space-x-2"}>
                         <PencilSquareIcon
-                            className={"w-7 h-7 cursor-pointer hover:bg-neutral-700 p-1 rounded-full duration-150"}
+                            className={"w-7 h-7 cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}
                             onClick={() => setIsEditMode(true)}
                         />
                         <Popup
                             ButtonElement={
                                 <XMarkIcon
-                                    className={"w-7 h-7 cursor-pointer hover:bg-neutral-700 p-1 rounded-full duration-150"}/>
+                                    className={"w-7 h-7 cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}/>
                             }
                             optionButtons={[
                                 <button
-                                    className={"px-4 py-2 bg-red-700 duration-150 rounded-lg hover:bg-red-600"}
+                                    className={"px-4 py-2 bg-danger duration-150 rounded-lg hover:bg-dangerHov"}
                                     onClick={deleteHandler}
                                 >
                                     Удалить

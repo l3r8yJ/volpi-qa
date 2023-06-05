@@ -25,9 +25,9 @@ export const LoginForm: FC = () => {
         dispatch(auth({username, password}))
     }
     return (
-        <form className={"w-64 p-4 border border-neutral-500/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
+        <form className={"w-64 p-4 border border-base/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
             {loading === "failed" &&
-                <div className={"text-red-500 flex items-center justify-center py-2 gap-2"}>
+                <div className={"text-danger flex items-center justify-center py-2 gap-2"}>
                     <ExclamationTriangleIcon className={"w-5 h-5"}/>
                     <span>Что-то пошло не так</span>
                 </div>

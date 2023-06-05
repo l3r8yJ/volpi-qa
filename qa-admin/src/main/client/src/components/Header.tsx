@@ -12,20 +12,18 @@ export const Header: FC = () => {
     // check to disable recursive link on main page
     const isMainPage = window.location.pathname === "/"
     return (
-        <header className={"bg-neutral-900/50 py-4 border-b border-neutral-500/50"}>
+        <header className={"bg-secondary/50 py-4 border-b border-neutral-500/50"}>
             <div className={"mx-5 lg:container lg:mx-auto flex items-center justify-between"}>
                 {isMainPage
                     ? <div className={"font-semibold text-3xl"}>
-                        Volpi QA <span className={"text-indigo-600"}>admin</span>
+                        Volpi QA <span className={"text-primary"}>admin</span>
                     </div>
                     : <Link className={"font-semibold text-3xl"} to={"/"}>
-                        Volpi QA <span className={"text-indigo-600"}>admin</span>
+                        Volpi QA <span className={"text-primary"}>admin</span>
                     </Link>
-
                 }
-
                 <div
-                    className={"flex gap-1 cursor-pointer hover:text-neutral-300 duration-100 items-center"}
+                    className={"flex gap-1 cursor-pointer hover:text-contrastHov duration-100 items-center"}
                     onClick={signOutHandler}
                 >
                     <PowerIcon className="h-5 w-5"/>

@@ -4,6 +4,7 @@ import {createCategory, fetchCategories} from "../../../store/actions/categoryAc
 import {ValidatedInput} from "../../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
 import {createValidateInputValueFunc} from "../../../utils/createValidateInputValue/createValidateInputValueFunc";
+import {PlusIcon} from "@heroicons/react/24/outline";
 
 const validateInputValue = createValidateInputValueFunc()
 
@@ -30,7 +31,10 @@ export const CategoriesForm: FC = () => {
                 setIsValid={setIsValidCategoryName}
                 validateFunc={validateInputValue}
             />
-            <PrimaryButton onClick={formHandler}>Новая категория</PrimaryButton>
+            <PrimaryButton onClick={formHandler} className={"flex items-center justify-center space-x-1"}>
+                <PlusIcon className={"w-5 h-5"}/>
+                <span>Новая категория</span>
+            </PrimaryButton>
         </form>
     );
 }

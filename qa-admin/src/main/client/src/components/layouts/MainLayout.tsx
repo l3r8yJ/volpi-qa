@@ -8,7 +8,7 @@ interface MainLayoutProps{
 
 export const MainLayout: FC<MainLayoutProps> = ({children, isHeader = true}) => {
     return (
-        <div className={"text-white min-h-screen bg-neutral-900"}>
+        <div className={"text-contrast min-h-screen bg-secondary"}>
             {isHeader && <Header/> }
             <main className={`mx-5 lg:container lg:mx-auto ${isHeader && "mt-4"}`}>
                 {children}

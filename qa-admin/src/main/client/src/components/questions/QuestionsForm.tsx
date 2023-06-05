@@ -63,7 +63,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
             />
             <PrimaryButton className={"flex justify-center items-center space-x-1"} type={"submit"}>
                 <PlusIcon className={"w-5 h-5"}/>
-                <span>Создать</span>
+                <span>Новый вопрос</span>
             </PrimaryButton>
         </form>
     );
