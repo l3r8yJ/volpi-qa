@@ -11,6 +11,7 @@ import {ValidatedInput} from "../components/UI/ValidatedInput/ValidatedInput";
 import {createValidateInputValueFunc} from "../utils/createValidateInputValue/createValidateInputValueFunc";
 import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import {fetchCategories, updateCategory} from "../store/actions/categoryAction";
+import {clearQuestions} from "../store/reducers/questionSlice";
 
 const CategoryName: FC = () => {
     const navigate = useNavigate()
@@ -32,6 +33,7 @@ const CategoryName: FC = () => {
         dispatch(fetchQuestionsByCategory(name))
         return () => {
             dispatch(clearCurrentCategory())
+            dispatch(clearQuestions())
         }
     }, [])
 

@@ -24,7 +24,11 @@ const initialState: QuestionState = {
 const questionSlice = createSlice({
     name: "question",
     initialState,
-    reducers: {},
+    reducers: {
+        clearQuestions(state){
+            state.questions = []
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchAllQuestions.pending, (state) => {
             state.loading = "pending"
@@ -86,3 +90,5 @@ const questionSlice = createSlice({
 })
 
 export default questionSlice.reducer
+
+export const {clearQuestions} = questionSlice.actions
