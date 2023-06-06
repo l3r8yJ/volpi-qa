@@ -26,7 +26,7 @@ export const Header: FC = () => {
                     className={"flex gap-1 cursor-pointer hover:text-contrastHov duration-100 items-center"}
                     onClick={signOutHandler}
                 >
-                    <PowerIcon className="h-5 w-5"/>
+                    <PowerIcon className="h-4 w-4"/>
                     <span>Выйти</span>
                 </div>
             </div>

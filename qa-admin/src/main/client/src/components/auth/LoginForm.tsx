@@ -64,7 +64,7 @@ export const LoginForm: FC = () => {
                 {loading === "pending"
                     ? <Loader size={LoaderSize.small}/>
                     : <>
-                        <BoltIcon className={"w-5 h-5"}/>
+                        <BoltIcon className={"w-4 h-4"}/>
                         <span className={"ml-2"}>Войти</span>
                     </>
                 }
