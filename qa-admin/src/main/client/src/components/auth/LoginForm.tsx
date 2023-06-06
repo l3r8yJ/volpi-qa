@@ -9,6 +9,7 @@ import {ExclamationTriangleIcon, EyeIcon, EyeSlashIcon} from "@heroicons/react/2
 import {Loader} from "../UI/Loader";
 import {LoaderSize} from "../../utils/getLoaderSizeByName";
 import {getErrorDescription} from "../../utils/getErrorDescription";
+import {clearTheError} from "../../store/reducers/authSlice";
 
 const validateInputValue = createValidateInputValueFunc()
 
@@ -24,6 +25,9 @@ export const LoginForm: FC = () => {
         e.preventDefault()
         if (!isUsernameValid || !isPasswordValid) return setShowValidation(true)
         dispatch(auth({username, password}))
+    }
+    const inputClickHandler = () => {
+        dispatch(clearTheError())
     }
 
     return (
@@ -43,6 +47,7 @@ export const LoginForm: FC = () => {
                     onChange={(e) => setUsername(e.target.value)}
                     label={"Логин"}
                     type={"text"}
+                    onClick={inputClickHandler}
                 />
                 <ValidatedInput
                     validateFunc={validateInputValue}
@@ -52,6 +57,7 @@ export const LoginForm: FC = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     label={"Пароль"}
                     isPassword={true}
+                    onClick={inputClickHandler}
                 />
             </div>
             <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8 min-h-[40px]"}>

@@ -29,6 +29,9 @@ const authSlice = createSlice({
             state.isAuth = false
             state.token = null
             state.loading = "idle"
+        },
+        clearTheError(state){
+            state.error = null
         }
     },
     extraReducers: (builder) => {
@@ -50,4 +53,4 @@ const authSlice = createSlice({
 
 export const authReducer = authSlice.reducer
 
-export const {signOut} = authSlice.actions
+export const {signOut, clearTheError} = authSlice.actions
