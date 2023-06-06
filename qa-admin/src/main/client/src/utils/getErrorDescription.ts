@@ -1,11 +1,11 @@
 enum ErrorCode {
     ERR_BAD_RESPONSE = 'ERR_BAD_RESPONSE',
-    ERR_NETWORK_ERROR = 'ERR_NETWORK_ERROR',
+    ERR_NETWORK = 'ERR_NETWORK',
 }
 
 const ErrorDescription: Record<ErrorCode, string> = {
     [ErrorCode.ERR_BAD_RESPONSE]: 'Неправильный логин или пароль',
-    [ErrorCode.ERR_NETWORK_ERROR]: 'Ошибка сети',
+    [ErrorCode.ERR_NETWORK]: 'Ошибка сети',
 };
 
 export const getErrorDescription = (error: ErrorCode | string): string => {
