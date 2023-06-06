@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {UserAuth} from "../../types/Auth";
 import {auth} from "../actions/authAction";
+import {ErrorCode} from "../../utils/getErrorDescription";
 
 interface AuthState extends UserAuth {
     loading: "idle" | "pending" | "succeeded" | "failed"
@@ -45,7 +46,7 @@ const authSlice = createSlice({
             state.error = null
         }).addCase(auth.rejected, (state, action) => {
             state.loading = "failed"
-            state.error = action.error.code || null
+            state.error = action.error.code || ErrorCode.ERR_UNKNOWN
             console.log(action.error)
         })
     }
