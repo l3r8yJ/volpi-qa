@@ -1,9 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {UserAuth} from "../../types/Auth";
 import {auth} from "../actions/authAction";
+import {ErrorCode} from "../../utils/getErrorDescription";
 
 interface AuthState extends UserAuth {
     loading: "idle" | "pending" | "succeeded" | "failed"
+    error: string | null
 }
 
 const initialState = (): AuthState => {
@@ -14,7 +16,8 @@ const initialState = (): AuthState => {
     return {
         isAuth,
         loading: "idle",
-        token
+        token,
+        error: null
     }
 }
 
@@ -27,6 +30,9 @@ const authSlice = createSlice({
             state.isAuth = false
             state.token = null
             state.loading = "idle"
+        },
+        clearTheError(state){
+            state.error = null
         }
     },
     extraReducers: (builder) => {
@@ -37,8 +43,10 @@ const authSlice = createSlice({
             state.loading = "succeeded"
             state.isAuth = true
             state.token && localStorage.setItem("token", state.token)
+            state.error = null
         }).addCase(auth.rejected, (state, action) => {
             state.loading = "failed"
+            state.error = action.error.code || ErrorCode.ERR_UNKNOWN
             console.log(action.error)
         })
     }
@@ -46,4 +54,4 @@ const authSlice = createSlice({
 
 export const authReducer = authSlice.reducer
 
-export const {signOut} = authSlice.actions
+export const {signOut, clearTheError} = authSlice.actions
