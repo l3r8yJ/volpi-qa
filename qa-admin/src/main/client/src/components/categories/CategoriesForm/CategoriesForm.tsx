@@ -32,7 +32,7 @@ export const CategoriesForm: FC = () => {
                 validateFunc={validateInputValue}
             />
             <PrimaryButton onClick={formHandler} className={"flex items-center justify-center space-x-1"}>
-                <PlusIcon className={"w-5 h-5"}/>
+                <PlusIcon className={"w-4 h-4"}/>
                 <span>Новая категория</span>
             </PrimaryButton>
         </form>
