@@ -1,13 +1,13 @@
 import {FC, FormEvent, useState} from "react"
-import {ValidatedInput} from "./UI/ValidatedInput/ValidatedInput";
-import {createValidateInputValueFunc} from "../utils/createValidateInputValue/createValidateInputValueFunc";
-import {PrimaryButton} from "./UI/PrimaryButton/PrimaryButton";
+import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
+import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
+import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {BoltIcon} from "@heroicons/react/24/solid";
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import {auth} from "../store/actions/authAction";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {auth} from "../../store/actions/authAction";
 import {ExclamationTriangleIcon, EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline";
-import {Loader} from "./UI/Loader";
-import {LoaderSize} from "../utils/getLoaderSizeByName";
+import {Loader} from "../UI/Loader";
+import {LoaderSize} from "../../utils/getLoaderSizeByName";
 
 const validateInputValue = createValidateInputValueFunc()
 
