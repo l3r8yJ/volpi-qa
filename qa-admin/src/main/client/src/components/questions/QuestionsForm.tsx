@@ -1,7 +1,7 @@
 import {FC, FormEvent, useEffect, useState} from 'react';
 import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
-import {PlusIcon} from "@heroicons/react/24/outline";
+import {PlusIcon} from "@heroicons/react/20/solid";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {createQuestion, fetchQuestionsByCategory} from "../../store/actions/questionAction";
 import {IQuestionNoID} from "../../types/IQuestion";
