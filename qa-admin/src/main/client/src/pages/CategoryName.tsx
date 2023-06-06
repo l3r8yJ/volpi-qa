@@ -21,7 +21,6 @@ const CategoryName: FC = () => {
     const [isValidCategoryName, setIsValidCategoryName] = useState(false)
     const [showValidation, setShowValidation] = useState(false)
     const [categoryName, setCategoryName] = useState(name)
-    const {questions} = useAppSelector(state => state.question)
     const dispatch = useAppDispatch()
     if (!name)
         return (
@@ -39,7 +38,6 @@ const CategoryName: FC = () => {
 
     const updateCategoryNameHandler = async (e: FormEvent) => {
         e.preventDefault()
-        console.log(currentCategory)
         if (!isValidCategoryName || !categoryName) return setShowValidation(true)
         await dispatch(updateCategory({...currentCategory, name: categoryName}))
         dispatch(fetchCategories())
@@ -69,18 +67,12 @@ const CategoryName: FC = () => {
                     </div>
                 }
             </div>
-            {questions.length !== 0
-                ? <div className={"mt-4"}>
-                    <Sidebar><QuestionsForm categoryName={name}/></Sidebar>
-                    <div className={"ml-64 xl:ml-72"}>
-                        <QuestionsList questions={questions}/>
-                    </div>
+            <div className={"mt-4"}>
+                <Sidebar><QuestionsForm categoryName={name}/></Sidebar>
+                <div className={"ml-64 xl:ml-72"}>
+                    <QuestionsList/>
                 </div>
-                : <div className={"mt-4 space-y-4"}>
-                    <div>В этой категории нет ещё ни одного вопроса</div>
-                    <QuestionsForm categoryName={name}/>
-                </div>
-            }
+            </div>
         </MainLayout>
     );
 }
