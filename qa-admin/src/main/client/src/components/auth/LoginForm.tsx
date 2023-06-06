@@ -27,9 +27,9 @@ export const LoginForm: FC = () => {
     }
 
     return (
-        <form className={"w-64 p-4 border border-base/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
+        <form className={"w-80 p-4 border border-base/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
             {loading === "failed" && error &&
-                <div className={"text-danger flex items-center justify-center py-2 gap-2"}>
+                <div className={"text-danger flex items-center justify-center py-3 gap-2"}>
                     <ExclamationTriangleIcon className={"w-5 h-5"}/>
                     <span>{getErrorDescription(error)}</span>
                 </div>
