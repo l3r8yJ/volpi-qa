@@ -33,7 +33,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
         setAnswer(question.answer)
     }
     const updateHandler = async () => {
-        if(!isTextValid || !isAnswerValid){
+        if (!isTextValid || !isAnswerValid) {
             return setShowValidation(true)
         }
         const newQuestion: IQuestion = {
@@ -88,14 +88,18 @@ export const Question: FC<QuestionProps> = ({question}) => {
                         <div className={"text-pale"}>{question.answer}</div>
                     </div>
                     <div className={"flex items-start space-x-2"}>
-                        <PencilSquareIcon
-                            className={"w-7 h-7 cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}
-                            onClick={() => setIsEditMode(true)}
-                        />
+                        <div className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}>
+                            <PencilSquareIcon
+                                className={"w-5 h-5"}
+                                onClick={() => setIsEditMode(true)}
+                            />
+                        </div>
                         <Popup
                             ButtonElement={
-                                <XMarkIcon
-                                    className={"w-7 h-7 cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}/>
+                                <div className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}>
+                                    <XMarkIcon
+                                        className={"w-5 h-5"}/>
+                                </div>
                             }
                             optionButtons={[
                                 <button
