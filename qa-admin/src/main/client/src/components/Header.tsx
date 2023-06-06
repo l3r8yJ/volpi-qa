@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {PowerIcon} from "@heroicons/react/24/outline";
+import {ArrowRightOnRectangleIcon} from "@heroicons/react/24/outline";
 import {Link} from "react-router-dom";
 import {useAppDispatch} from "../hooks/redux";
 import {signOut} from "../store/reducers/authSlice";
@@ -26,7 +26,7 @@ export const Header: FC = () => {
                     className={"flex gap-1 cursor-pointer hover:text-contrastHov duration-100 items-center"}
                     onClick={signOutHandler}
                 >
-                    <PowerIcon className="h-4 w-4"/>
+                    <ArrowRightOnRectangleIcon className="h-4 w-4"/>
                     <span>Выйти</span>
                 </div>
             </div>
