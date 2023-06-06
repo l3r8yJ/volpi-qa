@@ -18,7 +18,7 @@ describe("CategoriesList", () => {
                 </BrowserRouter>
             </Provider>
         )
-        CategoriesListElement = screen.getByTestId(CategoriesListTestID)
+        CategoriesListElement = await waitFor(() => screen.getByTestId(CategoriesListTestID))
         CategoryRowElements = await waitFor(() => screen.getAllByTestId("CategoryRow-testID"))
     })
 
