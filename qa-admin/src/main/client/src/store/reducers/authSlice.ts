@@ -4,6 +4,7 @@ import {auth} from "../actions/authAction";
 
 interface AuthState extends UserAuth {
     loading: "idle" | "pending" | "succeeded" | "failed"
+    error: string | null
 }
 
 const initialState = (): AuthState => {
@@ -14,7 +15,8 @@ const initialState = (): AuthState => {
     return {
         isAuth,
         loading: "idle",
-        token
+        token,
+        error: null
     }
 }
 
@@ -37,8 +39,10 @@ const authSlice = createSlice({
             state.loading = "succeeded"
             state.isAuth = true
             state.token && localStorage.setItem("token", state.token)
+            state.error = null
         }).addCase(auth.rejected, (state, action) => {
             state.loading = "failed"
+            state.error = action.error.code || null
             console.log(action.error)
         })
     }
