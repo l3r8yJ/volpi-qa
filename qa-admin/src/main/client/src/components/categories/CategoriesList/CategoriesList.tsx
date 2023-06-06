@@ -22,8 +22,8 @@ export const CategoriesList: FC<CategoriesListProps> = ({testID}) => {
         <div className={"rounded-lg w-full"} data-testid={testID}>
             <CategoriesListHead/>
             <ul>
-                {categories.map(c => (
-                    <CategoryRow key={c.id} id={c.id} name={c.name} testID={categoryRowTestID}/>
+                {categories.map((c, i) => (
+                    <CategoryRow key={c.id} id={c.id} name={c.name} testID={categoryRowTestID} num={i + 1}/>
                 ))}
             </ul>
         </div>

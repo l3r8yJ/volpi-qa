@@ -9,9 +9,10 @@ import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
 
 interface CategoryRowProps extends ICategoryNoQuestions {
     testID?: string
+    num: number
 }
 
-export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID}) => {
+export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
     const dispatch = useAppDispatch()
     const deleteBtnHandler = async () => {
         await dispatch(deleteCategory(id))
@@ -23,7 +24,7 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID}) => {
             className={"even:bg-secondaryEven flex justify-between rounded-lg items-center hover:bg-primaryHov px-4"}
         >
             <Link to={"/categories/" + name} className={"flex w-full py-2"}>
-                <div className={"w-10 text-pale"}>{id}</div>
+                <div className={"w-10 text-pale"}>{num}</div>
                 <div className={"pl-2"}>{name}</div>
             </Link>
             <Popup
