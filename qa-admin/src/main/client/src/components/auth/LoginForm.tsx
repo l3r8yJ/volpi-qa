@@ -27,7 +27,7 @@ export const LoginForm: FC = () => {
         dispatch(auth({username, password}))
     }
     const inputClickHandler = () => {
-        dispatch(clearTheError())
+        if (error) dispatch(clearTheError())
     }
 
     return (
