@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {ArrowRightOnRectangleIcon} from "@heroicons/react/24/outline";
+import {ArrowRightOnRectangleIcon} from "@heroicons/react/20/solid";
 import {Link} from "react-router-dom";
 import {useAppDispatch} from "../hooks/redux";
 import {signOut} from "../store/reducers/authSlice";
