@@ -10,4 +10,4 @@ INSERT INTO questions_storage.questions(id, category_id, question_text, question
 VALUES (431, 3421, 'Вопрос уровня б', 'Ответ уровня б');
 
 INSERT INTO users_storage.users(id, username, password, role)
-VALUES (101, 'admin', 'admin', 'admin');
+VALUES (101, 'admin', '$2a$10$ecu/WLJDj7mQhXpa9lfJ0O/.NK38FeVtErsUPE8smP8bDHAXcs5vi', 'admin');

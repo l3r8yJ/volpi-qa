@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +18,7 @@ import ru.volpi.qaadmin.exception.category.CategoryValidationException;
 import ru.volpi.qaadmin.exception.question.QuestionNotFoundException;
 import ru.volpi.qaadmin.exception.question.QuestionValidationException;
 import ru.volpi.qaadmin.exception.user.UserAlreadyExistException;
+import ru.volpi.qaadmin.exception.user.UserValidationException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +49,8 @@ public class GlobalHandler extends ResponseEntityExceptionHandler {
             .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.toString());
     }
+
+
 
     @ExceptionHandler(QuestionNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -84,9 +88,21 @@ public class GlobalHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
     }
 
+    @ExceptionHandler(UserValidationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ResponseEntity<?> onUserValidationException(final UserValidationException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
+    }
+
     @ExceptionHandler(UsernameNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public final ResponseEntity<?> onUserNotFound(final UsernameNotFoundException exc) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exc.getMessage());
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public final ResponseEntity<?> onAuthenticationException(final AuthenticationException exc) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Неправильный пароль");
     }
 }

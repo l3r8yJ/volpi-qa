@@ -3,6 +3,7 @@ package ru.volpi.qaadmin.service.impl;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,12 +38,9 @@ public class AuthService {
 
     @Transactional
     public AuthenticationResponse register(final AuthenticationRequest register) {
+        this.validateRequest(register);
         if (this.userRepository.findByUsername(register.username()).isPresent()) {
             throw new UserAlreadyExistException(register.username());
-        }
-        final Set<ConstraintViolation<Object>> violations = this.validator.validate(register);
-        if (!violations.isEmpty()) {
-            throw new UserValidationException(violations);
         }
         final UserAccount account = UserAccount.builder()
             .username(register.username())
@@ -55,6 +53,7 @@ public class AuthService {
     }
 
     public AuthenticationResponse authenticate(final AuthenticationRequest auth) {
+        this.validateRequest(auth);
         final UserAccount user = this.userRepository.findByUsername(auth.username()).orElseThrow(
             () -> new UsernameNotFoundException(
                 "Пользователь с именем: '%s' не найден ".formatted(auth.username())
@@ -65,6 +64,13 @@ public class AuthService {
         );
         final String token = this.jwtService.generateToken(user);
         return new AuthenticationResponse(token);
+    }
+
+    private void validateRequest(final AuthenticationRequest auth) {
+        final Set<ConstraintViolation<Object>> violations = this.validator.validate(auth);
+        if (!violations.isEmpty()) {
+            throw new UserValidationException(violations);
+        }
     }
 
 }
