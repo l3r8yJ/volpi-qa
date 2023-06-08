@@ -5,6 +5,7 @@ import {auth} from "../actions/authAction";
 interface AuthState extends UserAuth {
     loading: "idle" | "pending" | "succeeded" | "failed"
     error: string | null
+    isTokenValid: boolean
 }
 
 const initialState = (): AuthState => {
@@ -16,7 +17,8 @@ const initialState = (): AuthState => {
         isAuth,
         loading: "idle",
         token,
-        error: null
+        error: null,
+        isTokenValid: false
     }
 }
 
@@ -29,6 +31,10 @@ const authSlice = createSlice({
             state.isAuth = false
             state.token = null
             state.loading = "idle"
+        },
+        setTokenInvalid(state){
+            state.error = "Ваша сессия окончена, войдите заново"
+            state.isTokenValid = false
         },
         clearTheError(state){
             state.error = null
@@ -43,6 +49,7 @@ const authSlice = createSlice({
             state.isAuth = true
             state.token && localStorage.setItem("token", state.token)
             state.error = null
+            state.isTokenValid = true
         }).addCase(auth.rejected, (state, action) => {
             state.loading = "failed"
             state.error = action.error.message || "Неизвестная ошибка"
@@ -53,4 +60,4 @@ const authSlice = createSlice({
 
 export const authReducer = authSlice.reducer
 
-export const {signOut, clearTheError} = authSlice.actions
+export const {signOut, clearTheError, setTokenInvalid} = authSlice.actions

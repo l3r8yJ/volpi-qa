@@ -1,5 +1,6 @@
-import axios, {AxiosRequestHeaders} from "axios";
+import axios from "axios";
 import {API_URL} from "../constants/api";
+import {AxiosRequestHeaders} from "axios/index";
 
 
 export const $api = axios.create({
@@ -14,3 +15,7 @@ $api.interceptors.request.use((config) => {
     if(token) config.headers.Authorization = `Bearer ${token}`;
     return config;
 });
+
+
+
+
