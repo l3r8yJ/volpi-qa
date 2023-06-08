@@ -31,7 +31,7 @@ export const LoginForm: FC = () => {
 
     return (
         <>
-            {loading === "failed" || !isTokenValid && error &&
+            {error && (loading === "failed" || !isTokenValid) &&
                 <div className={"text-danger flex items-center justify-center mb-3 gap-2"}>
                     <ExclamationTriangleIcon className={"w-5 h-5"}/>
                     <span>{error}</span>
