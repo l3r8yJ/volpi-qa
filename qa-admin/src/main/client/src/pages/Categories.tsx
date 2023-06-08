@@ -8,11 +8,13 @@ const Categories: FC = () => {
 
     return (
         <MainLayout>
-            <Sidebar>
-                <CategoriesForm/>
-            </Sidebar>
-            <div className={"ml-64 xl:ml-72"}>
-                <CategoriesList/>
+            <div className={"flex items-start"}>
+                <Sidebar>
+                    <CategoriesForm/>
+                </Sidebar>
+                <div className={"flex-1"}>
+                    <CategoriesList/>
+                </div>
             </div>
         </MainLayout>
     );
