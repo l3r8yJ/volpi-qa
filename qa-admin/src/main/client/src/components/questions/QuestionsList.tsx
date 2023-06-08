@@ -9,7 +9,7 @@ export const QuestionsList: FC = () => {
     const {questions, loading} = useAppSelector(state => state.question)
     if (loading === "pending") return <Loader size={LoaderSize.medium}/>
     return (
-        <div className={"flex flex-col items-start space-y-4 mt-4"}>
+        <div className={"flex flex-col items-start space-y-4"}>
             {questions.length === 0
                 ? <div>В этой категории пока нет вопросов</div>
                 : questions.map(question => (
