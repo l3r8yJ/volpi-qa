@@ -48,7 +48,7 @@ const CategoryName: FC = () => {
     return (
         <MainLayout>
             <div className={"flex items-end text-3xl w-full py-4"}>
-                <span className={"text-pale text-2xl"}>Категория:</span>
+                <span className={"text-pale text-2xl"}>Категория:&nbsp;</span>
                 {editCategoryNameMode
                     ? <form onSubmit={updateCategoryNameHandler} className={"ml-4"}>
                         <ValidatedInput
@@ -57,13 +57,19 @@ const CategoryName: FC = () => {
                             validateFunc={createValidateInputValueFunc()}
                             value={categoryName}
                             onChange={(e) => setCategoryName(e.target.value)}
+                            className={"text-base"}
                         />
                     </form>
                     : <div className={"flex items-center"}>
-                        <span className={"ml-2"}>{name}</span>
-                        <PencilSquareIcon
-                            className={"ml-2 w-7 h-7 cursor-pointer hover:bg-paleHov/20 p-1 rounded-full duration-150"}
-                            onClick={() => setEditCategoryNameMode(true)}/>
+                        <div>
+                            <span className={"ml-2 break-all"}>{name}</span>
+                        </div>
+
+                        <div className={"ml-2 cursor-pointer hover:bg-paleHov/20 p-1 rounded-full duration-150"}>
+                            <PencilSquareIcon
+                                className={"w-5 h-5"}
+                                onClick={() => setEditCategoryNameMode(true)}/>
+                        </div>
                     </div>
                 }
             </div>
