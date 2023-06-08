@@ -29,7 +29,9 @@ export const ValidatedInput: FC<InputProps> = ({
 
     useEffect(() => {
         const isValid = validateResult === "выглядит хорошо!"
-        if (showValidation) setInputStatusClasses(isValid ? "border-safe/50" : "border-danger/50")
+        showValidation
+            ? setInputStatusClasses(isValid ? "border-safe/50" : "border-danger/50")
+            : setInputStatusClasses("border-base/50")
         setIsValid(isValid)
     }, [validateResult, showValidation])
 
