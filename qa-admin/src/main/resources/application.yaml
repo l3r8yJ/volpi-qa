@@ -11,7 +11,7 @@ spring:
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_HOST}:5432/postgres
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
   jpa:
     properties:
       hibernate:
@@ -22,6 +22,3 @@ spring:
     open-in-view: false
 server:
   port: ${QA_ADMIN_PORT}
-admin:
-  name: ${ADMIN_LOGIN}
-  password: ${ADMIN_PASSWORD}
