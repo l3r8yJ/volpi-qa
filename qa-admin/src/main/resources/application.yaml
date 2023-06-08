@@ -22,6 +22,3 @@ spring:
     open-in-view: false
 server:
   port: ${QA_ADMIN_PORT}
-admin:
-  name: ${ADMIN_LOGIN}
-  password: ${ADMIN_PASSWORD}

@@ -22,6 +22,3 @@ server:
 logging:
   level:
     web: debug
-admin:
-  name: admin
-  password: admin
