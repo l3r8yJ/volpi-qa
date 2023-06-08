@@ -12,7 +12,7 @@ export const Header: FC = () => {
     // check to disable recursive link on main page
     const isMainPage = window.location.pathname === "/"
     return (
-        <header className={"bg-secondary/50 py-4 border-b border-neutral-500/50"}>
+        <header className={"bg-secondary/50 border-b border-neutral-500/50 backdrop-blur sticky top-0 z-20 h-16 flex flex-col justify-center"}>
             <div className={"mx-5 lg:container lg:mx-auto flex items-center justify-between"}>
                 {isMainPage
                     ? <div className={"font-semibold text-3xl"}>

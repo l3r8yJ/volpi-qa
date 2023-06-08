@@ -67,9 +67,9 @@ const CategoryName: FC = () => {
                     </div>
                 }
             </div>
-            <div className={"mt-4"}>
+            <div className={"mt-4 flex items-start"}>
                 <Sidebar><QuestionsForm categoryName={name}/></Sidebar>
-                <div className={"ml-64 xl:ml-72"}>
+                <div className={"flex-1"}>
                     <QuestionsList/>
                 </div>
             </div>
