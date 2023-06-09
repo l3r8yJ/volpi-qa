@@ -115,7 +115,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             optionButtons={[
                                 <PrimaryButton
                                     className={"bg-danger hover:bg-dangerHov flex gap-1 items-center"}
-                                    onClick={updateHandler}
+                                    onClick={deleteHandler}
                                 >
                                     <XMarkIcon className={"w-5 h-5"}/>
                                     <span>Удалить</span>
