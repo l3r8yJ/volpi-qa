@@ -61,8 +61,9 @@ const categorySlice = createSlice({
 
         builder.addCase(updateCategory.pending, (state) => {
             state.loading = "pending"
-        }).addCase(updateCategory.fulfilled, (state) => {
+        }).addCase(updateCategory.fulfilled, (state, action) => {
             state.loading = "succeeded"
+            state.currentCategory = action.payload
         }).addCase(updateCategory.rejected, (state, action) => {
             state.loading = "failed"
             console.log(action.error)
