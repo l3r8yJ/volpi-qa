@@ -70,18 +70,20 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             className={"max-h-40"}
                         />
                     </div>
-                    <div className={"flex space-x-2 mt-4"}>
-                        <PrimaryButton
-                            className={"bg-safe hover:bg-safeHov"}
-                            onClick={updateHandler}
-                        >
-                            Сохранить
-                        </PrimaryButton>
-                        <PrimaryButton
-                            onClick={cancelHandler}
-                        >
-                            Отменить
-                        </PrimaryButton>
+                    <div className={"flex space-x-2 mt-4 justify-end"}>
+                        <div className={"flex gap-2"}>
+                            <PrimaryButton
+                                className={"bg-safe hover:bg-safeHov"}
+                                onClick={updateHandler}
+                            >
+                                Сохранить
+                            </PrimaryButton>
+                            <PrimaryButton
+                                onClick={cancelHandler}
+                            >
+                                Отменить
+                            </PrimaryButton>
+                        </div>
                     </div>
                 </div>
                 : <>
