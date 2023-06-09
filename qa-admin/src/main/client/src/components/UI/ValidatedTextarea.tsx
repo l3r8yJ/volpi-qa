@@ -37,13 +37,11 @@ export const ValidatedTextarea: FC<ValidatedTextareaProps> = ({
     return (
         <label className="w-full">
             {label && <div className="text-pale text-sm ml-1 w-full">{label}</div>}
-            <div className={`rounded-lg flex items-center bg-secondary border w-full ${inputStatusClasses}`}>
-                <textarea
-                    className={`${className} px-4 py-2 bg-transparent outline-none max-w-full h-10`}
-                    value={value}
-                    {...props}
-                />
-            </div>
+            <textarea
+                className={`${className} px-4 py-2 outline-none rounded-lg flex items-center bg-secondary border w-full ${inputStatusClasses}`}
+                value={value}
+                {...props}
+            />
             {showValidation && (
                 <div className={`text-sm ${validateResult === "выглядит хорошо!" ? "text-safe/80" : "text-danger/80"}`}>
                     {validateResult}

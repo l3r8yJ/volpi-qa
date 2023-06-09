@@ -7,6 +7,7 @@ import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {Popup} from "../UI/Popup";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
+import {ValidatedTextarea} from "../UI/ValidatedTextarea";
 
 interface QuestionProps {
     question: IQuestion
@@ -47,10 +48,10 @@ export const Question: FC<QuestionProps> = ({question}) => {
         setIsEditMode(false)
     }
     return (
-        <div className={"p-4 bg-base/10 rounded-lg flex space-x-6"}>
+        <div className={"p-4 bg-base/10 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
-                ? <div>
-                    <div className={"flex flex-col space-y-2"}>
+                ? <div className={"w-full"}>
+                    <div className={"flex flex-col space-y-2 w-full"}>
                         <ValidatedInput
                             value={text}
                             onChange={(e) => setText(e.target.value)}
@@ -59,13 +60,14 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             setIsValid={setIsTextValid}
                             showValidation={showValidation}
                         />
-                        <ValidatedInput
+                        <ValidatedTextarea
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
                             label={"Ответ"}
                             validateFunc={validateInputValue}
                             setIsValid={setIsAnswerValid}
                             showValidation={showValidation}
+                            className={"max-h-40"}
                         />
                     </div>
                     <div className={"flex space-x-2 mt-4"}>
