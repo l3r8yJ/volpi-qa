@@ -50,7 +50,7 @@ export const ValidatedInput: FC<InputProps> = ({
                     {...props}
                 />
                 {isPassword &&
-                    <div className={"mr-4 cursor-pointer"} onClick={toggleIsShowPassword}>
+                    <div className={"cursor-pointer"} onClick={toggleIsShowPassword}>
                         {isShowPassword
                             ? <EyeSlashIcon className={"w-5 h-5 hover:text-contrastHov"}/>
                             : <EyeIcon className={"w-5 h-5 hover:text-contrastHov"}/>
