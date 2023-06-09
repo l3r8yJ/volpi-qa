@@ -60,7 +60,6 @@ const CategoryName: FC = () => {
                             validateFunc={createValidateInputValueFunc()}
                             value={categoryName}
                             onChange={(e) => setCategoryName(e.target.value)}
-                            className={"flex-1"}
                         />
                         <PrimaryButton
                             className={"flex items-center justify-center gap-1 w-auto bg-safe hover:bg-safeHov"}
