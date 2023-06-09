@@ -8,6 +8,7 @@ import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {Popup} from "../UI/Popup";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {ValidatedTextarea} from "../UI/ValidatedTextarea";
+import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid";
 
 interface QuestionProps {
     question: IQuestion
@@ -49,7 +50,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
     }
     return (
 
-        <div className={"p-4 bg-base/10 rounded-lg flex space-x-6 justify-between w-full"}>
+        <div className={"p-4 bg-border/10 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
                 ? <div className={"w-full"}>
                     <div className={"flex flex-col space-y-2 w-full"}>
@@ -74,15 +75,18 @@ export const Question: FC<QuestionProps> = ({question}) => {
                     <div className={"flex space-x-2 mt-4 justify-end"}>
                         <div className={"flex gap-2"}>
                             <PrimaryButton
-                                className={"bg-safe hover:bg-safeHov"}
+                                className={"bg-safe hover:bg-safeHov flex gap-1 items-center"}
                                 onClick={updateHandler}
                             >
-                                Сохранить
+                                <CheckIcon className={"w-5 h-5"}/>
+                                <span>Сохранить</span>
                             </PrimaryButton>
                             <PrimaryButton
+                                className={"flex items-center gap-1"}
                                 onClick={cancelHandler}
                             >
-                                Отменить
+                                <NoSymbolIcon className={"w-5 h-5"}/>
+                                <span>Отменить</span>
                             </PrimaryButton>
                         </div>
                     </div>
@@ -109,13 +113,20 @@ export const Question: FC<QuestionProps> = ({question}) => {
                                 </div>
                             }
                             optionButtons={[
-                                <button
-                                    className={"px-4 py-2 bg-danger duration-150 rounded-lg hover:bg-dangerHov"}
+                                <PrimaryButton
+                                    className={"bg-danger hover:bg-dangerHov flex gap-1 items-center"}
                                     onClick={deleteHandler}
                                 >
-                                    Удалить
-                                </button>,
-                                <PrimaryButton>Не удалять</PrimaryButton>
+                                    <XMarkIcon className={"w-5 h-5"}/>
+                                    <span>Удалить</span>
+                                </PrimaryButton>,
+                                <PrimaryButton
+                                    className={"flex items-center gap-1"}
+                                    onClick={cancelHandler}
+                                >
+                                    <NoSymbolIcon className={"w-5 h-5"}/>
+                                    <span>Отменить</span>
+                                </PrimaryButton>
                             ]}
                             title={"Уверены, что хотите удалить вопрос?"}
                         >

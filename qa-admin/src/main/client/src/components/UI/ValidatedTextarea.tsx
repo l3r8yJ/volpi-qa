@@ -30,7 +30,7 @@ export const ValidatedTextarea: FC<ValidatedTextareaProps> = ({
         const isValid = validateResult === "выглядит хорошо!"
         showValidation
             ? setInputStatusClasses(isValid ? "border-safe/50" : "border-danger/50")
-            : setInputStatusClasses("border-base/50")
+            : setInputStatusClasses("border-border/50")
         setIsValid(isValid)
     }, [validateResult, showValidation])
 
