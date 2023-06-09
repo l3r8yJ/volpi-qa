@@ -17,6 +17,7 @@ import ru.volpi.qaadmin.repository.CategoryRepository;
 import ru.volpi.qaadmin.service.CategoryService;
 import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryResponse> findAll() {
         return this.categoryRepository.findAll()
-            .stream().map(CategoryResponse::from).toList();
+            .stream()
+            .map(CategoryResponse::from)
+            .sorted(Comparator.comparing(CategoryResponse::id).reversed())
+            .toList();
     }
 
     @Transactional
