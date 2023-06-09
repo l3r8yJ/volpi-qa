@@ -15,11 +15,11 @@ type ValidateOptions = {
 }
 
 export const createValidateInputValueFunc = (options?: ValidateOptions): ValidateInputResulFunc => {
-    const {maxLength, banWords} = options ?? {}
+    const {maxLength = 200, banWords} = options ?? {}
     return (inputValue: InputHTMLAttributes<HTMLInputElement>['value']): ValidateInputResult => {
         if (typeof inputValue !== "string") return "неправильный тип"
         inputValue = inputValue?.trim()
-        if (maxLength && inputValue.length > maxLength) return "слишком длинное"
+        if (inputValue.length > maxLength) return "слишком длинное"
         if (inputValue.trim().length === 0) return "не может быть пустым"
         if (banWords?.includes(inputValue)) return "уже существует"
         return "выглядит хорошо!"
