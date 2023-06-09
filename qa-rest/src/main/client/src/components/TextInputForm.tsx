@@ -40,10 +40,9 @@ export const TextInputForm: FC = () => {
                 return question.text.toLowerCase().includes(query.toLowerCase())
             })
 
-    // const formHandler = (e: FormEvent) => {
-    //     e.preventDefault()
-    //     goToQuestionView()
-    // }
+    const formHandler = (e: FormEvent) => {
+        e.preventDefault()
+    }
 
     return (
         <div className={"bg-white"}>
@@ -71,7 +70,7 @@ export const TextInputForm: FC = () => {
                             </Combobox.Option>
                         )))}
                 </Combobox.Options>
-                <form className={"flex py-4 px-2 bg-zinc-50 border-t"}>
+                <form className={"flex py-4 px-2 bg-zinc-50 border-t"} onSubmit={formHandler}>
                     <div
                         className={"border w-full rounded-lg flex space-x-4 items-end p-2 shadow-lg shadow-zinc-500/20 bg-white"}>
                         <Combobox.Input
@@ -80,7 +79,7 @@ export const TextInputForm: FC = () => {
                             placeholder={"Спросите что-нибудь..."}
                             autoComplete={"off"}
                         />
-                        <Combobox.Button>
+                        <Combobox.Button type={"submit"}>
                             <ChevronUpDownIcon className={"w-6 h-6 hover:text-neutral-500 duration-150"}/>
                         </Combobox.Button>
                     </div>
