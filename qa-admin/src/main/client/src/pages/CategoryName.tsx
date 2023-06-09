@@ -9,7 +9,7 @@ import {Sidebar} from "../components/Sidebar";
 import {clearCurrentCategory} from "../store/reducers/categorySlice";
 import {ValidatedInput} from "../components/UI/ValidatedInput/ValidatedInput";
 import {createValidateInputValueFunc} from "../utils/createValidateInputValue/createValidateInputValueFunc";
-import {CheckIcon} from "@heroicons/react/20/solid"
+import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid"
 import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import {fetchCategories, updateCategory} from "../store/actions/categoryAction";
 import {clearQuestions} from "../store/reducers/questionSlice";
@@ -44,8 +44,13 @@ const CategoryName: FC = () => {
         await dispatch(updateCategory({...currentCategory, name: categoryName}))
         dispatch(fetchCategories())
         navigate("/categories/" + categoryName)
+        exitEditModeHandler()
+    }
+
+    const exitEditModeHandler = () => {
         setShowValidation(false)
         setEditCategoryNameMode(false)
+        setCategoryName(name)
     }
     return (
         <MainLayout>
@@ -67,6 +72,14 @@ const CategoryName: FC = () => {
                         >
                             <CheckIcon className={"w-5 h-5"}/>
                             <span>Сохранить</span>
+                        </PrimaryButton>
+                        <PrimaryButton
+                            type={"reset"}
+                            className={"flex items-center justify-center gap-1 w-auto"}
+                            onClick={exitEditModeHandler}
+                        >
+                            <NoSymbolIcon className={"w-5 h-5"}/>
+                            <span>Отменить</span>
                         </PrimaryButton>
 
                     </form>
