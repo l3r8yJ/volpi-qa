@@ -49,7 +49,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
     }
     return (
 
-        <div className={"p-4 bg-base/10 rounded-lg flex space-x-6 justify-between w-full"}>
+        <div className={"p-4 bg-border/10 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
                 ? <div className={"w-full"}>
                     <div className={"flex flex-col space-y-2 w-full"}>
