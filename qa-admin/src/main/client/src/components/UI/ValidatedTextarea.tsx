@@ -38,7 +38,7 @@ export const ValidatedTextarea: FC<ValidatedTextareaProps> = ({
         <label className="w-full">
             {label && <div className="text-pale text-sm ml-1 w-full">{label}</div>}
             <textarea
-                className={`${className} px-4 py-2 outline-none rounded-lg flex items-center bg-secondary border w-full ${inputStatusClasses}`}
+                className={`${className} px-4 py-2 outline-none rounded-lg flex h-20 items-center bg-secondary border w-full ${inputStatusClasses}`}
                 value={value}
                 {...props}
             />
