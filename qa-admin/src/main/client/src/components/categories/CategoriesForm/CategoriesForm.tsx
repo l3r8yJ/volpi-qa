@@ -24,7 +24,7 @@ export const CategoriesForm: FC = () => {
     const validateCategoryName = useCallback(
         () =>
             createValidateInputValueFunc({
-                banWords: categories.map((category) => category.name),
+                banWords: categories.map((category) => category.name.trim()),
             }),
         [categories]
     )();

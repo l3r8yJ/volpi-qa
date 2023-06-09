@@ -31,7 +31,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     const validateAnswer = useCallback(
         () =>
             currentCategory && createValidateInputValueFunc({
-                banWords: currentCategory?.questions?.map((question) => question.answer),
+                banWords: currentCategory?.questions?.map((question) => question.answer.trim()),
             }),
         [currentCategory.questions]
     )();
