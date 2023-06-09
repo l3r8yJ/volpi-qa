@@ -7,6 +7,7 @@ import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {Popup} from "../UI/Popup";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
+import {ValidatedTextarea} from "../UI/ValidatedTextarea";
 
 interface QuestionProps {
     question: IQuestion
@@ -47,10 +48,11 @@ export const Question: FC<QuestionProps> = ({question}) => {
         setIsEditMode(false)
     }
     return (
-        <div className={"p-4 bg-border/10 rounded-lg flex space-x-6"}>
+
+        <div className={"p-4 bg-base/10 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
-                ? <div>
-                    <div className={"flex flex-col space-y-2"}>
+                ? <div className={"w-full"}>
+                    <div className={"flex flex-col space-y-2 w-full"}>
                         <ValidatedInput
                             value={text}
                             onChange={(e) => setText(e.target.value)}
@@ -59,27 +61,30 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             setIsValid={setIsTextValid}
                             showValidation={showValidation}
                         />
-                        <ValidatedInput
+                        <ValidatedTextarea
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
                             label={"Ответ"}
                             validateFunc={validateInputValue}
                             setIsValid={setIsAnswerValid}
                             showValidation={showValidation}
+                            className={"max-h-40"}
                         />
                     </div>
-                    <div className={"flex space-x-2 mt-4"}>
-                        <PrimaryButton
-                            className={"bg-safe hover:bg-safeHov"}
-                            onClick={updateHandler}
-                        >
-                            Сохранить
-                        </PrimaryButton>
-                        <PrimaryButton
-                            onClick={cancelHandler}
-                        >
-                            Отменить
-                        </PrimaryButton>
+                    <div className={"flex space-x-2 mt-4 justify-end"}>
+                        <div className={"flex gap-2"}>
+                            <PrimaryButton
+                                className={"bg-safe hover:bg-safeHov"}
+                                onClick={updateHandler}
+                            >
+                                Сохранить
+                            </PrimaryButton>
+                            <PrimaryButton
+                                onClick={cancelHandler}
+                            >
+                                Отменить
+                            </PrimaryButton>
+                        </div>
                     </div>
                 </div>
                 : <>
@@ -88,10 +93,12 @@ export const Question: FC<QuestionProps> = ({question}) => {
                         <div className={"text-pale"}>{question.answer}</div>
                     </div>
                     <div className={"flex items-start space-x-2"}>
-                        <div className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}>
+                        <div
+                            className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}
+                            onClick={() => setIsEditMode(true)}
+                        >
                             <PencilSquareIcon
                                 className={"w-5 h-5"}
-                                onClick={() => setIsEditMode(true)}
                             />
                         </div>
                         <Popup

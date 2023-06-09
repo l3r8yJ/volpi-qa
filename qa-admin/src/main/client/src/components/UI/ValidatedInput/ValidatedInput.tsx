@@ -40,17 +40,17 @@ export const ValidatedInput: FC<InputProps> = ({
     }
 
     return (
-        <label className={"max-w-[300px]"}>
+        <label className={"w-full"}>
             {label && <div className={"text-pale text-sm ml-1"}>{label}</div>}
-            <div className={`rounded-lg flex items-center bg-secondary border ${inputStatusClasses}`}>
+            <div className={`rounded-lg flex items-center bg-secondary px-4 py-2 h-[40px] border ${inputStatusClasses}`}>
                 <input
-                    className={`${className} px-4 py-2 bg-transparent outline-none w-full`}
+                    className={`${className} bg-transparent outline-none w-full`}
                     value={value}
                     type={!isShowPassword && isPassword ? "password" : "text"}
                     {...props}
                 />
                 {isPassword &&
-                    <div className={"mr-4 cursor-pointer"} onClick={toggleIsShowPassword}>
+                    <div className={"cursor-pointer"} onClick={toggleIsShowPassword}>
                         {isShowPassword
                             ? <EyeSlashIcon className={"w-5 h-5 hover:text-contrastHov"}/>
                             : <EyeIcon className={"w-5 h-5 hover:text-contrastHov"}/>

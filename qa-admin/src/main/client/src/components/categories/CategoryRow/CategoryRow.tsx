@@ -25,7 +25,7 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
         >
             <Link to={"/categories/" + name} className={"flex w-full py-2"}>
                 <div className={"w-10 text-pale"}>{num}</div>
-                <div className={"pl-2"}>{name}</div>
+                <div className={"pl-2 break-all flex-1"}>{name}</div>
             </Link>
             <Popup
                 title={"Вы уверены, что хотите удалить категорию?"}

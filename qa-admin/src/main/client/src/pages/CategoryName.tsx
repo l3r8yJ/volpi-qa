@@ -9,9 +9,11 @@ import {Sidebar} from "../components/Sidebar";
 import {clearCurrentCategory} from "../store/reducers/categorySlice";
 import {ValidatedInput} from "../components/UI/ValidatedInput/ValidatedInput";
 import {createValidateInputValueFunc} from "../utils/createValidateInputValue/createValidateInputValueFunc";
+import {CheckIcon} from "@heroicons/react/20/solid"
 import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import {fetchCategories, updateCategory} from "../store/actions/categoryAction";
 import {clearQuestions} from "../store/reducers/questionSlice";
+import {PrimaryButton} from "../components/UI/PrimaryButton/PrimaryButton";
 
 const CategoryName: FC = () => {
     const navigate = useNavigate()
@@ -47,10 +49,11 @@ const CategoryName: FC = () => {
     }
     return (
         <MainLayout>
-            <div className={"flex items-end text-3xl w-full py-4"}>
+            <div className={"flex items-end w-full py-4"}>
                 <span className={"text-pale text-2xl"}>Категория:</span>
                 {editCategoryNameMode
-                    ? <form onSubmit={updateCategoryNameHandler} className={"ml-4"}>
+                    ? <form onSubmit={updateCategoryNameHandler}
+                            className={"ml-2 flex items-center justify-center w-full gap-2"}>
                         <ValidatedInput
                             setIsValid={setIsValidCategoryName}
                             showValidation={showValidation}
@@ -58,12 +61,27 @@ const CategoryName: FC = () => {
                             value={categoryName}
                             onChange={(e) => setCategoryName(e.target.value)}
                         />
+                        <PrimaryButton
+                            className={"flex items-center justify-center gap-1 w-auto bg-safe hover:bg-safeHov"}
+                            type={"submit"}
+                        >
+                            <CheckIcon className={"w-5 h-5"}/>
+                            <span>Сохранить</span>
+                        </PrimaryButton>
+
                     </form>
                     : <div className={"flex items-center"}>
-                        <span className={"ml-2"}>{name}</span>
-                        <PencilSquareIcon
-                            className={"ml-2 w-7 h-7 cursor-pointer hover:bg-paleHov/20 p-1 rounded-full duration-150"}
-                            onClick={() => setEditCategoryNameMode(true)}/>
+                        <div>
+                            <span className={"ml-2 break-all text-3xl"}>{name}</span>
+                        </div>
+
+                        <div
+                            className={"ml-2 cursor-pointer hover:bg-paleHov/20 p-1 rounded-full duration-150"}
+                            onClick={() => setEditCategoryNameMode(true)}
+                        >
+                            <PencilSquareIcon
+                                className={"w-5 h-5"}/>
+                        </div>
                     </div>
                 }
             </div>
