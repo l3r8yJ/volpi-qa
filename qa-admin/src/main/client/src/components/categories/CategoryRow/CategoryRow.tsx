@@ -6,6 +6,7 @@ import {useAppDispatch} from "../../../hooks/redux";
 import {deleteCategory, fetchCategories} from "../../../store/actions/categoryAction";
 import {Popup} from "../../UI/Popup";
 import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
+import {NoSymbolIcon} from "@heroicons/react/20/solid";
 
 interface CategoryRowProps extends ICategoryNoQuestions {
     testID?: string
@@ -35,13 +36,17 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
                     </div>
                 }
                 optionButtons={[
-                    <button
-                        className={"px-4 py-2 bg-danger rounded-lg hover:bg-dangerHov duration-150"}
+                    <PrimaryButton
+                        className={"bg-danger hover:bg-dangerHov flex items-center gap-1"}
                         onClick={deleteBtnHandler}
                     >
-                        Удалить
-                    </button>,
-                    <PrimaryButton>Не удалять</PrimaryButton>
+                        <XMarkIcon className={"w-5 h-5"}/>
+                        <span>Удалить</span>
+                    </PrimaryButton>,
+                    <PrimaryButton className={"flex items-center gap-1"}>
+                        <NoSymbolIcon className={"w-5 h-5"}/>
+                        <span>Не удалять</span>
+                    </PrimaryButton>
                 ]}
             >
             </Popup>
