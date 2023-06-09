@@ -40,7 +40,7 @@ export const ValidatedInput: FC<InputProps> = ({
     }
 
     return (
-        <label className={"max-w-[300px]"}>
+        <label className={"w-full"}>
             {label && <div className={"text-pale text-sm ml-1"}>{label}</div>}
             <div className={`rounded-lg flex items-center bg-secondary border ${inputStatusClasses}`}>
                 <input
