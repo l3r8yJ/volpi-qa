@@ -48,6 +48,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
         setIsEditMode(false)
     }
     return (
+
         <div className={"p-4 bg-base/10 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
                 ? <div className={"w-full"}>

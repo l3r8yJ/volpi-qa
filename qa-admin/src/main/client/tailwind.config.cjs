@@ -19,7 +19,7 @@ module.exports = {
                 dangerHov: colors.red["700"],
                 safe: colors.green["600"],
                 safeHov: colors.green["700"],
-                base: colors.neutral["500"],
+                border: colors.neutral["500"],
                 contrast: colors.neutral["100"],
                 contrastHov: colors.neutral["300"],
                 shadow: colors.black

@@ -20,7 +20,7 @@ export const ValidatedInput: FC<InputProps> = ({
                                                    isPassword,
                                                    ...props
                                                }) => {
-    const [inputStatusClasses, setInputStatusClasses] = useState("border-base/50")
+    const [inputStatusClasses, setInputStatusClasses] = useState("border-border/50")
     const [validateResult, setValidateResult] = useState<ValidateInputResult>("выглядит хорошо!")
     const [isShowPassword, setIsShowPassword] = useState(false)
     useEffect(() => {
@@ -31,7 +31,7 @@ export const ValidatedInput: FC<InputProps> = ({
         const isValid = validateResult === "выглядит хорошо!"
         showValidation
             ? setInputStatusClasses(isValid ? "border-safe/50" : "border-danger/50")
-            : setInputStatusClasses("border-base/50")
+            : setInputStatusClasses("border-border/50")
         setIsValid(isValid)
     }, [validateResult, showValidation])
 

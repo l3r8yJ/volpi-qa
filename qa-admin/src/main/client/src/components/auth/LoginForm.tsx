@@ -37,7 +37,7 @@ export const LoginForm: FC = () => {
                     <span>{error}</span>
                 </div>
             }
-            <form className={"w-80 px-4 py-6 border border-base/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
+            <form className={"w-80 px-4 py-6 border border-border/50 rounded-lg flex flex-col"} onSubmit={formHandler}>
                 <div className={"space-y-4 flex flex-col"}>
                     <ValidatedInput
                         validateFunc={validateInputValue}

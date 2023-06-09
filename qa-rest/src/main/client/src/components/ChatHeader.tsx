@@ -18,7 +18,7 @@ export const ChatHeader: FC = () => {
                 </button>
                 : <div className={"w-6"}></div>
             }
-            <h1>{viewHeaderText}</h1>
+            <h1 className={"truncate px-1"}>{viewHeaderText}</h1>
             <button
                 className={"text-white hover:text-neutral-300"}
                 onClick={() => dispatch(setIsOpen(false))}

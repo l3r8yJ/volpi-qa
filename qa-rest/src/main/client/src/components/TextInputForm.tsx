@@ -62,7 +62,7 @@ export const TextInputForm: FC = () => {
                                 value={question.text}
                                 className={"cursor-pointer select-none flex p-2 pl-10 pr-2 relative text-zinc-900 ui-active:bg-blue-600 ui-active:text-white"}
                             >
-                                <span className={"ui-selected:font-semibold"}>{question.text}</span>
+                                <span className={"ui-selected:font-semibold break-words"}>{question.text}</span>
                                 <span
                                     className={"absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600 ui-active:text-white"}
                                 >
