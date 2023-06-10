@@ -1,4 +1,4 @@
-import {FC, FormEvent, useEffect, useState} from 'react';
+import {FC, FormEvent, useCallback, useEffect, useState} from 'react';
 import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {PlusIcon} from "@heroicons/react/20/solid";
@@ -12,7 +12,6 @@ interface QuestionsFormProps {
     categoryName: string
 }
 
-const validateInputValue = createValidateInputValueFunc()
 
 export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     const [text, setText] = useState("")
@@ -22,6 +21,20 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     const [showValidation, setShowValidation] = useState(false)
     const dispatch = useAppDispatch()
     const {currentCategory} = useAppSelector(state => state.category)
+    const validateText = useCallback(
+        () =>
+            currentCategory && createValidateInputValueFunc({
+                banWords: currentCategory?.questions?.map((question) => question.text),
+            }),
+        [currentCategory.questions]
+    )();
+    const validateAnswer = useCallback(
+        () =>
+            currentCategory && createValidateInputValueFunc({
+                banWords: currentCategory?.questions?.map((question) => question.answer.trim()),
+            }),
+        [currentCategory.questions]
+    )();
     useEffect(() => {
         dispatch(fetchCategoryByName(categoryName))
     }, [])
@@ -50,7 +63,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 setIsValid={setTextValid}
-                validateFunc={validateInputValue}
+                validateFunc={validateText}
                 showValidation={showValidation}
             />
             <ValidatedInput
@@ -58,7 +71,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 setIsValid={setAnswerValid}
-                validateFunc={validateInputValue}
+                validateFunc={validateAnswer}
                 showValidation={showValidation}
             />
             <PrimaryButton className={"flex justify-center items-center space-x-1"} type={"submit"}>
