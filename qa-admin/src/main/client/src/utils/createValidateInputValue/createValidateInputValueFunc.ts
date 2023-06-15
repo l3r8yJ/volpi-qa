@@ -15,7 +15,7 @@ type ValidateOptions = {
 }
 
 export const createValidateInputValueFunc = (options?: ValidateOptions): ValidateInputResulFunc => {
-    const {maxLength = 200, banWords} = options ?? {}
+    const {maxLength = 10000, banWords} = options ?? {}
     return (inputValue: InputHTMLAttributes<HTMLInputElement>['value']): ValidateInputResult => {
         if (typeof inputValue !== "string") return "неправильный тип"
         inputValue = inputValue?.trim()

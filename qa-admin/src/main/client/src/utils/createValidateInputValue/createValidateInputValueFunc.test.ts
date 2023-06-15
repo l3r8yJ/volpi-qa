@@ -4,13 +4,12 @@ import {generateRandomString} from "../generateRandomString/generateRandomString
 
 describe("validateInputValue", () => {
     const validateInputValue = createValidateInputValueFunc()
-    describe("check with default maxLength = 200", () => {
+    describe("check with default maxLength = 10000", () => {
         it.each([
             {str: generateRandomString(Math.floor(Math.random() * 100) + 1), expected: "выглядит хорошо!",},
             {str: generateRandomString(200), expected: "выглядит хорошо!"},
             {str: generateRandomString(1), expected: "выглядит хорошо!"},
-            {str: generateRandomString(201), expected: "слишком длинное"},
-            {str: generateRandomString(Math.floor(Math.random() * 1000 + 200)), expected: "слишком длинное",},
+            {str: generateRandomString(10001), expected: "слишком длинное"},
             {str: generateRandomString(0), expected: "не может быть пустым"},
         ])(
             "string with length $str.length should gives %s",
