@@ -18,6 +18,10 @@ describe("parseLinks", () => {
         [
             "sdlkf sdf ksa https://volpi.ru/losos/karas asdlfk",
             "sdlkf sdf ksa <a href='https://volpi.ru/losos/karas' class=\"text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded\">volpi.ru/losos/karas</a> asdlfk"
+        ],
+        [
+            "some big link vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfjkashdfkhkajsdfhasjkdhfkjashdjkfhaksjhdfkjhasdhfkjahsdkfljhaskjdhfkjhasd",
+            "some big link <a href='http://vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfjkashdfkhkajsdfhasjkdhfkjashdjkfhaksjhdfkjhasdhfkjahsdkfljhaskjdhfkjhasd\' class=\"text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded\">vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfj...</a>"
         ]
     ])("text: '%s' should return '%s'", (text: string, expected: string) => {
         expect(parseLinks(text)).toBe(expected)
