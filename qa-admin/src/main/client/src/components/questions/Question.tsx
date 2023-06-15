@@ -93,8 +93,8 @@ export const Question: FC<QuestionProps> = ({question}) => {
                 </div>
                 : <>
                     <div>
-                        <div className={"text-xl"}>{question.text}</div>
-                        <div className={"text-pale"}>{question.answer}</div>
+                        <div className={"text-xl break-words"}>{question.text}</div>
+                        <div className={"text-pale break-words"}>{question.answer}</div>
                     </div>
                     <div className={"flex items-start space-x-2"}>
                         <div
