@@ -9,6 +9,7 @@ import {Popup} from "../UI/Popup";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {ValidatedTextarea} from "../UI/ValidatedTextarea";
 import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid";
+import {parseLinks} from "../../utils/parseLinks/parseLinks";
 
 interface QuestionProps {
     question: IQuestion
@@ -93,8 +94,14 @@ export const Question: FC<QuestionProps> = ({question}) => {
                 </div>
                 : <>
                     <div>
-                        <div className={"text-xl"}>{question.text}</div>
-                        <div className={"text-pale"}>{question.answer}</div>
+                        <div
+                            className={"text-xl"}
+                            dangerouslySetInnerHTML={{__html: parseLinks(question.text)}}
+                        ></div>
+                        <div
+                            className={""}
+                            dangerouslySetInnerHTML={{__html: parseLinks(question.answer)}}
+                        ></div>
                     </div>
                     <div className={"flex items-start space-x-2"}>
                         <div
