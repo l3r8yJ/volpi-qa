@@ -1,5 +1,5 @@
 export const parseLinks = (text: string) => {
-    const urlRegex = /(?:https?:\/\/)?(?:www\.)?([^\s]+(\.ru|\.com)[^\s]*)/g;
+    const urlRegex = /(?:https?:\/\/)?(?:www\.)?([^\s]+(\.ru|\.com|\.ai|\.рф|\.app|\.net|\.org|\.io|\.gov|\.edu|\.mil|\.int)[^\s]*)/g;
     return text.replace(urlRegex, (url, domainAndPath) => {
         const fullUrl = url.startsWith('http') ? url : `http://${url}`;
         if(domainAndPath.length > 30) domainAndPath = domainAndPath.slice(0, 27) + "..."
