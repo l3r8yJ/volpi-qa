@@ -99,7 +99,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             dangerouslySetInnerHTML={{__html: parseLinks(question.text)}}
                         ></div>
                         <div
-                            className={""}
+                            className={"text-pale"}
                             dangerouslySetInnerHTML={{__html: parseLinks(question.answer)}}
                         ></div>
                     </div>
