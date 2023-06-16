@@ -1,12 +1,12 @@
 import {ChatBubbleBottomCenterTextIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
 import {setIsOpen} from "./store/reducers/modalSlice";
-import {lazy, Suspense, useEffect} from "react";
+import {lazy, startTransition, Suspense, useTransition} from "react";
 import {Loader} from "./components/UI/Loader";
 import {Layout} from "./components/Layout";
+import {Modal} from "./components/UI/Modal";
 
 const Chat = lazy(() => import("./components/Chat"))
-const Modal = lazy(() => import("./components/UI/Modal"))
 
 function App() {
     const isDevMode = process.env.NODE_ENV === 'development'
