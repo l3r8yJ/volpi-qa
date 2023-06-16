@@ -1,7 +1,7 @@
 import {ChatBubbleBottomCenterTextIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
 import {setIsOpen} from "./store/reducers/modalSlice";
-import {lazy, startTransition, Suspense, useTransition} from "react";
+import {lazy, Suspense} from "react";
 import {Loader} from "./components/UI/Loader";
 import {Layout} from "./components/Layout";
 import {Modal} from "./components/UI/Modal";
