@@ -26,16 +26,16 @@ function App() {
                             <Chat/>
                         </Suspense>
                     </Modal>
-
                 </div>
                 :
                 <>
-                    <button onClick={() => dispatch(setIsOpen(!isOpen))}>
+                    <button className={isOpen ? "hidden" : ""} onClick={() => dispatch(setIsOpen(!isOpen))}>
                         <ChatBubbleBottomCenterTextIcon className={"w-10 h-10"}/>
                     </button>
-                    <Modal
-                    >
-                        <Chat/>
+                    <Modal>
+                        <Suspense fallback={<Layout><Loader/></Layout>}>
+                            <Chat/>
+                        </Suspense>
                     </Modal>
                 </>
             }
