@@ -7,7 +7,7 @@ interface ModalProps {
     children: React.ReactNode
 }
 
-export const Modal: FC<ModalProps> = ({children}) => {
+const Modal: FC<ModalProps> = ({children}) => {
     const {isOpen} = useAppSelector(state => state.modal)
     const dispatch = useAppDispatch()
     return (
@@ -25,3 +25,5 @@ export const Modal: FC<ModalProps> = ({children}) => {
         </Dialog>
     )
 }
+
+export default Modal

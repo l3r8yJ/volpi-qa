@@ -5,7 +5,7 @@ import {useAppSelector} from "../hooks/redux";
 import {CategoryView} from "./views/CategoryView";
 import {QuestionView} from "./views/QuestionView";
 
-export const Chat: FC = () => {
+const Chat: FC = () => {
     const {currentViewName} = useAppSelector(state => state.view)
     let View: FC
     switch (currentViewName) {
@@ -25,3 +25,5 @@ export const Chat: FC = () => {
         </Layout>
     );
 }
+
+export default Chat
