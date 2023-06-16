@@ -25,3 +25,4 @@ export const Modal: FC<ModalProps> = ({children}) => {
         </Dialog>
     )
 }
+
