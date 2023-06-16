@@ -1,9 +1,7 @@
 import {FC, useEffect} from "react"
 import {CategoryOption} from "../CategoryOption";
-import {ICategory} from "../../types/ICategory";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {fetchAllCategories} from "../../store/actions/categoryAction";
-import {Layout} from "../Layout";
 import {Loader} from "../UI/Loader";
 
 export const DefaultView: FC = () => {
@@ -12,7 +10,7 @@ export const DefaultView: FC = () => {
     useEffect(() => {
         dispatch(fetchAllCategories())
     }, [])
-    if(loading === "pending" && categories.length === 0) return <Layout><Loader/></Layout>
+    if(loading === "pending" && categories.length === 0) return <Loader/>
 
     return (
         <>
