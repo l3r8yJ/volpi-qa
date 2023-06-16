@@ -13,10 +13,6 @@ function App() {
     const {isOpen} = useAppSelector(state => state.modal)
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        console.log(isOpen)
-    }, [isOpen])
-
     return (
         <>
             {isDevMode
