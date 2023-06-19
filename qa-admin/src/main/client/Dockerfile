@@ -11,7 +11,7 @@ COPY . .
 ARG VITE_ADMIN_API_URL
 ENV VITE_ADMIN_API_URL=$VITE_ADMIN_API_URL
 
-RUN npm run test
+RUN npm run test-prod
 RUN npm run build
 
 FROM nginx:stable-alpine as production-stage
