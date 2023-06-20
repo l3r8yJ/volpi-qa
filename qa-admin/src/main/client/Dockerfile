@@ -8,9 +8,6 @@ RUN npm install
 
 COPY . .
 
-ARG VITE_ADMIN_API_URL
-ENV VITE_ADMIN_API_URL=$VITE_ADMIN_API_URL
-
 RUN npm run test-prod
 RUN npm run build
 
