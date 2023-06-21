@@ -12,7 +12,7 @@ const modalSlice = createSlice({
     name: "modal",
     initialState,
     reducers: {
-        setIsOpen: (state, action:PayloadAction<boolean>) => {
+        setIsOpen: (state, action: PayloadAction<boolean>) => {
             state.isOpen = action.payload
         }
     }

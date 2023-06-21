@@ -25,7 +25,7 @@ const questionSlice = createSlice({
     name: "question",
     initialState,
     reducers: {
-        clearQuestions(state){
+        clearQuestions(state) {
             state.questions = []
         }
     },

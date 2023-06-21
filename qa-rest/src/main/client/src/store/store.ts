@@ -6,7 +6,7 @@ import {modalReducer} from "./reducers/modalSlice";
 
 
 export const store = configureStore({
-    reducer:{
+    reducer: {
         question: questionReducer,
         category: categoryReducer,
         view: viewReducer,

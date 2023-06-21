@@ -37,6 +37,9 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
     private static final String NON_EXISTING_CATEGORY_ID
         = "/api/v1/admin/categories/101";
 
+    private static final String BAD_CATEGORY_NAME
+        = "ashslhdflshdf j hsldhfl hsdfhsldkfhkl sdhlf lsdfh lshdfl hsdlfkh lsdhf ljshd fljhlsdf";
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -111,6 +114,24 @@ final class CategoriesRestControllerTest extends TestcontainersTest {
             ).andExpect(status().isBadRequest()).andReturn()
             .getResponse().getContentAsString(StandardCharsets.UTF_8);
         assertThat(content).contains(CATEGORY_CANNOT_BE_EMPTY);
+    }
+
+    @Test
+    @WithMockUser("admin")
+    @DisplayName("Creates category with bad name")
+    void triesCreateBigCategory() throws Exception {
+        this.mockMvc.perform(
+                put(CATEGORIES)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(
+                        """
+                            {
+                                "name": "%s"
+                            }
+                            """.formatted(BAD_CATEGORY_NAME)
+                    )
+                    .characterEncoding(StandardCharsets.UTF_8)
+            ).andExpect(status().isCreated());
     }
 
     @Test

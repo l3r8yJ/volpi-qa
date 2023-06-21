@@ -13,7 +13,7 @@ interface QuestionState {
     currentQuestion: IQuestion
 }
 
-const initialState:QuestionState = {
+const initialState: QuestionState = {
     questions: [],
     loading: "idle",
     currentQuestion: {} as IQuestion
@@ -22,7 +22,7 @@ const initialState:QuestionState = {
 const questionSlice = createSlice({
     name: "question",
     initialState,
-    reducers:{},
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchAllQuestions.pending, (state) => {
             state.loading = "pending"
@@ -66,4 +66,4 @@ const questionSlice = createSlice({
     }
 })
 
-export const questionReducer =  questionSlice.reducer
+export const questionReducer = questionSlice.reducer

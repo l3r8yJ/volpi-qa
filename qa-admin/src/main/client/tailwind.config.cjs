@@ -8,7 +8,7 @@ module.exports = {
     ],
     theme: {
         extend: {
-            colors:{
+            colors: {
                 primary: colors.indigo["700"],
                 primaryHov: colors.indigo["800"],
                 secondary: colors.neutral["900"],
@@ -24,7 +24,7 @@ module.exports = {
                 contrastHov: colors.neutral["300"],
                 shadow: colors.black,
                 link: colors.indigo[400],
-                linkHov:colors.indigo[500]
+                linkHov: colors.indigo[500]
             },
         },
     },
