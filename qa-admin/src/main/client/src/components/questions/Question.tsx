@@ -72,6 +72,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             setIsValid={setIsAnswerValid}
                             showValidation={showValidation}
                             className={"max-h-40"}
+                            isValid={isAnswerValid}
                         />
                     </div>
                     <div className={"flex space-x-2 mt-4 justify-end"}>
