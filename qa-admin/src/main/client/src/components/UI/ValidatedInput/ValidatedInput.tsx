@@ -1,13 +1,16 @@
 import {FC, InputHTMLAttributes, useEffect, useState} from 'react';
 import {ValidateInputResult} from "../../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline";
+import {useValidate} from "../../../hooks/useValidate";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "value"> {
     label?: string
     validateFunc: (inputValue: InputHTMLAttributes<HTMLInputElement>['value']) => ValidateInputResult
     setIsValid: (isValid: boolean) => void
+    isValid: boolean
     showValidation: boolean
     isPassword?: boolean
+    value: string
 }
 
 export const ValidatedInput: FC<InputProps> = ({
@@ -18,31 +21,24 @@ export const ValidatedInput: FC<InputProps> = ({
                                                    setIsValid,
                                                    showValidation,
                                                    isPassword,
+                                                   isValid,
                                                    ...props
                                                }) => {
-    const [inputStatusClasses, setInputStatusClasses] = useState("border-border/50")
-    const [validateResult, setValidateResult] = useState<ValidateInputResult>("выглядит хорошо!")
+    const {validateResult} = useValidate({setIsValid, value, validateFunc})
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const [statusClasses, setStatusClasses] = useState("border-border/50")
     useEffect(() => {
-        setValidateResult(validateFunc(value))
-    }, [value])
-
-    useEffect(() => {
-        const isValid = validateResult === "выглядит хорошо!"
-        showValidation
-            ? setInputStatusClasses(isValid ? "border-safe/50" : "border-danger/50")
-            : setInputStatusClasses("border-border/50")
-        setIsValid(isValid)
-    }, [validateResult, showValidation])
-
-    const toggleIsShowPassword = () => {
-        setIsShowPassword(prev => !prev)
-    }
+        if (showValidation) {
+            if (isValid) setStatusClasses("border-safe/80")
+            else setStatusClasses("border-danger/80")
+        } else
+            setStatusClasses("border-border/50")
+    }, [isValid, showValidation])
 
     return (
         <label className={"w-full"}>
             {label && <div className={"text-pale text-sm ml-1"}>{label}</div>}
-            <div className={`rounded-lg flex items-center bg-secondary px-4 py-2 h-[40px] border ${inputStatusClasses}`}>
+            <div className={`rounded-lg flex items-center bg-secondary px-4 py-2 h-[40px] border ${statusClasses}`}>
                 <input
                     className={`${className} bg-transparent outline-none w-full`}
                     value={value}
@@ -50,7 +46,7 @@ export const ValidatedInput: FC<InputProps> = ({
                     {...props}
                 />
                 {isPassword &&
-                    <div className={"cursor-pointer"} onClick={toggleIsShowPassword}>
+                    <div className={"cursor-pointer"} onClick={() => setIsShowPassword(prev => !prev)}>
                         {isShowPassword
                             ? <EyeSlashIcon className={"w-5 h-5 hover:text-contrastHov"}/>
                             : <EyeIcon className={"w-5 h-5 hover:text-contrastHov"}/>

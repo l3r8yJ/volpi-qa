@@ -9,13 +9,13 @@ import {PlusIcon} from "@heroicons/react/20/solid";
 
 export const CategoriesForm: FC = () => {
     const [showValidation, setShowValidation] = useState(false)
-    const [isValidCategoryName, setIsValidCategoryName] = useState(false)
+    const [isCategoryNameValid, setIsCategoryNameValid] = useState(false)
     const [categoryName, setCategoryName] = useState("")
     const dispatch = useAppDispatch()
     const {categories} = useAppSelector(state => state.category)
     const formHandler = async (e: FormEvent) => {
         e.preventDefault()
-        if (!isValidCategoryName) return setShowValidation(true)
+        if (!isCategoryNameValid) return setShowValidation(true)
         await dispatch(createCategory(categoryName))
         dispatch(fetchCategories())
         setCategoryName("")
@@ -35,7 +35,8 @@ export const CategoriesForm: FC = () => {
                 onChange={(e) => setCategoryName(e.target.value)}
                 label={"Название категории"}
                 showValidation={showValidation}
-                setIsValid={setIsValidCategoryName}
+                setIsValid={setIsCategoryNameValid}
+                isValid={isCategoryNameValid}
                 validateFunc={validateCategoryName}
             />
             <PrimaryButton onClick={formHandler} className={"flex items-center justify-center space-x-1"}>

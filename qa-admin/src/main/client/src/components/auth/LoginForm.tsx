@@ -42,6 +42,7 @@ export const LoginForm: FC = () => {
                     <ValidatedInput
                         validateFunc={validateInputValue}
                         setIsValid={setIsUsernameValid}
+                        isValid={isUsernameValid}
                         showValidation={showValidation}
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -52,6 +53,7 @@ export const LoginForm: FC = () => {
                     <ValidatedInput
                         validateFunc={validateInputValue}
                         setIsValid={setIsPasswordValid}
+                        isValid={isPasswordValid}
                         showValidation={showValidation}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
