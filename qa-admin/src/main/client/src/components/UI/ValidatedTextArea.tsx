@@ -1,6 +1,7 @@
 import {FC, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useState} from 'react';
 import {ValidateInputResult} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {CheckIcon} from "@heroicons/react/24/outline";
+import {useValidate} from "../../hooks/useValidate";
 
 interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "value"> {
     label?: string
@@ -20,21 +21,18 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
                                                          setIsValid,
                                                          showValidation,
                                                          isPassword,
+                                                         isValid,
                                                          ...props
                                                      }) => {
-    const [statusClasses, setStatusClasses] = useState("border-base/50")
-    const [validateResult, setValidateResult] = useState<ValidateInputResult>("выглядит хорошо!")
+    const {validateResult} = useValidate({setIsValid, value, validateFunc})
+    const [statusClasses, setStatusClasses] = useState("border-border/50")
     useEffect(() => {
-        setValidateResult(validateFunc(value))
-    }, [value])
-
-    useEffect(() => {
-        const isValid = validateResult === "выглядит хорошо!"
-        showValidation
-            ? setStatusClasses(isValid ? "border-safe/50" : "border-danger/50")
-            : setStatusClasses("border-border/50")
-        setIsValid(isValid)
-    }, [validateResult, showValidation])
+        if (showValidation) {
+            if (isValid) setStatusClasses("border-safe/50")
+            else setStatusClasses("border-danger/50")
+        } else
+            setStatusClasses("border-border/50")
+    }, [isValid, showValidation])
 
     return (
         <label className="w-full">
@@ -50,6 +48,5 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
                 </div>
             )}
         </label>
-
     );
 }
