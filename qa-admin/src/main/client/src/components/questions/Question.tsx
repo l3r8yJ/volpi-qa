@@ -7,7 +7,7 @@ import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {Popup} from "../UI/Popup";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
-import {ValidatedTextarea} from "../UI/ValidatedTextarea";
+import {ValidatedTextArea} from "../UI/ValidatedTextArea";
 import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid";
 import {parseLinks} from "../../utils/parseLinks/parseLinks";
 
@@ -64,7 +64,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             isValid={isTextValid}
                             showValidation={showValidation}
                         />
-                        <ValidatedTextarea
+                        <ValidatedTextArea
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
                             label={"Ответ"}
@@ -72,6 +72,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             setIsValid={setIsAnswerValid}
                             showValidation={showValidation}
                             className={"max-h-40"}
+                            isValid={isAnswerValid}
                         />
                     </div>
                     <div className={"flex space-x-2 mt-4 justify-end"}>
