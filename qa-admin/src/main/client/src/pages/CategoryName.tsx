@@ -22,14 +22,15 @@ const CategoryName: FC = () => {
     const [editCategoryNameMode, setEditCategoryNameMode] = useState(false)
     const [isValidCategoryName, setIsValidCategoryName] = useState(false)
     const [showValidation, setShowValidation] = useState(false)
-    const [categoryName, setCategoryName] = useState(name)
-    const dispatch = useAppDispatch()
     if (!name)
         return (
             <MainLayout>
                 <div>Ошибка: категория не найдена</div>
             </MainLayout>
         )
+    const [categoryName, setCategoryName] = useState(name)
+    const dispatch = useAppDispatch()
+
     useEffect(() => {
         dispatch(fetchQuestionsByCategory(name))
         return () => {
@@ -64,6 +65,7 @@ const CategoryName: FC = () => {
                             showValidation={showValidation}
                             validateFunc={createValidateInputValueFunc()}
                             value={categoryName}
+                            isValid={isValidCategoryName}
                             onChange={(e) => setCategoryName(e.target.value)}
                         />
                         <PrimaryButton

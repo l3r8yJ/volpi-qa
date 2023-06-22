@@ -16,24 +16,25 @@ interface QuestionsFormProps {
 export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     const [text, setText] = useState("")
     const [answer, setAnswer] = useState("")
-    const [textValid, setTextValid] = useState(false)
-    const [answerValid, setAnswerValid] = useState(false)
+    const [isTextValid, setIsTextValid] = useState(false)
+    const [isAnswerValid, setIsAnswerValid] = useState(false)
     const [showValidation, setShowValidation] = useState(false)
     const dispatch = useAppDispatch()
     const {currentCategory} = useAppSelector(state => state.category)
+    const {questions} = useAppSelector(state => state.question)
     const validateText = useCallback(
         () =>
             currentCategory && createValidateInputValueFunc({
-                banWords: currentCategory?.questions?.map((question) => question.text),
+                banWords: questions?.map((question) => question.text.trim()),
             }),
-        [currentCategory.questions]
+        [questions]
     )();
     const validateAnswer = useCallback(
         () =>
             currentCategory && createValidateInputValueFunc({
-                banWords: currentCategory?.questions?.map((question) => question.answer.trim()),
+                banWords: questions?.map((question) => question.answer.trim()),
             }),
-        [currentCategory.questions]
+        [questions]
     )();
     useEffect(() => {
         dispatch(fetchCategoryByName(categoryName))
@@ -41,7 +42,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
 
     const formHandler = async (e: FormEvent) => {
         e.preventDefault()
-        if (!textValid || !answerValid) return setShowValidation(true)
+        if (!isTextValid || !isAnswerValid) return setShowValidation(true)
         const newQuestion: IQuestionNoID = {
             answer,
             text,
@@ -62,7 +63,8 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                 label={"Вопрос"}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                setIsValid={setTextValid}
+                setIsValid={setIsTextValid}
+                isValid={isTextValid}
                 validateFunc={validateText}
                 showValidation={showValidation}
             />
@@ -70,7 +72,8 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                 label={"Ответ"}
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                setIsValid={setAnswerValid}
+                setIsValid={setIsAnswerValid}
+                isValid={isAnswerValid}
                 validateFunc={validateAnswer}
                 showValidation={showValidation}
             />

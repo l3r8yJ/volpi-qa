@@ -61,6 +61,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             label={"Вопрос"}
                             validateFunc={validateInputValue}
                             setIsValid={setIsTextValid}
+                            isValid={isTextValid}
                             showValidation={showValidation}
                         />
                         <ValidatedTextarea

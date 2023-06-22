@@ -9,7 +9,8 @@ import {createValidateInputValueFunc} from "../../../utils/createValidateInputVa
 describe("Input", () => {
     const showValidation = true
     const validateFunc = createValidateInputValueFunc()
-    const inputValue = 42
+    const inputValue = "42"
+    const isValid = true
     const setIsValid = vi.fn()
     const onChangeInput = vi.fn()
     const onHoverInput = vi.fn()
@@ -22,6 +23,7 @@ describe("Input", () => {
                 <ValidatedInput
                     data-testid={InputTestID}
                     value={inputValue}
+                    isValid={isValid}
                     onMouseEnter={onHoverInput}
                     onMouseLeave={onBlurInput}
                     onChange={(e) => onChangeInput(e.target.value)}
@@ -55,6 +57,7 @@ describe("Input", () => {
                 <ValidatedInput
                     data-testid={InputTestID}
                     value={inputValue}
+                    isValid={isValid}
                     onMouseEnter={onHoverInput}
                     onMouseLeave={onBlurInput}
                     onChange={(e) => onChangeInput(e.target.value)}
@@ -86,8 +89,10 @@ describe("Input", () => {
             <ValidatedInput
                 label={"login as administrator"}
                 validateFunc={validateFunc}
+                isValid={isValid}
                 showValidation={showValidation}
                 setIsValid={setIsValid}
+                value={"123"}
                 readOnly
             />
         )
