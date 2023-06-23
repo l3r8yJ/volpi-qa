@@ -18,7 +18,6 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
         dispatch(setIsSentQuestion(true));
     }
 
-
     const closeForm = () => {
         dispatch(setIsSentQuestion(false));
         dispatch(toggleForm());
@@ -43,7 +42,10 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
             className={`absolute bottom-24 left-1/2 transform -translate-x-1/2 w-full px-2`}
         >
             {isQuestionSent
-                ? <div className={"flex flex-col shadow-lg shadow-neutral-500/50 p-4 rounded-lg gap-y-2 bg-white"}>
+                ? <form
+                    className={"flex flex-col shadow-lg shadow-neutral-500/50 p-4 rounded-lg gap-y-2 bg-white"}
+                    onReset={closeForm}
+                >
                     <div className={"flex gap-x-2 items-center"}>
                         <h2
                             className={"text-lg font-semibold"}
@@ -59,13 +61,13 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     </div>
                     <div className={"flex justify-end"}>
                         <button
-                            onClick={closeForm}
+                            type={"reset"}
                             className={"bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200 duration-150"}
                         >
                             Окей
                         </button>
                     </div>
-                </div>
+                </form>
                 : <form
                     className={"flex flex-col bg-white gap-y-8 w-full p-4 rounded-lg shadow-lg shadow-neutral-500/50 relative"}
                     onSubmit={formHandler}
