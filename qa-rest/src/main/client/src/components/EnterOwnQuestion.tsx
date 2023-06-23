@@ -32,7 +32,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                         >
                             Вопрос успешно отправлен!
                         </h2>
-                        <div className={"bg-green-200 p-0.5 rounded-full"}>
+                        <div className={"bg-green-100 p-0.5 rounded-full"}>
                             <CheckBadgeIcon className={"text-green-600 w-5 h-5"}/>
                         </div>
                     </div>
