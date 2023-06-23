@@ -8,7 +8,7 @@ type EnterOwnQuestionProps = {
 }
 
 const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
-    const {isActiveForm, isQuestionSent} = useAppSelector(state => state.ownQuestion)
+    const {isQuestionSent} = useAppSelector(state => state.ownQuestion)
     const [questionText, setQuestionText] = useState(defaultQuestion)
     const dispatch = useAppDispatch()
     const formHandler = (e: FormEvent) => {
@@ -16,10 +16,10 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
         dispatch(setIsSentQuestion(true))
     }
 
-    useEffect(() => {
-        if (isQuestionSent && !isActiveForm)
-            dispatch(setIsSentQuestion(false))
-    }, [isQuestionSent, isActiveForm])
+    const closeForm = () => {
+        dispatch(setIsSentQuestion(false))
+        dispatch(toggleForm())
+    }
 
     return (
         <div
@@ -42,7 +42,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     </div>
                     <div className={"flex justify-end"}>
                         <button
-                            onClick={() => dispatch(toggleForm())}
+                            onClick={closeForm}
                             className={"bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200 duration-150"}
                         >
                             Окей
@@ -55,7 +55,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                 >
                     <button
                         className={"absolute top-4 right-4  hover:text-neutral-500 duration-150"}
-                        onClick={() => dispatch(toggleForm())}
+                        onClick={closeForm}
                     >
                         <XMarkIcon className={"w-5 h-5"}/>
                     </button>
