@@ -16,7 +16,7 @@ export const Layout: FC<LayoutProps> = ({children}) => {
                 className={`flex-grow relative p-4 bg-white ${isActiveForm ? "overflow-hidden" : "overflow-y-auto"}`}>
                 {isActiveForm &&
                     <div
-                        className={"w-full h-full bg-black/10 transform top-0 right-1/2 backdrop-blur-sm translate-x-1/2 absolute"}/>
+                        className={"w-full h-full bg-black/10 z-10 transform top-0 right-1/2 backdrop-blur-sm translate-x-1/2 absolute"}/>
                 }
                 <div className={"space-y-4 bg-white "}>
                     {children}
