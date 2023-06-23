@@ -73,6 +73,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     <button
                         className={"absolute top-4 right-4  hover:text-neutral-500 duration-150"}
                         onClick={closeForm}
+                        type={"reset"}
                     >
                         <XMarkIcon className={"w-5 h-5"}/>
                     </button>
