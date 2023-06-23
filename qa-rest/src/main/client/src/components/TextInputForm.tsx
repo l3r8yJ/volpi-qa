@@ -52,9 +52,11 @@ export const TextInputForm: FC = () => {
     return (
         <div className={"bg-white relative"}>
             <Combobox value={selectedValue} onChange={setSelectedValue}>
-                <Suspense fallback={<Loader/>}>
-                    <EnterOwnQuestion defaultQuestion={query}/>
-                </Suspense>
+                {isActiveForm &&
+                    <Suspense fallback={<Loader/>}>
+                        <EnterOwnQuestion defaultQuestion={query}/>
+                    </Suspense>
+                }
                 {!isActiveForm &&
                     <Combobox.Options
                         className={"max-h-36 overflow-y-auto rounded-lg overflow-hidden border py-1.5 mb-3 mx-2 shadow-lg shadow-neutral-500/50"}

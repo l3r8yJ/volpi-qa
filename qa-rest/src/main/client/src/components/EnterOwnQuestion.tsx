@@ -23,7 +23,8 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
 
     return (
         <div
-            className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full px-2 bg-white ${isActiveForm ? "block" : "hidden"}`}>
+            className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full px-2 bg-white`}
+        >
             {isQuestionSent
                 ? <div className={"flex flex-col shadow-lg shadow-neutral-500/50 border p-4 rounded-lg gap-y-2"}>
                     <div className={"flex gap-x-2 items-center"}>
