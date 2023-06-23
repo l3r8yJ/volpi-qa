@@ -3,6 +3,9 @@ import {CheckBadgeIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {setIsSentQuestion, toggleForm} from "../store/reducers/ownQuestionSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {Input} from "./UI/Input";
+import {z} from "zod";
+import {Email} from "../types/Email";
+import {Question} from "../types/Question";
 
 type EnterOwnQuestionProps = {
     defaultQuestion: string
@@ -11,11 +14,38 @@ type EnterOwnQuestionProps = {
 const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
     const {isQuestionSent} = useAppSelector(state => state.ownQuestion)
     const [questionText, setQuestionText] = useState(defaultQuestion)
+    const [email, setEmail] = useState("")
+    const [questionError, setQuestionError] = useState<string | null>(null)
+    const [emailError, setEmailError] = useState<string | null>(null)
     const dispatch = useAppDispatch();
     const wrapperRef = useRef<HTMLDivElement | null>(null);
 
     const formHandler = (e: FormEvent) => {
         e.preventDefault();
+        let localEmailError = null;
+        let localQuestionError = null;
+
+        try {
+            Email.parse(email);
+        } catch (err: any) {
+            if(err instanceof z.ZodError)
+                localEmailError = err.errors[0].message;
+            else console.log(err)
+        }
+
+        try {
+            Question.parse(questionText)
+        } catch (err: any) {
+            if(err instanceof z.ZodError)
+                localQuestionError = err.errors[0].message;
+            else console.log(err)
+        }
+
+        setEmailError(localEmailError);
+        setQuestionError(localQuestionError);
+
+        if (localEmailError || localQuestionError)
+            return
         dispatch(setIsSentQuestion(true));
     }
 
@@ -88,11 +118,15 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                             className={""}
                             label={"Вопрос"}
                             type={"text"}
+                            error={questionError}
                         />
                         <Input
                             label={"Email"}
                             className={"border px-4 py-2 rounded-lg"}
                             type={"email"}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            error={emailError}
                         />
                     </div>
                     <button
