@@ -40,10 +40,10 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
     return (
         <div
             ref={wrapperRef}
-            className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full px-2 bg-white`}
+            className={`absolute bottom-24 left-1/2 transform -translate-x-1/2 w-full px-2`}
         >
             {isQuestionSent
-                ? <div className={"flex flex-col shadow-lg shadow-neutral-500/50 border p-4 rounded-lg gap-y-2"}>
+                ? <div className={"flex flex-col shadow-lg shadow-neutral-500/50 p-4 rounded-lg gap-y-2 bg-white"}>
                     <div className={"flex gap-x-2 items-center"}>
                         <h2
                             className={"text-lg font-semibold"}
@@ -67,7 +67,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     </div>
                 </div>
                 : <form
-                    className={"flex flex-col gap-y-8 w-full p-4 rounded-lg shadow-lg shadow-neutral-500/50 border relative"}
+                    className={"flex flex-col bg-white gap-y-8 w-full p-4 rounded-lg shadow-lg shadow-neutral-500/50 relative"}
                     onSubmit={formHandler}
                 >
                     <button
