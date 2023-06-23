@@ -1,4 +1,4 @@
-import {FC, FormEvent, useEffect, useState} from "react"
+import {FC, FormEvent, useEffect, useRef, useState} from "react"
 import {CheckBadgeIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {setIsSentQuestion, toggleForm} from "../store/reducers/ownQuestionSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
@@ -10,19 +10,36 @@ type EnterOwnQuestionProps = {
 const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
     const {isQuestionSent} = useAppSelector(state => state.ownQuestion)
     const [questionText, setQuestionText] = useState(defaultQuestion)
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
+
     const formHandler = (e: FormEvent) => {
-        e.preventDefault()
-        dispatch(setIsSentQuestion(true))
+        e.preventDefault();
+        dispatch(setIsSentQuestion(true));
     }
 
+
     const closeForm = () => {
-        dispatch(setIsSentQuestion(false))
-        dispatch(toggleForm())
+        dispatch(setIsSentQuestion(false));
+        dispatch(toggleForm());
     }
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+            closeForm();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <div
+            ref={wrapperRef}
             className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full px-2 bg-white`}
         >
             {isQuestionSent
