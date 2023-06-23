@@ -2,6 +2,7 @@ import {FC, FormEvent, useEffect, useRef, useState} from "react"
 import {CheckBadgeIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {setIsSentQuestion, toggleForm} from "../store/reducers/ownQuestionSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import {Input} from "./UI/Input";
 
 type EnterOwnQuestionProps = {
     defaultQuestion: string
@@ -81,12 +82,18 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     </button>
                     <h2 className={"text-lg font-semibold text-center"}>Задайте свой вопрос</h2>
                     <div className={"flex flex-col gap-y-4"}>
-                        <input
+                        <Input
                             value={questionText}
                             onChange={(e) => setQuestionText(e.target.value)}
-                            className={"border px-4 py-2 rounded-lg"}
+                            className={""}
+                            label={"Вопрос"}
+                            type={"text"}
                         />
-                        <input className={"border px-4 py-2 rounded-lg"}/>
+                        <Input
+                            label={"Email"}
+                            className={"border px-4 py-2 rounded-lg"}
+                            type={"email"}
+                        />
                     </div>
                     <button
                         className={"bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"}
