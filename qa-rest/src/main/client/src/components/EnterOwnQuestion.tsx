@@ -1,5 +1,5 @@
 import {FC, FormEvent, useEffect, useState} from "react"
-import {CheckBadgeIcon} from "@heroicons/react/24/outline";
+import {CheckBadgeIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {setIsSentQuestion, toggleForm} from "../store/reducers/ownQuestionSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 
@@ -49,9 +49,15 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     </div>
                 </div>
                 : <form
-                    className={"flex flex-col gap-y-8 w-full p-4 rounded-lg shadow-lg shadow-neutral-500/50 border"}
+                    className={"flex flex-col gap-y-8 w-full p-4 rounded-lg shadow-lg shadow-neutral-500/50 border relative"}
                     onSubmit={formHandler}
                 >
+                    <button
+                        className={"absolute top-4 right-4  hover:text-neutral-500 duration-150"}
+                        onClick={() => dispatch(toggleForm())}
+                    >
+                        <XMarkIcon className={"w-5 h-5"}/>
+                    </button>
                     <h2 className={"text-lg font-semibold text-center"}>Задайте свой вопрос</h2>
                     <div className={"flex flex-col gap-y-4"}>
                         <input
