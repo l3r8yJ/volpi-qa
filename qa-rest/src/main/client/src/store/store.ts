@@ -3,6 +3,7 @@ import {questionReducer} from "./reducers/questionSlice"
 import {categoryReducer} from "./reducers/categorySlice";
 import {viewReducer} from "./reducers/viewSlice";
 import {modalReducer} from "./reducers/modalSlice";
+import {ownQuestionReducer} from "./reducers/ownQuestionSlice";
 
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
         question: questionReducer,
         category: categoryReducer,
         view: viewReducer,
-        modal: modalReducer
+        modal: modalReducer,
+        ownQuestion: ownQuestionReducer
     }
 })
 
