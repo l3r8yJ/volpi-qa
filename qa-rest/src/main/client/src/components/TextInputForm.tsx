@@ -53,7 +53,13 @@ export const TextInputForm: FC = () => {
         <div className={"bg-white relative"}>
             <Combobox value={selectedValue} onChange={setSelectedValue}>
                 {isActiveForm &&
-                    <Suspense fallback={<Loader/>}>
+                    <Suspense fallback={
+                        <div
+                            className={"absolute z-20 bottom-56 left-1/2 transform -translate-x-1/2 p-2 bg-white rounded-full"}
+                        >
+                            <Loader/>
+                        </div>
+                    }>
                         <EnterOwnQuestion defaultQuestion={query}/>
                     </Suspense>
                 }
