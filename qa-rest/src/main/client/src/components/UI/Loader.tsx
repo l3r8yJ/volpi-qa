@@ -1,6 +1,6 @@
 import {FC} from "react"
 
-export const Loader:FC = () => {
+export const Loader: FC = () => {
     return (
         <div role="status" className={"h-full flex items-center justify-center"}>
             <svg aria-hidden="true" className="w-8 h-8 mr-2 text-gray-200 animate-spin fill-blue-600"

@@ -18,8 +18,8 @@ const initialState: CategoryState = {
 const categorySlice = createSlice({
     name: "category",
     initialState,
-    reducers:{},
-    extraReducers:(builder) => {
+    reducers: {},
+    extraReducers: (builder) => {
         builder.addCase(fetchAllCategories.pending, (state) => {
             state.loading = "pending"
         }).addCase(fetchAllCategories.fulfilled, (state, action) => {
@@ -45,7 +45,7 @@ const categorySlice = createSlice({
         }).addCase(fetchCategoryByName.fulfilled, (state, action) => {
             state.loading = "succeeded"
             state.currentCategory = action.payload
-        }).addCase(fetchCategoryByName.rejected, (state,action) => {
+        }).addCase(fetchCategoryByName.rejected, (state, action) => {
             state.loading = "failed"
             console.log(action.error);
         })

@@ -1,4 +1,4 @@
-import {describe, it, expect} from "vitest"
+import {describe, expect, it} from "vitest"
 import {parseLinks} from "./parseLinks";
 
 const aClasses = '\"text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded\"'

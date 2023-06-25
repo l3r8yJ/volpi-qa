@@ -1,5 +1,4 @@
 import {FC, FormEvent, useEffect, useState} from 'react';
-import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
 import {Combobox} from "@headlessui/react";
 import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
