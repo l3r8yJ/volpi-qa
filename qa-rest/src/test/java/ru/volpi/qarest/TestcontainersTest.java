@@ -9,7 +9,7 @@ import ru.volpi.qarest.annotation.IntegrationTest;
 
 @Sql("classpath:sql/data.sql")
 @IntegrationTest
-public class TestcontainersTest {
+public abstract class TestcontainersTest {
 
     @Container
     private static final PostgreSQLContainer<?> CONTAINER

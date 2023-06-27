@@ -1,11 +1,11 @@
 import {FC, useEffect, useState} from "react"
 import {getLoaderSizeByName, LoaderSize} from "../../utils/getLoaderSizeByName";
 
-interface LoaderProps{
+interface LoaderProps {
     size: LoaderSize
 }
 
-export const Loader:FC<LoaderProps> = ({size}) => {
+export const Loader: FC<LoaderProps> = ({size}) => {
     const [loaderSize, setLoaderSize] = useState(getLoaderSizeByName(size))
     useEffect(() => {
         setLoaderSize(getLoaderSizeByName(size))

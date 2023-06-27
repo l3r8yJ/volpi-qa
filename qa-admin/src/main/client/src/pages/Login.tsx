@@ -1,6 +1,5 @@
 import {FC} from "react"
 import {MainLayout} from "../components/layouts/MainLayout";
-import {ValidatedInput} from "../components/UI/ValidatedInput/ValidatedInput";
 import {LoginForm} from "../components/auth/LoginForm";
 
 const Login: FC = () => {

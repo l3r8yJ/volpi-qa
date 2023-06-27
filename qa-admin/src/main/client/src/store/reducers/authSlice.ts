@@ -11,7 +11,7 @@ interface AuthState extends UserAuth {
 const initialState = (): AuthState => {
     const token = localStorage.getItem("token");
     let isAuth = false
-    if(token && token.length !== 0)
+    if (token && token.length !== 0)
         isAuth = true
     return {
         isAuth,
@@ -26,17 +26,17 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        signOut(state){
+        signOut(state) {
             localStorage.removeItem("token")
             state.isAuth = false
             state.token = null
             state.loading = "idle"
         },
-        setTokenInvalid(state){
+        setTokenInvalid(state) {
             state.error = "Ваша сессия окончена, войдите заново"
             state.isTokenValid = false
         },
-        clearTheError(state){
+        clearTheError(state) {
             state.error = null
         }
     },

@@ -1,6 +1,5 @@
 import {FC, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useState} from 'react';
 import {ValidateInputResult} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
-import {CheckIcon} from "@heroicons/react/24/outline";
 import {useValidate} from "../../hooks/useValidate";
 
 interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "value"> {

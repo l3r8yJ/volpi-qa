@@ -13,4 +13,6 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     Optional<Question> findQuestionByText(String text);
 
     List<Question> findQuestionsByCategoryNameIgnoreCase(String name);
+
+    boolean existsByText(String text);
 }

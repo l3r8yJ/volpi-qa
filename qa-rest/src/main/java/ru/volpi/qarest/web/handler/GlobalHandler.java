@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import ru.volpi.qarest.exception.category.CategoryNotFoundException;
+import ru.volpi.qarest.exception.question.QuestionAlreadyExistsException;
 import ru.volpi.qarest.exception.question.QuestionNotFoundException;
+import ru.volpi.qarest.exception.question.QuestionValidationException;
 
 @RestControllerAdvice
 public class GlobalHandler extends ResponseEntityExceptionHandler {
 
-    private static final String SERVER_ERROR = "Внутреняя ошибка сервера: %s";
+    private static final String SERVER_ERROR = "Внутренняя ошибка сервера: %s";
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -31,5 +33,17 @@ public class GlobalHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public final ResponseEntity<?> onCategoryNotFound(final CategoryNotFoundException exc) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exc.getMessage());
+    }
+
+    @ExceptionHandler(QuestionValidationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ResponseEntity<?> onQuestionValidationException(final QuestionValidationException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
+    }
+
+    @ExceptionHandler(QuestionAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ResponseEntity<?> onQuestionAlreadyExistsException(final QuestionAlreadyExistsException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
     }
 }

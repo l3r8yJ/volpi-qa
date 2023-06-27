@@ -4,7 +4,6 @@ import jakarta.validation.ConstraintViolation;
 
 import java.io.Serial;
 import java.util.Collection;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class UserValidationException extends RuntimeException {

@@ -10,7 +10,7 @@ export const DefaultView: FC = () => {
     useEffect(() => {
         dispatch(fetchAllCategories())
     }, [])
-    if(loading === "pending" && categories.length === 0) return <Loader/>
+    if (loading === "pending" && categories.length === 0) return <Loader/>
 
     return (
         <>
