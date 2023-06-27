@@ -7,7 +7,7 @@ import {ownQuestionReducer} from "./reducers/ownQuestionSlice";
 
 
 export const store = configureStore({
-    reducer:{
+    reducer: {
         question: questionReducer,
         category: categoryReducer,
         view: viewReducer,

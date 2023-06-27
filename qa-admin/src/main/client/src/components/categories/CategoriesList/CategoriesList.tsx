@@ -17,7 +17,7 @@ export const CategoriesList: FC<CategoriesListProps> = ({testID}) => {
     useEffect(() => {
         dispatch(fetchCategories())
     }, [])
-    if(loading === "pending") return <Loader size={LoaderSize.medium}/>
+    if (loading === "pending") return <Loader size={LoaderSize.medium}/>
     return (
         <div className={"rounded-lg w-full"} data-testid={testID}>
             <CategoriesListHead/>

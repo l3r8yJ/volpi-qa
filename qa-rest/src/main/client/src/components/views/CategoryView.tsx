@@ -4,7 +4,8 @@ import {Question} from "../Question";
 
 export const CategoryView: FC = () => {
     const {currentViewName, currentCategory} = useAppSelector(state => state.view)
-    if (currentViewName !== "category" || currentCategory === null) return <div>Произошла ошибка при получении категории</div>
+    if (currentViewName !== "category" || currentCategory === null) return <div>Произошла ошибка при получении
+        категории</div>
     return (
         <div className={"overflow-y-auto"}>
             {currentCategory.questions.length > 0

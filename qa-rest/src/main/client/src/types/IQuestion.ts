@@ -1,4 +1,4 @@
-export interface IQuestion{
+export interface IQuestion {
     id: number
     text: string
     answer: string

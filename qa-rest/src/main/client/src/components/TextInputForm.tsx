@@ -1,6 +1,7 @@
 import {FC, FormEvent, lazy, Suspense, useEffect, useState} from 'react';
+
 import {Combobox} from "@headlessui/react";
-import {CheckIcon, ChevronUpDownIcon} from "@heroicons/react/24/outline";
+import {ChevronUpDownIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {IQuestion} from "../types/IQuestion";
 import {setCurrentQuestion, setCurrentView} from "../store/reducers/viewSlice";

@@ -51,7 +51,6 @@ public class GlobalHandler extends ResponseEntityExceptionHandler {
     }
 
 
-
     @ExceptionHandler(QuestionNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public final ResponseEntity<?> onQuestionNotFoundException(final QuestionNotFoundException exc) {
