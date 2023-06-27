@@ -13,11 +13,11 @@ export const Layout: FC<LayoutProps> = ({children}) => {
         <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[600px] flex flex-col"}>
             <ChatHeader/>
             <div className={`flex-grow relative bg-white ${isActiveForm ? "overflow-hidden" : "overflow-y-auto"}`}>
-                <div className="relative p-4 h-full">
+                <div className="relative p-4 min-h-full">
                     {isActiveForm &&
                         <div className={"w-full h-full bg-black/10 z-10 transform top-0 right-1/2 backdrop-blur-sm translate-x-1/2 absolute"}/>
                     }
-                    <div className={"space-y-4 bg-white "}>
+                    <div className={"space-y-4 bg-white pb-4"}>
                         {children}
                     </div>
                 </div>
