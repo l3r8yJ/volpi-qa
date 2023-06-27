@@ -100,7 +100,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     </div>
                 </form>
                 : <form
-                    className={"flex flex-col border border-neutral-300/50 bg-white gap-y-8 w-full p-4 rounded-lg shadow-lg shadow-neutral-500/50 relative"}
+                    className={"flex flex-col bg-white gap-y-8 w-full p-4 rounded-lg shadow-lg shadow-neutral-500/50 relative"}
                     onSubmit={formHandler}
                 >
                     <button
