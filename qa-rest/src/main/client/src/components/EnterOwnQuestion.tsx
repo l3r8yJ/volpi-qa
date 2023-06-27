@@ -115,14 +115,12 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                         <Input
                             value={questionText}
                             onChange={(e) => setQuestionText(e.target.value)}
-                            className={""}
                             label={"Вопрос"}
                             type={"text"}
                             error={questionError}
                         />
                         <Input
                             label={"Email"}
-                            className={"border px-4 py-2 rounded-lg"}
                             type={"email"}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
