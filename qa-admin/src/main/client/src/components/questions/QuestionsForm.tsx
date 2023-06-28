@@ -1,4 +1,4 @@
-import {FC, FormEvent, useCallback, useEffect, useState} from 'react';
+import React, {FC, FormEvent, useCallback, useEffect, useState} from 'react';
 import {ValidatedInput} from "../UI/ValidatedInput/ValidatedInput";
 import {PrimaryButton} from "../UI/PrimaryButton/PrimaryButton";
 import {PlusIcon} from "@heroicons/react/20/solid";
@@ -9,6 +9,8 @@ import {fetchCategoryByName} from "../../store/actions/categoryAction";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {Modal} from "../UI/Modal";
 import {ValidatedTextArea} from "../UI/ValidatedTextArea";
+import {Loader} from "../UI/Loader";
+import {LoaderSize} from "../../utils/getLoaderSizeByName";
 
 interface QuestionsFormProps {
     categoryName: string
@@ -24,7 +26,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
     const [showValidation, setShowValidation] = useState(false)
     const dispatch = useAppDispatch()
     const {currentCategory} = useAppSelector(state => state.category)
-    const {questions} = useAppSelector(state => state.question)
+    const {questions, loading} = useAppSelector(state => state.question)
     const validateText = useCallback(
         () =>
             currentCategory && createValidateInputValueFunc({
@@ -55,6 +57,7 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
             },
         }
         await dispatch(createQuestion(newQuestion))
+        setIsModalOpen(false)
         dispatch(fetchQuestionsByCategory(categoryName))
         setShowValidation(false)
         setText("")
@@ -88,10 +91,18 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                     showValidation={showValidation}
                     className={"max-h-64 min-h-[45px]"}
                 />
-                <div className={"flex justify-end w-full mt-2"}>
-                    <PrimaryButton className={"flex justify-center items-center space-x-1 w-auto min-w-[200px]"} type={"submit"}>
-                        <PlusIcon className={"w-5 h-5"}/>
-                        <span>Новый вопрос</span>
+                <div className={"w-full flex justify-end mt-2"}>
+                    <PrimaryButton
+                        className={"min-w-[200px]"}
+                        type={"submit"}
+                    >
+                        {loading === "pending"
+                            ? <Loader size={LoaderSize.small}/>
+                            : <div className={"flex items-center justify-center gap-x-1"}>
+                                <PlusIcon className={"w-5 h-5"}/>
+                                <span>Создать вопрос</span>
+                            </div>
+                        }
                     </PrimaryButton>
                 </div>
             </form>
