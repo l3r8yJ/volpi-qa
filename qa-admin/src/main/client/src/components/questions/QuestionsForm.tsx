@@ -7,6 +7,8 @@ import {createQuestion, fetchQuestionsByCategory} from "../../store/actions/ques
 import {IQuestionNoID} from "../../types/IQuestion";
 import {fetchCategoryByName} from "../../store/actions/categoryAction";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
+import {Modal} from "../UI/Modal";
+import {ValidatedTextArea} from "../UI/ValidatedTextArea";
 
 interface QuestionsFormProps {
     categoryName: string
@@ -14,6 +16,7 @@ interface QuestionsFormProps {
 
 
 export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const [text, setText] = useState("")
     const [answer, setAnswer] = useState("")
     const [isTextValid, setIsTextValid] = useState(false)
@@ -58,29 +61,40 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
         setAnswer("")
     }
     return (
-        <form className={"flex flex-col space-y-4"} onSubmit={formHandler}>
-            <ValidatedInput
-                label={"Вопрос"}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                setIsValid={setIsTextValid}
-                isValid={isTextValid}
-                validateFunc={validateText}
-                showValidation={showValidation}
-            />
-            <ValidatedInput
-                label={"Ответ"}
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                setIsValid={setIsAnswerValid}
-                isValid={isAnswerValid}
-                validateFunc={validateAnswer}
-                showValidation={showValidation}
-            />
-            <PrimaryButton className={"flex justify-center items-center space-x-1"} type={"submit"}>
-                <PlusIcon className={"w-5 h-5"}/>
-                <span>Новый вопрос</span>
-            </PrimaryButton>
-        </form>
+        <Modal
+            title={"Создание вопроса"}
+            buttonText={"Новый вопрос"}
+            isOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+        >
+            <form className={"flex flex-col gap-y-4"} onSubmit={formHandler}>
+                <ValidatedTextArea
+                    label={"Вопрос"}
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    setIsValid={setIsTextValid}
+                    isValid={isTextValid}
+                    validateFunc={validateText}
+                    showValidation={showValidation}
+                    className={"max-h-64 min-h-[45px]"}
+                />
+                <ValidatedTextArea
+                    label={"Ответ"}
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    setIsValid={setIsAnswerValid}
+                    isValid={isAnswerValid}
+                    validateFunc={validateAnswer}
+                    showValidation={showValidation}
+                    className={"max-h-64 min-h-[45px]"}
+                />
+                <div className={"flex justify-end w-full mt-2"}>
+                    <PrimaryButton className={"flex justify-center items-center space-x-1 w-auto min-w-[200px]"} type={"submit"}>
+                        <PlusIcon className={"w-5 h-5"}/>
+                        <span>Новый вопрос</span>
+                    </PrimaryButton>
+                </div>
+            </form>
+        </Modal>
     );
 }
