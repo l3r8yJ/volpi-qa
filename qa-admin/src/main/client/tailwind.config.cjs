@@ -21,7 +21,7 @@ module.exports = {
                 safeHov: colors.green["700"],
                 border: colors.neutral["500"],
                 contrast: colors.neutral["100"],
-                contrastHov: colors.neutral["300"],
+                contrastHov: colors.neutral["400"],
                 shadow: colors.black,
                 link: colors.indigo[400],
                 linkHov: colors.indigo[500]
