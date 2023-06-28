@@ -49,7 +49,7 @@ export const CategoriesForm: FC = () => {
                     setIsValid={setIsCategoryNameValid}
                     isValid={isCategoryNameValid}
                     validateFunc={validateCategoryName}
-                    className={"max-h-96 min-h-[45px]"}
+                    className={"max-h-64 min-h-[45px]"}
                 />
                 <div className={"w-full flex justify-end mt-6"}>
                     <PrimaryButton
