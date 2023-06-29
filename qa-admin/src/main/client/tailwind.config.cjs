@@ -24,7 +24,8 @@ module.exports = {
                 contrastHov: colors.neutral["400"],
                 shadow: colors.black,
                 link: colors.indigo[400],
-                linkHov: colors.indigo[500]
+                linkHov: colors.indigo[500],
+                skeleton: colors.neutral[700]
             },
         },
     },
