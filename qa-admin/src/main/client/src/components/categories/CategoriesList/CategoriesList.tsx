@@ -5,6 +5,16 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {fetchCategories} from "../../../store/actions/categoryAction";
 import {Loader} from "../../UI/Loader";
 import {LoaderSize} from "../../../utils/getLoaderSizeByName";
+import {Skeleton} from "../../UI/Skeleton";
+
+const CategoryRowSkeleton = ({width}: {width: string}) => {
+    return (
+        <div className={"space-x-6 rounded-lg odd:bg-secondaryEven flex items-center px-4 h-[40px]"}>
+            <Skeleton className={"w-6 h-4"}/>
+            <Skeleton className={`${width} h-4`}/>
+        </div>
+    )
+}
 
 interface CategoriesListProps {
     testID?: string
@@ -17,7 +27,21 @@ export const CategoriesList: FC<CategoriesListProps> = ({testID}) => {
     useEffect(() => {
         dispatch(fetchCategories())
     }, [])
-    if (loading === "pending") return <Loader size={LoaderSize.medium}/>
+    if (loading === "pending") return <div className={""}>
+        <CategoriesListHead/>
+        <CategoryRowSkeleton width={"w-96"}/>
+        <CategoryRowSkeleton width={"w-80"}/>
+        <CategoryRowSkeleton width={"w-64"}/>
+        <CategoryRowSkeleton width={"w-72"}/>
+        <CategoryRowSkeleton width={"w-96"}/>
+        <CategoryRowSkeleton width={"w-80"}/>
+        <CategoryRowSkeleton width={"w-64"}/>
+        <CategoryRowSkeleton width={"w-72"}/>
+        <CategoryRowSkeleton width={"w-96"}/>
+        <CategoryRowSkeleton width={"w-80"}/>
+        <CategoryRowSkeleton width={"w-64"}/>
+        <CategoryRowSkeleton width={"w-72"}/>
+    </div>
     return (
         <div className={"rounded-lg w-full"} data-testid={testID}>
             <CategoriesListHead/>
