@@ -25,7 +25,7 @@ module.exports = {
                 shadow: colors.black,
                 link: colors.indigo[400],
                 linkHov: colors.indigo[500],
-                skeleton: colors.neutral[700]
+                skeleton: colors.neutral[500]
             },
         },
     },
