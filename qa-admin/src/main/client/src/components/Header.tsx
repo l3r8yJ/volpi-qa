@@ -29,12 +29,12 @@ export const Header: FC = () => {
                         currentPathname === "/asked-questions"
                             ? <div
                                 className={"flex gap-x-1 items-center relative after:absolute after:-bottom-0.5 after:bg-contrast after:block after:h-[1px] after:w-full"}>
-                                <FolderIcon className={"w-4 h-4"}/>
+                                <FolderIcon className={"w-5 h-5"}/>
                                 <span>Заданные вопросы (3)</span>
                             </div>
                             : <Link to={"/asked-questions"}
                                     className={"flex gap-x-1 items-center hover:text-contrastHov duration-150"}>
-                                <FolderIcon className={"w-4 h-4"}/>
+                                <FolderIcon className={"w-5 h-5"}/>
                                 <span>Заданные вопросы (3)</span>
                             </Link>
                     }
@@ -44,7 +44,7 @@ export const Header: FC = () => {
                         className={"flex gap-1 cursor-pointer hover:text-contrastHov duration-100 items-center"}
                         onClick={signOutHandler}
                     >
-                        <ArrowRightOnRectangleIcon className="h-4 w-4"/>
+                        <ArrowRightOnRectangleIcon className="h-5 w-5"/>
                         <span>Выйти</span>
                     </div>
                 </nav>
