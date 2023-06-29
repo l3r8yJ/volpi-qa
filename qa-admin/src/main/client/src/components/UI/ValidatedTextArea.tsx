@@ -1,4 +1,4 @@
-import {FC, FormEvent, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useRef, useState} from 'react';
+import {FC, FormEvent, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useRef, useState, KeyboardEvent} from 'react';
 import {ValidateInputResult} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {useValidate} from "../../hooks/useValidate";
 
@@ -11,6 +11,24 @@ interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
     isPassword?: boolean
     value: string
 }
+
+const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement> | React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'Enter' || e.key === 'NumpadEnter')) {
+        const form = e.currentTarget.form;
+        if (form) {
+            e.preventDefault();
+            const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
+            form.dispatchEvent(submitEvent);
+        }
+    }
+};
+
+
+const handleInput = (e: FormEvent<HTMLTextAreaElement>) => {
+    e.currentTarget.style.height = 'inherit';
+    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+}
+
 
 export const ValidatedTextArea: FC<TextAreaProps> = ({
                                                          className,
@@ -42,10 +60,6 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
         }
     }, [value]);
 
-    const handleInput = (e: FormEvent<HTMLTextAreaElement>) => {
-        e.currentTarget.style.height = 'inherit';
-        e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
-    }
 
     return (
         <label className="w-full">
@@ -56,6 +70,7 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
                 rows={1}
                 className={`${className} px-4 py-2 outline-none resize-none rounded-lg flex items-center bg-secondary border w-full min-h-[40px] ${statusClasses}`}
                 value={value}
+                onKeyDown={handleKeyDown}
                 {...props}
             />
             {showValidation && (

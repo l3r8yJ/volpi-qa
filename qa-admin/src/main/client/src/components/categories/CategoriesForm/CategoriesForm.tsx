@@ -52,6 +52,7 @@ export const CategoriesForm: FC = () => {
                     className={"max-h-64 min-h-[45px]"}
                 />
                 <div className={"w-full flex justify-end mt-6"}>
+                    <div className={"text-pale flex items-end text-xs mr-2"}>Отправить: Ctrl + Enter</div>
                     <PrimaryButton
                         className={"min-w-[200px]"}
                         type={"submit"}
