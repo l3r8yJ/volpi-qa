@@ -1,4 +1,4 @@
-import {FC, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useRef, useState} from 'react';
+import {FC, FormEvent, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useRef, useState} from 'react';
 import {ValidateInputResult} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {useValidate} from "../../hooks/useValidate";
 
@@ -42,7 +42,7 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
         }
     }, [value]);
 
-    const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const handleInput = (e: FormEvent<HTMLTextAreaElement>) => {
         e.currentTarget.style.height = 'inherit';
         e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
     }
@@ -54,7 +54,7 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
                 ref={textareaRef}
                 onInput={handleInput}
                 rows={1}
-                className={`${className} px-4 py-2 outline-none rounded-lg flex items-center bg-secondary border w-full ${statusClasses}`}
+                className={`${className} px-4 py-2 outline-none resize-none rounded-lg flex items-center bg-secondary border w-full min-h-[40px] ${statusClasses}`}
                 value={value}
                 {...props}
             />
