@@ -36,7 +36,7 @@ export const CategoriesForm: FC = () => {
     return (
         <Modal
             title={"Создание категории"}
-            buttonText={"Создать категорию"}
+            buttonText={"Новая категория"}
             isOpen={isModalOpen}
             setIsOpen={setIsModalOpen}
         >
