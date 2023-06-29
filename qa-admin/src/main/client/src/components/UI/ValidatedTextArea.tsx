@@ -1,4 +1,4 @@
-import {FC, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useState} from 'react';
+import {FC, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useRef, useState} from 'react';
 import {ValidateInputResult} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {useValidate} from "../../hooks/useValidate";
 
@@ -25,6 +25,8 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
                                                      }) => {
     const {validateResult} = useValidate({setIsValid, value, validateFunc})
     const [statusClasses, setStatusClasses] = useState("border-border/50")
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
     useEffect(() => {
         if (showValidation) {
             if (isValid) setStatusClasses("border-safe/50")
@@ -33,11 +35,26 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
             setStatusClasses("border-border/50")
     }, [isValid, showValidation])
 
+    useEffect(() => {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = 'inherit';
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+        }
+    }, [value]);
+
+    const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
+        e.currentTarget.style.height = 'inherit';
+        e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+    }
+
     return (
         <label className="w-full">
             {label && <div className="text-pale text-sm ml-1 w-full">{label}</div>}
             <textarea
-                className={`${className} px-4 py-2 outline-none rounded-lg flex h-20 items-center bg-secondary border w-full ${statusClasses}`}
+                ref={textareaRef}
+                onInput={handleInput}
+                rows={1}
+                className={`${className} px-4 py-2 outline-none rounded-lg flex items-center bg-secondary border w-full ${statusClasses}`}
                 value={value}
                 {...props}
             />
