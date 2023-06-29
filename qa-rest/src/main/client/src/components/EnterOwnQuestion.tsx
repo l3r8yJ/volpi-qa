@@ -28,7 +28,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
         try {
             Email.parse(email);
         } catch (err: any) {
-            if(err instanceof z.ZodError)
+            if (err instanceof z.ZodError)
                 localEmailError = err.errors[0].message;
             else console.log(err)
         }
@@ -36,7 +36,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
         try {
             Question.parse(questionText)
         } catch (err: any) {
-            if(err instanceof z.ZodError)
+            if (err instanceof z.ZodError)
                 localQuestionError = err.errors[0].message;
             else console.log(err)
         }
@@ -77,23 +77,26 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                     className={"flex flex-col shadow-lg shadow-neutral-500/50 p-4 rounded-lg gap-y-2 bg-white"}
                     onReset={closeForm}
                 >
-                    <div className={"flex gap-x-2 items-center"}>
+                    <div className={"flex justify-center"}>
+                        <div className={"bg-green-100 rounded-full"}>
+                            <CheckBadgeIcon className={"text-green-600 w-16 h-16"}/>
+                        </div>
+                    </div>
+                    <div className={"flex gap-x-2 items-center justify-center"}>
                         <h2
                             className={"text-lg font-semibold"}
                         >
                             Вопрос успешно отправлен!
                         </h2>
-                        <div className={"bg-green-100 p-0.5 rounded-full"}>
-                            <CheckBadgeIcon className={"text-green-600 w-5 h-5"}/>
-                        </div>
+
                     </div>
-                    <div className={"text-sm text-neutral-500"}>
+                    <div className={"text-sm text-neutral-500 text-center"}>
                         Вам придёт уведомление на почту, когда Ваш запрос будет обработан
                     </div>
-                    <div className={"flex justify-end"}>
+                    <div className={"flex w-full mt-4"}>
                         <button
                             type={"reset"}
-                            className={"bg-blue-100 text-blue-700 px-4 py-2 rounded hover:bg-blue-200 duration-150"}
+                            className={"bg-blue-100 text-blue-700 px-4 py-2 w-full rounded hover:bg-blue-200 duration-150"}
                         >
                             Окей
                         </button>
