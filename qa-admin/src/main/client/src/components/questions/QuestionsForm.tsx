@@ -94,8 +94,9 @@ export const QuestionsForm: FC<QuestionsFormProps> = ({categoryName}) => {
                 <div className={"w-full flex justify-end mt-2"}>
                     <div className={"text-pale flex items-end text-xs mr-2"}>Отправить: Ctrl + Enter</div>
                     <PrimaryButton
-                        className={"min-w-[200px]"}
+                        className={`min-w-[200px] ${loading === "pending" ? "cursor-not-allowed" : ""}`}
                         type={"submit"}
+                        disabled={loading === "pending"}
                     >
                         {loading === "pending"
                             ? <Loader size={LoaderSize.small}/>
