@@ -70,7 +70,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
     return (
         <div
             ref={wrapperRef}
-            className={`absolute z-10 bottom-24 left-1/2 transform -translate-x-1/2 w-full px-2`}
+            className={`absolute z-20 bottom-24 left-1/2 transform -translate-x-1/2 w-full px-2`}
         >
             {isQuestionSent
                 ? <form

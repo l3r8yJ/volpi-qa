@@ -14,11 +14,11 @@ export const DefaultView: FC = () => {
 
     return (
         <>
-            <div className={"mt-4 px-4"}>
+            <div className={"pt-4 px-4"}>
                 Здравствуйте! Я постараюсь вам помочь и найти ответы на вопросы связанные с поступлением в
                 наш Политех. <br/> Выберите категорию вопроса, который вас интересует.
             </div>
-            <div className={"font-semibold px-4 border-b sticky top-0 bg-white/50 backdrop-blur-sm py-4"}>Категории:</div>
+            <div className={"font-semibold text-lg px-4 pt-4 pb-3 sticky border-b -top-1 bg-white/50 backdrop-blur-sm backdrop-hue-rotate-30 z-10"}>Категории:</div>
             <div className={"space-y-4 px-4 pt-4"}>
                 {categories.map((category) => (
                     <CategoryOption key={category.id} category={category}/>
