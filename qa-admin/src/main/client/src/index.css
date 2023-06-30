@@ -6,26 +6,27 @@
 @layer base {
     :root{
         --accent: 245 58% 51%;
-        --accent-foreground: 226 100% 97%;
+        --accent-foreground: 245 58% 51%;
 
         --primary: 0 0% 9%;
+        --primary-even: 0 0% 15%;
         --primary-foreground: 0 0% 96.1%;
 
         --pale: 0 0% 64%;
         --pale-foreground: 0 0% 64%;
 
         --safe: 142 72% 29%;
-        --safe-foreground: 138 76% 97%;
+        --safe-foreground: 142 76% 36%;
 
         --danger: 0 74% 42%;
-        --danger-foreground: 0 86% 97%;
+        --danger-foreground: 0 72% 51%;
 
         --shadow: 0 0% 0%;
 
         --link: 234 89% 74%;
 
-        --skeleton: 0, 0%, 45%;
+        --skeleton: 0 0% 45%;
 
-        --border: 0, 0%, 45%;
+        --border: 0 0% 45%;
     }
 }

@@ -2,7 +2,7 @@ import {ButtonHTMLAttributes, FC} from 'react';
 
 export const PrimaryButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({children, className, ...props}) => {
     if (!className) className = ""
-    if (!className?.includes("bg")) className += " bg-primary hover:bg-primaryHov"
+    if (!className?.includes("bg")) className += " bg-accent hover:bg-accent/80"
     if (!className?.includes("w")) className += " w-full"
     return (
         <button

@@ -10,7 +10,7 @@ interface MainLayoutProps {
 
 export const MainLayout: FC<MainLayoutProps> = ({children, isHeader = true, isFooter = true}) => {
     return (
-        <div className={"text-contrast min-h-screen bg-secondary flex flex-col"}>
+        <div className={"text-primary-foreground min-h-screen bg-primary flex flex-col"}>
             {isHeader && <Header/>}
             <main className={`mx-5 flex-grow lg:container lg:mx-auto ${isHeader && "mt-4"}`}>
                 {children}

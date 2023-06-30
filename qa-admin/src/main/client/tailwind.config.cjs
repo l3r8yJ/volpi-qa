@@ -10,6 +10,7 @@ module.exports = {
             colors: {
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
+                    even: "hsl(var(--primary-even))",
                     foreground: "hsl(var(--primary-foreground))"
                 },
                 accent: {

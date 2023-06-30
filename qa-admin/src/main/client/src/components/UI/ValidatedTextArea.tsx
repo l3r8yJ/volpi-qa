@@ -68,13 +68,13 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
                 ref={textareaRef}
                 onInput={handleInput}
                 rows={1}
-                className={`${className} px-4 py-2 outline-none resize-none rounded-lg flex items-center bg-secondary border w-full min-h-[40px] ${statusClasses}`}
+                className={`${className} px-4 py-2 outline-none resize-none rounded-lg flex items-center bg-primary border w-full min-h-[40px] ${statusClasses}`}
                 value={value}
                 onKeyDown={handleKeyDown}
                 {...props}
             />
             {showValidation && (
-                <div className={`text-sm ${validateResult === "выглядит хорошо!" ? "text-safe/80" : "text-danger/80"}`}>
+                <div className={`text-sm ${validateResult === "выглядит хорошо!" ? "text-safe-foreground/80" : "text-danger-foreground/80"}`}>
                     {validateResult}
                 </div>
             )}

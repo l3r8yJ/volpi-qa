@@ -9,7 +9,7 @@ import {Skeleton} from "../../UI/Skeleton";
 
 const CategoryRowSkeleton = ({width}: {width: string}) => {
     return (
-        <div className={"space-x-6 rounded-lg odd:bg-secondaryEven flex items-center px-4 h-[40px]"}>
+        <div className={"space-x-6 rounded-lg odd:bg-primary-even flex items-center px-4 h-[40px]"}>
             <Skeleton className={"w-6 h-4"}/>
             <Skeleton className={`${width} h-4`}/>
         </div>

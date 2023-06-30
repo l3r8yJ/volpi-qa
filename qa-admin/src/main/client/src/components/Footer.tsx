@@ -3,7 +3,7 @@ import {FC} from "react"
 export const Footer: FC = () => {
     return (
         <footer className={"bg-pale/5 mt-28 border-t border-border/50"}>
-            <div className={"container mx-auto py-3 flex justify-end text-pale"}>
+            <div className={"container mx-auto py-3 flex justify-end text-pale-foreground"}>
                 Developed by&nbsp;
                 <span className={"text-contrast"}>@Andrew-Sem</span>
                 &nbsp;&&nbsp;

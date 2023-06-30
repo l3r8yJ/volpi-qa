@@ -51,7 +51,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
     }
     return (
 
-        <div className={"p-4 bg-border/10 rounded-lg flex space-x-6 justify-between w-full"}>
+        <div className={"p-4 bg-pale/10 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
                 ? <div className={"w-full"}>
                     <div className={"flex flex-col space-y-2 w-full"}>
@@ -78,7 +78,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                     <div className={"flex space-x-2 mt-4 justify-end"}>
                         <div className={"flex gap-2"}>
                             <PrimaryButton
-                                className={"bg-safe hover:bg-safeHov flex gap-1 items-center"}
+                                className={"bg-safe hover:bg-safe/80 text-safe-foreground flex gap-1 items-center"}
                                 onClick={updateHandler}
                             >
                                 <CheckIcon className={"w-5 h-5"}/>
@@ -123,7 +123,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             }
                             optionButtons={[
                                 <PrimaryButton
-                                    className={"bg-danger hover:bg-dangerHov flex gap-1 items-center"}
+                                    className={"bg-danger hover:bg-danger/80 flex gap-1 items-center"}
                                     onClick={deleteHandler}
                                 >
                                     <XMarkIcon className={"w-5 h-5"}/>
