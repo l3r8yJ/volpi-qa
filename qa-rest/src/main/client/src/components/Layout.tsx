@@ -10,7 +10,7 @@ export const Layout: FC<LayoutProps> = ({children}) => {
     return (
         <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[600px] flex flex-col"}>
             <ChatHeader/>
-            <div className={"flex-grow space-y-4 overflow-y-auto bg-white p-4"}>
+            <div className={"flex-grow overflow-y-auto bg-white pb-4"}>
                 {children}
             </div>
             <TextInputForm/>
