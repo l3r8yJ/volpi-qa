@@ -7,7 +7,7 @@ export const CategoryView: FC = () => {
     if (currentViewName !== "category" || currentCategory === null) return <div>Произошла ошибка при получении
         категории</div>
     return (
-        <div className={"overflow-y-auto"}>
+        <div className={"overflow-y-auto p-4"}>
             {currentCategory.questions.length > 0
                 ? <div className={"flex flex-col space-y-4"}>
                     {currentCategory.questions.map(question => (

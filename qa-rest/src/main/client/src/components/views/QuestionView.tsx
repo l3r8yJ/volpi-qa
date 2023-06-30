@@ -8,7 +8,7 @@ export const QuestionView: FC = () => {
         return <div>Произошла ошибка при получении вопроса</div>
     }
     return (
-        <div className={"flex flex-col"}>
+        <div className={"flex flex-col p-4"}>
             <h2
                 className={"font-semibold text-xl break-words"}
                 dangerouslySetInnerHTML={{__html: parseLinks(currentQuestion?.text)}}
