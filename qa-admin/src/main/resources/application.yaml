@@ -1,3 +1,5 @@
+# @todo #156:15min Add smtp server config
+#   Add smtp configuration
 spring:
   application:
     name: qa-admin

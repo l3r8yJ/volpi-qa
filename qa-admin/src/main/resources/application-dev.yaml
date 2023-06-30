@@ -6,6 +6,15 @@ spring:
     password: root
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
+  mail:
+    host: localhost
+    port: 2525
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
   jpa:
     properties:
       hibernate:
@@ -22,3 +31,8 @@ server:
 logging:
   level:
     web: debug
+answer:
+  template:
+    Мы добавили ответ на Ваш вопрос '%s' в чат!
+  from:
+    volpi@mail.ru
