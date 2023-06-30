@@ -1,4 +1,4 @@
-import {FC, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useState} from 'react';
+import {FC, FormEvent, InputHTMLAttributes, TextareaHTMLAttributes, useEffect, useRef, useState, KeyboardEvent} from 'react';
 import {ValidateInputResult} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {useValidate} from "../../hooks/useValidate";
 
@@ -11,6 +11,24 @@ interface TextAreaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
     isPassword?: boolean
     value: string
 }
+
+const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement> | React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'Enter' || e.key === 'NumpadEnter')) {
+        const form = e.currentTarget.form;
+        if (form) {
+            e.preventDefault();
+            const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
+            form.dispatchEvent(submitEvent);
+        }
+    }
+};
+
+
+const handleInput = (e: FormEvent<HTMLTextAreaElement>) => {
+    e.currentTarget.style.height = 'inherit';
+    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+}
+
 
 export const ValidatedTextArea: FC<TextAreaProps> = ({
                                                          className,
@@ -25,6 +43,8 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
                                                      }) => {
     const {validateResult} = useValidate({setIsValid, value, validateFunc})
     const [statusClasses, setStatusClasses] = useState("border-border/50")
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
     useEffect(() => {
         if (showValidation) {
             if (isValid) setStatusClasses("border-safe/50")
@@ -33,12 +53,24 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
             setStatusClasses("border-border/50")
     }, [isValid, showValidation])
 
+    useEffect(() => {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = 'inherit';
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+        }
+    }, [value]);
+
+
     return (
         <label className="w-full">
             {label && <div className="text-pale text-sm ml-1 w-full">{label}</div>}
             <textarea
-                className={`${className} px-4 py-2 outline-none rounded-lg flex h-20 items-center bg-secondary border w-full ${statusClasses}`}
+                ref={textareaRef}
+                onInput={handleInput}
+                rows={1}
+                className={`${className} px-4 py-2 outline-none resize-none rounded-lg flex items-center bg-secondary border w-full min-h-[40px] ${statusClasses}`}
                 value={value}
+                onKeyDown={handleKeyDown}
                 {...props}
             />
             {showValidation && (
