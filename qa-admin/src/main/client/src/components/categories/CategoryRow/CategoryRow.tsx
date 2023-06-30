@@ -31,7 +31,7 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
             <Popup
                 title={"Вы уверены, что хотите удалить категорию?"}
                 ButtonElement={
-                    <div className={"hover:bg-pale/80 p-1 rounded-full duration-150"}>
+                    <div className={"hover:bg-pale/50 p-1 rounded-full duration-150"}>
                         <XMarkIcon className={"w-5 h-5"}/>
                     </div>
                 }
