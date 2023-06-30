@@ -7,12 +7,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import ru.volpi.qaadmin.domain.question.Question;
 import ru.volpi.qaadmin.domain.question.Questions;
+import ru.volpi.qaadmin.dto.question.Answer;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
+import ru.volpi.qaadmin.exception.category.CategoryNotFoundException;
 import ru.volpi.qaadmin.exception.question.QuestionNotFoundException;
 import ru.volpi.qaadmin.exception.question.QuestionValidationException;
+import ru.volpi.qaadmin.repository.CategoryRepository;
 import ru.volpi.qaadmin.repository.QuestionRepository;
+import ru.volpi.qaadmin.repository.UnknownQuestionRepository;
 import ru.volpi.qaadmin.service.QuestionService;
 import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
@@ -25,6 +29,8 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final CategoryRepository categoryRepository;
+    private final UnknownQuestionRepository unknownQuestionRepository;
 
     private final Validator validator;
 
@@ -86,5 +92,33 @@ public class QuestionServiceImpl implements QuestionService {
         }
         this.questionRepository.deleteById(id);
         return id;
+    }
+
+    @Transactional
+    @Override
+    public QuestionResponse addAnswer(final Answer answer) {
+        return QuestionResponse.from(
+            this.unknownQuestionRepository.findById(answer.getUnknownQuestionId())
+                .map(
+                    question -> {
+                        final Question answered = this.questionRepository.save(
+                            Question.builder()
+                                .text(question.getText())
+                                .answer(answer.getText())
+                                .category(
+                                    this.categoryRepository.findByNameIgnoreCase(answer.getCategory())
+                                        .orElseThrow(() -> new CategoryNotFoundException(answer.getCategory()))
+                                )
+                                .build()
+                        );
+                        this.unknownQuestionRepository.deleteById(answer.getUnknownQuestionId());
+                        /*
+                         * @todo #130:30min Send email notification.
+                         *   Send a notification to the user after adding a answer.
+                         * */
+                        return answered;
+                    }
+                ).orElseThrow(() -> new QuestionNotFoundException(answer.getUnknownQuestionId()))
+        );
     }
 }
