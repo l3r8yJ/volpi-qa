@@ -33,6 +33,9 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     private static final String SECOND_QUESTION_ID
         = "/api/v1/admin/questions/431";
 
+    private static final String ADD_ANSWER_URL
+        = "/api/v1/admin/questions/answer";
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -109,5 +112,29 @@ class QuestionsRestControllerTest extends TestcontainersTest {
     void deletesQuestionById() throws Exception {
         this.mockMvc.perform(delete(SECOND_QUESTION_ID))
             .andExpect(status().isAccepted());
+    }
+
+    @Test
+    @WithMockUser("admin")
+    @DisplayName("Adds answer to unknown question")
+    void addsAnswerToUnknownQuestion() throws Exception {
+        final String response = this.mockMvc.perform(
+                patch(ADD_ANSWER_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .characterEncoding(StandardCharsets.UTF_8)
+                    .content("""
+                        {
+                            "unknownQuestionId": 111,
+                            "text": "Ответ на вопрос",
+                            "category": "Первая категория"               
+                        }
+                        """)
+            ).andExpect(status().isAccepted())
+            .andReturn()
+            .getResponse()
+            .getContentAsString(StandardCharsets.UTF_8);
+        assertThat(response)
+            .containsIgnoringCase("ответ на вопрос")
+            .containsIgnoringCase("первая категория");
     }
 }

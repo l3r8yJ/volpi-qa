@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
+import ru.volpi.qaadmin.dto.question.Answer;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
 import ru.volpi.qaadmin.service.CategoryService;
@@ -65,5 +66,10 @@ public class QuestionsRestController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteQuestionById(@PathVariable final Long id) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.questionService.deleteById(id));
+    }
+
+    @PatchMapping("/answer")
+    public ResponseEntity<?> addAnswerToUnknownQuestion(@RequestBody final Answer answer) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.questionService.addAnswer(answer));
     }
 }

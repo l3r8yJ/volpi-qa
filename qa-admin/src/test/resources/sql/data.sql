@@ -11,3 +11,6 @@ VALUES (431, 3421, 'Вопрос уровня б', 'Ответ уровня б')
 
 INSERT INTO users_storage.users(id, username, password, role)
 VALUES (101, 'admin', '$2a$10$ecu/WLJDj7mQhXpa9lfJ0O/.NK38FeVtErsUPE8smP8bDHAXcs5vi', 'admin');
+
+INSERT INTO unknown_questions_storage.unknown_questions(id, text, email)
+VALUES (111, 'Мой новый вопрос', 'blah@gmail.com');
