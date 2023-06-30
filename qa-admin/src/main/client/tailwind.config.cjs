@@ -30,7 +30,10 @@ module.exports = {
                     foreground: "hsl(var(--pale-foreground))"
                 },
                 border: "hsl(var(--border))",
-                link: "hsl(var(--link))",
+                link:{
+                    DEFAULT: "hsl(var(--link))",
+                    foreground: "hsl(var(--link-foreground))"
+                } ,
                 shadow: "hsl(var(--shadow))",
                 skeleton: "hsl(var(--skeleton))",
             },
