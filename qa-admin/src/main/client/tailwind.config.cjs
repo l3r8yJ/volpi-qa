@@ -10,8 +10,10 @@ module.exports = {
             colors: {
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
-                    even: "hsl(var(--primary-even))",
                     foreground: "hsl(var(--primary-foreground))"
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))"
                 },
                 accent: {
                     DEFAULT: "hsl(var(--accent))",
@@ -29,11 +31,15 @@ module.exports = {
                     DEFAULT: "hsl(var(--pale))",
                     foreground: "hsl(var(--pale-foreground))"
                 },
-                border: "hsl(var(--border))",
                 link:{
                     DEFAULT: "hsl(var(--link))",
                     foreground: "hsl(var(--link-foreground))"
-                } ,
+                },
+                selected:{
+                    foreground: "hsl(var(--selected-foreground))"
+                },
+                active: "hsl(var(--active))",
+                border: "hsl(var(--border))",
                 shadow: "hsl(var(--shadow))",
                 skeleton: "hsl(var(--skeleton))",
             },

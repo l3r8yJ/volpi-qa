@@ -22,7 +22,7 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
     return (
         <li
             data-testid={testID}
-            className={"even:bg-primary-even flex justify-between rounded-lg items-center hover:bg-accent px-4"}
+            className={"even:bg-secondary flex justify-between rounded-lg items-center hover:bg-accent px-4"}
         >
             <Link to={"/categories/" + name} className={"flex w-full py-2"}>
                 <div className={"w-10 text-pale-foreground"}>{num}</div>
