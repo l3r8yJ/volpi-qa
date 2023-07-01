@@ -8,7 +8,7 @@ interface LayoutProps {
 }
 
 export const Layout: FC<LayoutProps> = ({children}) => {
-    const {isActiveForm} = useAppSelector(state => state.ownQuestion)
+    const {isActiveForm} = useAppSelector(state => state.question)
     return (
         <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[600px] flex flex-col"}>
             <ChatHeader/>

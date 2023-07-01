@@ -6,8 +6,8 @@ import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {IQuestion} from "../types/IQuestion";
 import {setCurrentQuestion, setCurrentView} from "../store/reducers/viewSlice";
 import {Loader} from "./UI/Loader";
-import {toggleForm} from "../store/reducers/ownQuestionSlice";
 import {parseLinks} from "../utils/parseLinks";
+import {toggleForm} from "../store/reducers/questionSlice";
 
 const EnterOwnQuestion = lazy(() => import("./EnterOwnQuestion"))
 
@@ -17,7 +17,7 @@ export const TextInputForm: FC = () => {
     const [selectedValue, setSelectedValue] = useState("")
     const [query, setQuery] = useState('')
     const dispatch = useAppDispatch()
-    const {isActiveForm} = useAppSelector(state => state.ownQuestion)
+    const {isActiveForm} = useAppSelector(state => state.question)
     const {categories} = useAppSelector(state => state.category)
     const goToQuestionView = () => {
         if (selectedValue !== "") {

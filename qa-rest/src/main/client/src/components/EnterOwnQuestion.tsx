@@ -1,18 +1,18 @@
 import {FC, FormEvent, useEffect, useRef, useState} from "react"
 import {CheckBadgeIcon, XMarkIcon} from "@heroicons/react/24/outline";
-import {setIsSentQuestion, toggleForm} from "../store/reducers/ownQuestionSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {Input} from "./UI/Input";
 import {z} from "zod";
 import {Email} from "../types/Email";
 import {Question} from "../types/Question";
+import {setIsSentQuestion, toggleForm} from "../store/reducers/questionSlice";
 
 type EnterOwnQuestionProps = {
     defaultQuestion: string
 }
 
 const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
-    const {isQuestionSent} = useAppSelector(state => state.ownQuestion)
+    const {isQuestionSent} = useAppSelector(state => state.question)
     const [questionText, setQuestionText] = useState(defaultQuestion)
     const [email, setEmail] = useState("")
     const [questionError, setQuestionError] = useState<string | null>(null)

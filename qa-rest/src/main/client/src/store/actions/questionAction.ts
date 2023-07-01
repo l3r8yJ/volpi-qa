@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {QuestionService} from "../../services/QuestionService";
+import {OwnQuestion} from "../../types/ownQuestion";
 
 
 export const fetchAllQuestions = createAsyncThunk("questions/fetchAll", async () => {
@@ -19,5 +20,10 @@ export const fetchQuestionsByCategory = createAsyncThunk("questions/fetchByCateg
 
 export const fetchQuestionByText = createAsyncThunk("questions/fetchByText", async (text: string) => {
     const res = await QuestionService.fetchQuestionByText(text)
+    return res.data
+})
+
+export const createOwnQuestion = createAsyncThunk("questions/createOwnQuestion", async (ownQuestion:OwnQuestion) => {
+    const res = await QuestionService.createOwnQuestion(ownQuestion)
     return res.data
 })

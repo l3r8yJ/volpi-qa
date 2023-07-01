@@ -1,6 +1,7 @@
 import {$api} from "../http/api";
 import {AxiosResponse} from "axios";
 import {IQuestion} from "../types/IQuestion";
+import {OwnQuestion} from "../types/ownQuestion";
 
 
 export class QuestionService {
@@ -18,5 +19,9 @@ export class QuestionService {
 
     static fetchQuestionsByCategory(categoryName: string): Promise<AxiosResponse<IQuestion[]>> {
         return $api.get<IQuestion[]>(`questions/by-category/${categoryName}`)
+    }
+
+    static createOwnQuestion(ownQuestion:OwnQuestion): Promise<AxiosResponse<string>>{
+        return $api.post<string>(`questions`, {...ownQuestion})
     }
 }
