@@ -6,6 +6,14 @@ spring:
       expiration: 86400000 # a day
       refresh-token:
         expiration: 604800000 # 7 days
+  mail:
+    username: user
+    password: admin
 logging:
   level:
     web: debug
+answer:
+  template:
+    Мы добавили ответ на Ваш вопрос '%s' в чат!
+  from:
+    volpi@mail.ru

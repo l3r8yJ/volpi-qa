@@ -6,7 +6,7 @@ import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
 
 @UtilityClass
-public class Questions {
+public final class Questions {
     public static Question of(final Long id, final QuestionUpdate update) {
         return Question.builder()
             .id(id)

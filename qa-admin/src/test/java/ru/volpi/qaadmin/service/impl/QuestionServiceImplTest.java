@@ -4,11 +4,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.volpi.qaadmin.TestcontainersTest;
+import ru.volpi.qaadmin.dto.question.Answer;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
 import ru.volpi.qaadmin.dto.question.QuestionsCategory;
 import ru.volpi.qaadmin.exception.question.QuestionNotFoundException;
+import ru.volpi.qaadmin.repository.UnknownQuestionRepository;
 import ru.volpi.qaadmin.service.CategoryService;
 import ru.volpi.qaadmin.service.QuestionService;
 
@@ -37,6 +39,9 @@ class QuestionServiceImplTest extends TestcontainersTest {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private UnknownQuestionRepository unknownQuestionRepository;
 
     @Test
     @DisplayName("Finds all questions")
@@ -111,5 +116,19 @@ class QuestionServiceImplTest extends TestcontainersTest {
             () -> this.questionService.findById(DELETION_QUESTION_ID),
             "Вопрос с id '%d' не найден!".formatted(DELETION_QUESTION_ID)
         );
+    }
+
+    @Test
+    @DisplayName("Adds answer to unknown question")
+    void sendsAnswer() {
+        final String answerPhrase = "Ответ на ваш вопрос";
+        final String secondCategory = "Вторая категория";
+        final QuestionResponse actual = this.questionService.addAnswer(
+            new Answer(111L, answerPhrase, secondCategory)
+        );
+        assertThat(this.unknownQuestionRepository.findById(111L).isPresent()).isFalse();
+        assertThat(actual.answer()).isEqualTo(answerPhrase);
+        assertThat(actual.text()).isEqualTo("Мой новый вопрос");
+        assertThat(actual.categoryName()).isEqualTo(secondCategory);
     }
 }
