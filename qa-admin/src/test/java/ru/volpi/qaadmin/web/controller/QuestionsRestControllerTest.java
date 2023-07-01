@@ -126,7 +126,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
                         {
                             "unknownQuestionId": 111,
                             "text": "Ответ на вопрос",
-                            "category": "Первая категория"               
+                            "category": "Первая категория"              
                         }
                         """)
             ).andExpect(status().isAccepted())

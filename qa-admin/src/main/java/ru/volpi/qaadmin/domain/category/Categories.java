@@ -19,7 +19,7 @@ public class Categories {
         return Category.builder().id(id).name(update.name()).build();
     }
 
-    public static Category from(QuestionsCategory category) {
+    public static Category from(final QuestionsCategory category) {
         return Category.builder().id(category.id()).name(category.name()).build();
     }
 }

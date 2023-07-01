@@ -31,8 +31,3 @@ server:
 logging:
   level:
     web: debug
-answer:
-  template:
-    Мы добавили ответ на Ваш вопрос '%s' в чат!
-  from:
-    volpi@mail.ru
