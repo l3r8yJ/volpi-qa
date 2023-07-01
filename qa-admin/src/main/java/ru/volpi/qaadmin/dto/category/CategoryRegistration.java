@@ -8,7 +8,7 @@ import java.io.Serializable;
 import static ru.volpi.qaadmin.validation.message.CategoryMessages.CATEGORY_CANNOT_BE_EMPTY;
 
 /**
- * A DTO for the {@link ru.volpi.qaadmin.domain.category.Category} entity
+ * A DTO for the {@link Category} entity
  */
 public record CategoryRegistration(
     @NotBlank(message = CATEGORY_CANNOT_BE_EMPTY) String name

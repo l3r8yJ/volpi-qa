@@ -17,6 +17,7 @@ import ru.volpi.qaadmin.exception.question.QuestionValidationException;
 import ru.volpi.qaadmin.repository.CategoryRepository;
 import ru.volpi.qaadmin.repository.QuestionRepository;
 import ru.volpi.qaadmin.repository.UnknownQuestionRepository;
+import ru.volpi.qaadmin.service.EmailService;
 import ru.volpi.qaadmin.service.QuestionService;
 import ru.volpi.qaadmin.service.annotation.TransactionalService;
 
@@ -29,8 +30,12 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
+
     private final CategoryRepository categoryRepository;
+
     private final UnknownQuestionRepository unknownQuestionRepository;
+
+    private final EmailService emailService;
 
     private final Validator validator;
 
@@ -97,6 +102,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Transactional
     @Override
     public QuestionResponse addAnswer(final Answer answer) {
+        log.info("Answer came {}", answer);
         return QuestionResponse.from(
             this.unknownQuestionRepository.findById(answer.getUnknownQuestionId())
                 .map(
@@ -112,10 +118,12 @@ public class QuestionServiceImpl implements QuestionService {
                                 .build()
                         );
                         this.unknownQuestionRepository.deleteById(answer.getUnknownQuestionId());
-                        /*
-                         * @todo #130:30min Send email notification.
-                         *   Send a notification to the user after adding a answer.
-                         * */
+                        this.emailService.sendNotification(
+                            question.getEmail(),
+                            "Ответ на Ваш вопрос добавлен",
+                            question.getText()
+                        );
+                        log.info("Answer {} added", answer);
                         return answered;
                     }
                 ).orElseThrow(() -> new QuestionNotFoundException(answer.getUnknownQuestionId()))
