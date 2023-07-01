@@ -6,5 +6,5 @@ import ru.volpi.qarest.domain.question.UnknownQuestion;
 
 @Repository
 public interface UnknownQuestionRepository extends JpaRepository<UnknownQuestion, Long> {
-    boolean existsByText(String text);
+    boolean existsByEmail(String email);
 }

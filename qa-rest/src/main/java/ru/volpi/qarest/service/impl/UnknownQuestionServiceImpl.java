@@ -33,6 +33,9 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
     @Transactional
     @Override
     public ResponseDto save(final RegisterUnknownQuestion register) {
+        if (this.unknownQuestionRepository.existsByEmail(register.getEmail())) {
+            throw new QuestionAlreadyExistsException("Вы ужа задали вопрос, мы обрабатываем его");
+        }
         this.validate(register);
         this.unknownQuestionRepository.save(this.questionMapper.toEntity(register));
         return ResponseDto.builder()
