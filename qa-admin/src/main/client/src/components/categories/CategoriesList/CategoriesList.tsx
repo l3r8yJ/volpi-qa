@@ -27,7 +27,7 @@ export const CategoriesList: FC<CategoriesListProps> = ({testID}) => {
     useEffect(() => {
         dispatch(fetchCategories())
     }, [])
-    if (loading === "pending") return <div className={""}>
+    if (loading === "pending") return <div className={"bg-primary rounded-lg p-4"}>
         <CategoriesListHead/>
         <CategoryRowSkeleton width={"w-96"}/>
         <CategoryRowSkeleton width={"w-80"}/>
