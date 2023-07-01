@@ -1,18 +1,19 @@
 import {FC, FormEvent, useEffect, useRef, useState} from "react"
-import {CheckBadgeIcon, XMarkIcon} from "@heroicons/react/24/outline";
+import {CheckBadgeIcon, ExclamationTriangleIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {Input} from "./UI/Input";
 import {z} from "zod";
 import {Email} from "../types/Email";
 import {Question} from "../types/Question";
-import {setIsSentQuestion, toggleForm} from "../store/reducers/questionSlice";
+import {toggleForm} from "../store/reducers/questionSlice";
+import {createOwnQuestion} from "../store/actions/questionAction";
 
 type EnterOwnQuestionProps = {
     defaultQuestion: string
 }
 
 const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
-    const {isQuestionSent} = useAppSelector(state => state.question)
+    const {isQuestionSent, loading, error} = useAppSelector(state => state.question)
     const [questionText, setQuestionText] = useState(defaultQuestion)
     const [email, setEmail] = useState("")
     const [questionError, setQuestionError] = useState<string | null>(null)
@@ -46,11 +47,10 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
 
         if (localEmailError || localQuestionError)
             return
-        dispatch(setIsSentQuestion(true));
+        dispatch(createOwnQuestion({email, text: questionText}))
     }
 
     const closeForm = () => {
-        dispatch(setIsSentQuestion(false));
         dispatch(toggleForm());
     }
 
@@ -72,7 +72,7 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
             ref={wrapperRef}
             className={`absolute z-10 bottom-24 left-1/2 transform -translate-x-1/2 w-full px-2`}
         >
-            {isQuestionSent
+            {isQuestionSent && loading !== "failed"
                 ? <form
                     className={"flex flex-col shadow-lg shadow-neutral-500/50 p-4 rounded-lg gap-y-2 bg-white"}
                     onReset={closeForm}
@@ -114,6 +114,12 @@ const EnterOwnQuestion: FC<EnterOwnQuestionProps> = ({defaultQuestion}) => {
                         <XMarkIcon className={"w-5 h-5"}/>
                     </button>
                     <h2 className={"text-lg font-semibold text-center"}>Задайте свой вопрос</h2>
+                    {loading === "failed" && error &&
+                        <div className={"text-red-500 flex flex-col items-center"}>
+                            <ExclamationTriangleIcon className={"w-10 h-10"}/>
+                            <span className={""}>{error}</span>
+                        </div>
+                    }
                     <div className={"flex flex-col gap-y-4"}>
                         <Input
                             value={questionText}

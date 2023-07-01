@@ -24,6 +24,10 @@ export const fetchQuestionByText = createAsyncThunk("questions/fetchByText", asy
 })
 
 export const createOwnQuestion = createAsyncThunk("questions/createOwnQuestion", async (ownQuestion:OwnQuestion) => {
-    const res = await QuestionService.createOwnQuestion(ownQuestion)
-    return res.data
+    try {
+        const res = await QuestionService.createOwnQuestion(ownQuestion)
+        return res.data
+    } catch (e: any) {
+        throw new Error(e.response?.data) || "Неизвестная ошибка"
+    }
 })
