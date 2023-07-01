@@ -1,4 +1,4 @@
-package ru.volpi.qarest.client;
+package ru.volpi.qarest.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class ApiCorsConfiguration {
                 registry
                     .addMapping("/**")
                     .allowedOrigins("*")
-                    .allowedMethods("GET")
+                    .allowedMethods("GET","POST", "PUT", "PATCH")
                     .allowedHeaders("*");
             }
         };
