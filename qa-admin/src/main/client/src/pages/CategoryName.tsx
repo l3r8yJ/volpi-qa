@@ -56,7 +56,7 @@ const CategoryName: FC = () => {
     return (
         <MainLayout>
             <div className={"flex items-end w-full py-4"}>
-                <span className={"text-pale text-2xl"}>Категория:</span>
+                <span className={"text-pale-foreground text-2xl"}>Категория:</span>
                 {editCategoryNameMode
                     ? <form onSubmit={updateCategoryNameHandler}
                             className={"ml-2 flex items-center justify-center w-full gap-2"}>
@@ -69,7 +69,7 @@ const CategoryName: FC = () => {
                             onChange={(e) => setCategoryName(e.target.value)}
                         />
                         <PrimaryButton
-                            className={"flex items-center justify-center gap-1 w-auto bg-safe hover:bg-safeHov"}
+                            className={"flex items-center justify-center gap-1 w-auto bg-safe hover:bg-safe/80"}
                             type={"submit"}
                         >
                             <CheckIcon className={"w-5 h-5"}/>
@@ -91,7 +91,7 @@ const CategoryName: FC = () => {
                         </div>
 
                         <div
-                            className={"ml-2 cursor-pointer hover:bg-paleHov/20 p-1 rounded-full duration-150"}
+                            className={"ml-2 cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}
                             onClick={() => setEditCategoryNameMode(true)}
                         >
                             <PencilSquareIcon

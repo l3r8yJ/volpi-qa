@@ -37,7 +37,7 @@ export const ValidatedInput: FC<InputProps> = ({
 
     return (
         <label className={"w-full"}>
-            {label && <div className={"text-pale text-sm ml-1"}>{label}</div>}
+            {label && <div className={"text-pale-foreground text-sm ml-1"}>{label}</div>}
             <div className={`rounded-lg flex items-center bg-primary px-4 py-2 h-[40px] border ${statusClasses}`}>
                 <input
                     className={`${className} bg-transparent outline-none w-full`}

@@ -63,7 +63,7 @@ export const ValidatedTextArea: FC<TextAreaProps> = ({
 
     return (
         <label className="w-full">
-            {label && <div className="text-pale text-sm ml-1 w-full">{label}</div>}
+            {label && <div className="text-pale-foreground text-sm ml-1 w-full">{label}</div>}
             <textarea
                 ref={textareaRef}
                 onInput={handleInput}

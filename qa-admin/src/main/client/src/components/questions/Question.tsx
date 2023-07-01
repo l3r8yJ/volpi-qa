@@ -51,7 +51,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
     }
     return (
 
-        <div className={"p-4 bg-pale/10 rounded-lg flex space-x-6 justify-between w-full"}>
+        <div className={"p-4 bg-primary border-border/50 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
                 ? <div className={"w-full"}>
                     <div className={"flex flex-col space-y-2 w-full"}>
@@ -78,7 +78,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                     <div className={"flex space-x-2 mt-4 justify-end"}>
                         <div className={"flex gap-2"}>
                             <PrimaryButton
-                                className={"bg-safe hover:bg-safe/80 text-safe-foreground flex gap-1 items-center"}
+                                className={"bg-safe hover:bg-safe/80 flex gap-1 items-center"}
                                 onClick={updateHandler}
                             >
                                 <CheckIcon className={"w-5 h-5"}/>
@@ -101,13 +101,13 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             dangerouslySetInnerHTML={{__html: parseLinks(question.text)}}
                         ></div>
                         <div
-                            className={"text-pale"}
+                            className={"text-pale-foreground"}
                             dangerouslySetInnerHTML={{__html: parseLinks(question.answer)}}
                         ></div>
                     </div>
                     <div className={"flex items-start space-x-2"}>
                         <div
-                            className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}
+                            className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}
                             onClick={() => setIsEditMode(true)}
                         >
                             <PencilSquareIcon
@@ -116,7 +116,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                         </div>
                         <Popup
                             ButtonElement={
-                                <div className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}>
+                                <div className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}>
                                     <XMarkIcon
                                         className={"w-5 h-5"}/>
                                 </div>

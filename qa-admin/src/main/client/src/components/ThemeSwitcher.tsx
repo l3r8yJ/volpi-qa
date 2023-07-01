@@ -16,7 +16,7 @@ export const ThemeSwitcher: FC = () => {
         <div className={"relative z-10"}>
             <Listbox value={selectedTheme} onChange={setSelectedTheme}>
                 <Listbox.Button
-                    className={"flex items-center border border-border/50 bg-secondary hover:bg-secondary/80 h-10 px-4 space-x-1.5 text-secondary-foreground rounded-3xl"}>
+                    className={"flex items-center border border-border/50 bg-transparent hover:bg-secondary/80 h-10 px-4 space-x-1.5 text-secondary-foreground rounded-3xl"}>
                     {localStorage.theme === "system" ? (
                         window.matchMedia("(prefers-color-scheme: dark)").matches ? (
                             <MoonIcon className={"h-6 w-6"}/>
@@ -29,7 +29,7 @@ export const ThemeSwitcher: FC = () => {
                     <ChevronDownIcon className={"w-4 h-4"}/>
                 </Listbox.Button>
                 <Listbox.Options
-                    className={"absolute top-full right-0 mt-6 w-36 rounded-lg py-1 shadow-lg overflow-hidden bg-secondary shadow-shadow/50"}>
+                    className={"absolute top-full right-0 mt-6 w-36 rounded-lg py-1 shadow-lg overflow-hidden bg-primary shadow-shadow/50"}>
                     {Object.values(themes).map((theme) => (
                         <Listbox.Option
                             key={theme.id}

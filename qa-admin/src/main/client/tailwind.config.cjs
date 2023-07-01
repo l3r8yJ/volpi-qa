@@ -15,6 +15,13 @@ module.exports = {
                 secondary: {
                     DEFAULT: "hsl(var(--secondary))"
                 },
+                btn: {
+                    foreground: "hsl(var(--btn-foreground))"
+                },
+                contrast: {
+                    DEFAULT: "hsl(var(--contrast))",
+                    foreground: "hsl(var(--contrast-foreground))"
+                },
                 accent: {
                     DEFAULT: "hsl(var(--accent))",
                     foreground: "hsl(var(--accent-foreground))"

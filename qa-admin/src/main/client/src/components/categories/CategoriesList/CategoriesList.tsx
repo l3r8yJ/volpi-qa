@@ -43,7 +43,7 @@ export const CategoriesList: FC<CategoriesListProps> = ({testID}) => {
         <CategoryRowSkeleton width={"w-72"}/>
     </div>
     return (
-        <div className={"rounded-lg w-full"} data-testid={testID}>
+        <div className={"rounded-lg w-full p-4 bg-primary"} data-testid={testID}>
             <CategoriesListHead/>
             <ul>
                 {categories.map((c, i) => (

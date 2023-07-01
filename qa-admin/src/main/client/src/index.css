@@ -5,13 +5,54 @@
 
 @layer base {
     :root{
+        --accent: 221 83% 53%;
+        --accent-foreground: 221 83% 53%;
+
+        --primary: 0 0% 100%;
+        --primary-foreground: 0 0% 9%;
+
+        --secondary: 0 0% 97%;
+
+        --btn-foreground: 0 0% 100%;
+
+        --contrast: 0 0% 100%;
+        --contrast-foreground: 0 0% 0%;
+
+        --pale: 0 0% 83%;
+        --pale-foreground: 0 0% 45%;
+
+        --safe: 142 76% 36%;
+        --safe-foreground: 142 76% 36%;
+
+        --danger: 0 72% 51%;
+        --danger-foreground: 0 72% 51%;
+
+        --link: 234 89% 74%;
+        --link-foreground: 239 84% 67%;
+
+        --selected-foreground: 221 83% 53%;
+
+        --shadow: 0 0% 35%;
+
+        --active: 0 0% 95%;
+
+        --skeleton: 0 0% 45%;
+
+        --border: 0 0% 64%;
+    }
+    .dark{
         --accent: 245 58% 51%;
         --accent-foreground: 245 58% 51%;
 
-        --primary: 0 0% 9%;
+        --primary: 0 0% 13%;
         --primary-foreground: 0 0% 96.1%;
 
-        --secondary: 0 0% 15%;
+        --secondary: 0 0% 9%;
+
+        --btn-foreground: 0 0% 100%;
+
+        --contrast: 0 0% 0%;
+        --contrast-foreground: 0 0% 100%;
 
         --pale: 0 0% 64%;
         --pale-foreground: 0 0% 64%;

@@ -42,7 +42,7 @@ export const Modal: FC<ModalProps> = ({title, description, children, buttonText,
                             leaveTo="opacity-0 scale-95"
                         >
                             <Dialog.Panel
-                                className={"bg-shadow relative p-6 rounded-lg flex flex-col gap-y-6 text-primary-foreground w-full max-w-2xl"}>
+                                className={"bg-contrast relative p-6 rounded-lg flex flex-col gap-y-6 text-primary-foreground w-full max-w-2xl"}>
                                 <button
                                     className={"absolute right-4 top-4 p-1 hover:text-primary-foreground/80 duration-150"}
                                     onClick={() => setIsOpen(false)}
