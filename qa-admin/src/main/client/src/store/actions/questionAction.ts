@@ -38,7 +38,7 @@ export const fetchUnknownQuestions = createAsyncThunk("questions/getUnknown", as
     return res.data
 })
 
-export const deleteUnknownQuestion = createAsyncThunk("questions/deleteUnknown", async (id:Pick<UnknownQuestion, "id">) => {
+export const deleteUnknownQuestion = createAsyncThunk("questions/deleteUnknown", async (id: number) => {
     const res = await QuestionService.deleteUnknownQuestion(id)
     return res.data
 })

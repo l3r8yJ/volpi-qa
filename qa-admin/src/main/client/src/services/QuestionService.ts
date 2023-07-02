@@ -31,7 +31,8 @@ export class QuestionService {
         return $api.get<UnknownQuestion[]>("questions/unknown")
     }
 
-    static deleteUnknownQuestion(id: Pick<UnknownQuestion, "id">):Promise<AxiosResponse<UnknownQuestion>>{
+    static deleteUnknownQuestion(id: number):Promise<AxiosResponse<UnknownQuestion>>{
+        console.log(id)
         return $api.delete<UnknownQuestion>("questions/unknown/" + id)
     }
 
