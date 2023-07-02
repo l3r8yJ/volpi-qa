@@ -2,7 +2,7 @@ export const getBtnClassesByVariant = (variant: "safe" | "danger" | "default", t
     if (type === "secondary")
         switch (variant) {
             case "danger":
-                return " text-danger-foreground border-danger hover:bg-danger/80 hover:text-btn-foreground hover:border-danger/5"
+                return " text-danger-foreground border-danger hover:bg-danger/90 hover:text-btn-foreground hover:border-danger/5"
             case "safe":
                 return " text-safe-foreground border-safe hover:bg-safe/80 hover:text-btn-foreground hover:border-safe/5"
             default:
