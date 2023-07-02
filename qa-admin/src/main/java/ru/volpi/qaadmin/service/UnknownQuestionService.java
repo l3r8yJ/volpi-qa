@@ -10,4 +10,6 @@ public interface UnknownQuestionService {
     QuestionResponse addAnswer(Answer answer);
 
     List<UnknownQuestionResponse> findAll();
+
+    void deleteById(Long id);
 }
