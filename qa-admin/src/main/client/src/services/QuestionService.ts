@@ -1,6 +1,6 @@
 import {AxiosResponse} from "axios";
 import {$api} from "../http/api";
-import {IQuestion, IQuestionNoID, UnknownQuestion} from "../types/IQuestion";
+import {AnsweredUnknownQuestion, IQuestion, IQuestionNoID, UnknownQuestion} from "../types/IQuestion";
 
 export class QuestionService {
     static fetchAllQuestions(): Promise<AxiosResponse<IQuestion[]>> {
@@ -29,6 +29,14 @@ export class QuestionService {
 
     static fetchUnknownQuestions():Promise<AxiosResponse<UnknownQuestion[]>>{
         return $api.get<UnknownQuestion[]>("questions/unknown")
+    }
+
+    static deleteUnknownQuestion(id: Pick<UnknownQuestion, "id">):Promise<AxiosResponse<UnknownQuestion>>{
+        return $api.delete<UnknownQuestion>("questions/unknown/" + id)
+    }
+
+    static answerUnknownQuestion(question: AnsweredUnknownQuestion):Promise<AxiosResponse<IQuestion>>{
+        return $api.patch<IQuestion>("questions/answer", question)
     }
 
 }

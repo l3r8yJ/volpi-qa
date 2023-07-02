@@ -1,14 +1,14 @@
 import {IQuestion, UnknownQuestion} from "../../types/IQuestion";
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    answerUnknownQuestion,
     createQuestion,
-    deleteQuestion,
+    deleteQuestion, deleteUnknownQuestion,
     fetchAllQuestions,
     fetchQuestionById,
     fetchQuestionsByCategory, fetchUnknownQuestions,
     updateQuestion
 } from "../actions/questionAction";
-import {ac} from "vitest/dist/types-e3c9754d";
 
 interface QuestionState {
     questions: IQuestion[]
@@ -96,6 +96,24 @@ const questionSlice = createSlice({
             state.unknownQuestions = action.payload
             state.loading = "succeeded"
         }).addCase(fetchUnknownQuestions.rejected, (state, action) => {
+            state.loading = "failed"
+            console.log(action.error)
+        })
+
+        builder.addCase(deleteUnknownQuestion.pending, (state) => {
+            state.loading = "pending"
+        }).addCase(deleteUnknownQuestion.fulfilled, (state) => {
+            state.loading = "succeeded"
+        }).addCase(deleteUnknownQuestion.rejected, (state, action) => {
+            state.loading = "failed"
+            console.log(action.error)
+        })
+
+        builder.addCase(answerUnknownQuestion.pending, (state) => {
+            state.loading = "pending"
+        }).addCase(answerUnknownQuestion.fulfilled, (state, action) => {
+            state.loading = "succeeded"
+        }).addCase(answerUnknownQuestion.rejected, (state, action) => {
             state.loading = "failed"
             console.log(action.error)
         })

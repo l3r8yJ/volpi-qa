@@ -48,10 +48,12 @@ export const Modal: FC<ModalProps> = ({title, description, children, buttonText,
                                 >
                                     <XMarkIcon className={"w-5 h-5 "}/>
                                 </button>
-                                {title && <Dialog.Title className={"text-2xl mb-4"}>{title}</Dialog.Title>}
-                                {description && <Dialog.Description className={"text-pale-foreground"}>
+                                <div className={"flex flex-col gap-y-2"}>
+                                {title && <Dialog.Title className={"text-2xl"}>{title}</Dialog.Title>}
+                                {description && <Dialog.Description className={"text-pale-foreground text-sm"}>
                                     {description}
                                 </Dialog.Description>}
+                                </div>
                                 {children}
                             </Dialog.Panel>
                         </Transition.Child>
