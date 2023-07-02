@@ -4,13 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.volpi.qaadmin.TestcontainersTest;
-import ru.volpi.qaadmin.dto.question.Answer;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
 import ru.volpi.qaadmin.dto.question.QuestionsCategory;
 import ru.volpi.qaadmin.exception.question.QuestionNotFoundException;
-import ru.volpi.qaadmin.repository.UnknownQuestionRepository;
 import ru.volpi.qaadmin.service.CategoryService;
 import ru.volpi.qaadmin.service.QuestionService;
 

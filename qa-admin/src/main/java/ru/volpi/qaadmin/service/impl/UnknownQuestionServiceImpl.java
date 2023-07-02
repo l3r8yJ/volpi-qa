@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.volpi.qaadmin.domain.question.Question;
-import ru.volpi.qaadmin.dto.question.Answer;
+import ru.volpi.qaadmin.dto.question.AnsweredQuestion;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.dto.question.UnknownQuestionResponse;
 import ru.volpi.qaadmin.exception.category.CategoryNotFoundException;
@@ -33,32 +33,32 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
 
     @Transactional
     @Override
-    public QuestionResponse addAnswer(final Answer answer) {
-        log.info("Answer came {}", answer);
+    public QuestionResponse addAnswer(final AnsweredQuestion answeredQuestion) {
+        log.info("Answer came {}", answeredQuestion);
         return QuestionResponse.from(
-            this.unknownQuestionRepository.findById(answer.getUnknownQuestionId())
+            this.unknownQuestionRepository.findById(answeredQuestion.getUnknownQuestionId())
                 .map(
                     question -> {
                         final Question answered = this.questionRepository.save(
                             Question.builder()
-                                .text(question.getText())
-                                .answer(answer.getText())
+                                .text(answeredQuestion.getText())
+                                .answer(answeredQuestion.getAnswer())
                                 .category(
-                                    this.categoryRepository.findByNameIgnoreCase(answer.getCategory())
-                                        .orElseThrow(() -> new CategoryNotFoundException(answer.getCategory()))
+                                    this.categoryRepository.findByNameIgnoreCase(answeredQuestion.getCategory())
+                                        .orElseThrow(() -> new CategoryNotFoundException(answeredQuestion.getCategory()))
                                 )
                                 .build()
                         );
-                        this.unknownQuestionRepository.deleteById(answer.getUnknownQuestionId());
+                        this.unknownQuestionRepository.deleteById(answeredQuestion.getUnknownQuestionId());
                         this.emailService.sendNotification(
                             question.getEmail(),
                             "Ответ на Ваш вопрос добавлен",
-                            question.getText()
+                            answeredQuestion.getText()
                         );
-                        log.info("Answer {} added", answer);
+                        log.info("Answer {} added", answeredQuestion);
                         return answered;
                     }
-                ).orElseThrow(() -> new QuestionNotFoundException(answer.getUnknownQuestionId()))
+                ).orElseThrow(() -> new QuestionNotFoundException(answeredQuestion.getUnknownQuestionId()))
         );
     }
 

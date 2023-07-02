@@ -116,7 +116,7 @@ class QuestionsRestControllerTest extends TestcontainersTest {
 
     @Test
     @WithMockUser("admin")
-    @DisplayName("Adds answer to unknown question")
+    @DisplayName("Adds answeredQuestion to unknown question")
     void addsAnswerToUnknownQuestion() throws Exception {
         final String response = this.mockMvc.perform(
                 patch(ADD_ANSWER_URL)
@@ -125,7 +125,8 @@ class QuestionsRestControllerTest extends TestcontainersTest {
                     .content("""
                         {
                             "unknownQuestionId": 111,
-                            "text": "Ответ на вопрос",
+                            "text": "Мой новый вопрос",
+                            "answer": "Ответ на вопрос",
                             "category": "Первая категория"              
                         }
                         """)
