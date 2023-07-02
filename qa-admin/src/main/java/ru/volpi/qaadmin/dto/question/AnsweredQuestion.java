@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Answer {
+public class AnsweredQuestion {
     private Long unknownQuestionId;
     private String text;
+    private String answer;
     private String category;
 }

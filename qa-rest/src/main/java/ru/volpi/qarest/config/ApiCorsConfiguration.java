@@ -16,7 +16,7 @@ public class ApiCorsConfiguration {
                 registry
                     .addMapping("/**")
                     .allowedOrigins("*")
-                    .allowedMethods("GET","POST", "PUT", "PATCH")
+                    .allowedMethods("GET", "POST", "PUT", "PATCH")
                     .allowedHeaders("*");
             }
         };

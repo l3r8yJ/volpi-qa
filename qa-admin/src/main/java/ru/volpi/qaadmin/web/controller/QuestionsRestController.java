@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
-import ru.volpi.qaadmin.dto.question.Answer;
+import ru.volpi.qaadmin.dto.question.AnsweredQuestion;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
@@ -105,8 +105,8 @@ public class QuestionsRestController {
     @PatchMapping("/answer")
     public ResponseEntity<QuestionResponse> addAnswerToUnknownQuestion(
         @Parameter(name = "Ответ на вопрос")
-        @RequestBody final Answer answer
+        @RequestBody final AnsweredQuestion answeredQuestion
     ) {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.unknownQuestionService.addAnswer(answer));
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.unknownQuestionService.addAnswer(answeredQuestion));
     }
 }

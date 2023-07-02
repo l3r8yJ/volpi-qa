@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.volpi.qaadmin.TestcontainersTest;
-import ru.volpi.qaadmin.dto.question.Answer;
+import ru.volpi.qaadmin.dto.question.AnsweredQuestion;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.repository.UnknownQuestionRepository;
 
@@ -23,12 +23,13 @@ class UnknownQuestionServiceImplTest extends TestcontainersTest {
     void addsAnswer() {
         final String answerPhrase = "Ответ на ваш вопрос";
         final String secondCategory = "Вторая категория";
+        final String questionText = "Мой новый вопрос";
         final QuestionResponse actual = this.unknownService.addAnswer(
-            new Answer(111L, answerPhrase, secondCategory)
+            new AnsweredQuestion(111L, questionText, answerPhrase, secondCategory)
         );
         assertThat(this.unknownQuestionRepository.findById(111L).isPresent()).isFalse();
         assertThat(actual.answer()).isEqualTo(answerPhrase);
-        assertThat(actual.text()).isEqualTo("Мой новый вопрос");
+        assertThat(actual.text()).isEqualTo(questionText);
         assertThat(actual.categoryName()).isEqualTo(secondCategory);
     }
 

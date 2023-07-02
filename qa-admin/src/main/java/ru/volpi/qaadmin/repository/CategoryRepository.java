@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.volpi.qaadmin.domain.category.Category;
-import ru.volpi.qaadmin.dto.category.CategoryName;
 
 import java.util.List;
 import java.util.Optional;
