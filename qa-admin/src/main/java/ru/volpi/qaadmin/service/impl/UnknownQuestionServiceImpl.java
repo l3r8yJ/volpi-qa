@@ -33,32 +33,36 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
 
     @Transactional
     @Override
-    public QuestionResponse addAnswer(final AnsweredQuestion answeredQuestion) {
-        log.info("Answer came {}", answeredQuestion);
+    public QuestionResponse addAnswer(final AnsweredQuestion answered) {
+        log.info("Answer came {}", answered);
+        final Long id = answered.getUnknownQuestionId();
         return QuestionResponse.from(
-            this.unknownQuestionRepository.findById(answeredQuestion.getUnknownQuestionId())
+            this.unknownQuestionRepository.findById(id)
                 .map(
                     question -> {
-                        final Question answered = this.questionRepository.save(
-                            Question.builder()
-                                .text(answeredQuestion.getText())
-                                .answer(answeredQuestion.getAnswer())
-                                .category(
-                                    this.categoryRepository.findByNameIgnoreCase(answeredQuestion.getCategory())
-                                        .orElseThrow(() -> new CategoryNotFoundException(answeredQuestion.getCategory()))
-                                )
-                                .build()
-                        );
-                        this.unknownQuestionRepository.deleteById(answeredQuestion.getUnknownQuestionId());
-                        this.emailService.sendNotification(
+                        final Question saved = this.questionAfterSave(answered);
+                        this.unknownQuestionRepository.deleteById(id);
+                        this.emailService.sendAnsweredNotification(
                             question.getEmail(),
-                            "Ответ на Ваш вопрос добавлен",
-                            answeredQuestion.getText()
+                            saved.getText()
                         );
-                        log.info("Answer {} added", answeredQuestion);
-                        return answered;
+                        log.info("Answer {} added", saved);
+                        return saved;
                     }
-                ).orElseThrow(() -> new QuestionNotFoundException(answeredQuestion.getUnknownQuestionId()))
+                ).orElseThrow(() -> new QuestionNotFoundException(id))
+        );
+    }
+
+    private Question questionAfterSave(final AnsweredQuestion answeredQuestion) {
+        return this.questionRepository.save(
+            Question.builder()
+                .text(answeredQuestion.getText())
+                .answer(answeredQuestion.getAnswer())
+                .category(
+                    this.categoryRepository.findByNameIgnoreCase(answeredQuestion.getCategory())
+                        .orElseThrow(() -> new CategoryNotFoundException(answeredQuestion.getCategory()))
+                )
+                .build()
         );
     }
 
@@ -76,8 +80,14 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
             ).toList();
     }
 
+    @Transactional
     @Override
     public void deleteById(final Long id) {
+        this.emailService.sendRemovedNotification(
+            this.unknownQuestionRepository.findById(id)
+                .orElseThrow()
+                .getEmail()
+        );
         this.unknownQuestionRepository.deleteById(id);
     }
 }

@@ -94,7 +94,7 @@ public class QuestionsRestController {
         return ResponseEntity.ok(this.unknownQuestionService.findAll());
     }
 
-    @Operation(summary = "Удалить вопрос от пользователя по id")
+    @Operation(summary = "Удалить вопрос от пользователя по id, и отправляет уведомление")
     @DeleteMapping("/unknown/{id}")
     public ResponseEntity<Void> deleteUnknownQuestionById(@PathVariable final Long id) {
         this.unknownQuestionService.deleteById(id);
