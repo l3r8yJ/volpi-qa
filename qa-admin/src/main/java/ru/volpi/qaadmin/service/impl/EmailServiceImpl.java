@@ -13,19 +13,38 @@ public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender emailSender;
 
-    @Value("${answer.template}")
-    private String template;
+    @Value("${answer.answered-template}")
+    private String answeredTemplate;
+
+    @Value("${answer.removed-template}")
+    private String removedTemplate;
 
     @Value("${answer.from}")
     private String from;
 
+    @Value("${answer.answered-subject}")
+    private String answeredSubject;
+
+    @Value("${answer.removed-subject}")
+    private String removedSubject;
+
     @Override
-    public void sendNotification(final String to, final String subject, final String answer) {
+    public void sendAnsweredNotification(final String to, final String answer) {
         final SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(this.from);
         message.setTo(to);
-        message.setSubject(subject);
-        message.setText(this.template.formatted(answer));
+        message.setSubject(answeredSubject);
+        message.setText(this.answeredTemplate.formatted(answer));
+        this.emailSender.send(message);
+    }
+
+    @Override
+    public void sendRemovedNotification(final String to) {
+        final SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(this.from);
+        message.setTo(to);
+        message.setSubject(removedSubject);
+        message.setText(removedTemplate);
         this.emailSender.send(message);
     }
 }

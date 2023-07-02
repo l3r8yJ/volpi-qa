@@ -25,7 +25,13 @@ spring:
 server:
   port: ${QA_ADMIN_PORT}
 answer:
-  template:
+  answered-subject:
+    Ответ на Ваш вопрос добавлен
+  removed-subject:
+    Ваш вопрос был отклонен
+  answered-template:
     Мы добавили ответ на Ваш вопрос '%s' в чат!
+  removed-template:
+    К сожалению, мы не можем ответить на Ваш вопрос!
   from:
     volpi@mail.ru

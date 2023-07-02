@@ -1,5 +1,7 @@
 package ru.volpi.qaadmin.service;
 
 public interface EmailService {
-    void sendNotification(String to, String subject, String answer);
+    void sendAnsweredNotification(String to, String answer);
+
+    void sendRemovedNotification(String to);
 }
