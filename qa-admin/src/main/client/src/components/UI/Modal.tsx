@@ -10,14 +10,13 @@ type ModalProps = {
     buttonText: string
     isOpen: boolean
     setIsOpen: (isOpen: boolean) => void
+    buttonClassname?: string
 }
 
 export const Modal: FC<ModalProps> = ({title, description, children, buttonText, isOpen, setIsOpen}) => {
     return (
         <>
-            <div className={"min-w-[200px]"}>
-                <PrimaryButton onClick={() => setIsOpen(true)}>{buttonText}</PrimaryButton>
-            </div>
+            <PrimaryButton onClick={() => setIsOpen(true)}>{buttonText}</PrimaryButton>
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as={"div"} open={isOpen} onClose={() => setIsOpen(false)}>
                     <Transition.Child

@@ -34,40 +34,43 @@ export const CategoriesForm: FC = () => {
         [categories]
     )();
     return (
-        <Modal
-            title={"Создание категории"}
-            buttonText={"Новая категория"}
-            isOpen={isModalOpen}
-            setIsOpen={setIsModalOpen}
-        >
-            <form onSubmit={formHandler} className={"w-full"}>
-                <ValidatedTextArea
-                    value={categoryName}
-                    onChange={(e) => setCategoryName(e.target.value)}
-                    label={"Название категории"}
-                    showValidation={showValidation}
-                    setIsValid={setIsCategoryNameValid}
-                    isValid={isCategoryNameValid}
-                    validateFunc={validateCategoryName}
-                    className={"max-h-64 min-h-[45px]"}
-                />
-                <div className={"w-full flex justify-end mt-6"}>
-                    <div className={"text-pale-foreground flex items-end text-xs mr-2"}>Отправить: Ctrl + Enter</div>
-                    <PrimaryButton
-                        className={`min-w-[200px] ${loading === "pending" ? "cursor-not-allowed" : ""}`}
-                        type={"submit"}
-                        disabled={loading === "pending"}
-                    >
-                        {loading === "pending"
-                            ? <Loader size={LoaderSize.small}/>
-                            : <div className={"flex items-center justify-center gap-x-1"}>
-                                <PlusIcon className={"w-5 h-5"}/>
-                                <span>Создать категорию</span>
-                            </div>
-                        }
-                    </PrimaryButton>
-                </div>
-            </form>
-        </Modal>
+        <div className={"min-w-[200px]"}>
+            <Modal
+                title={"Создание категории"}
+                buttonText={"Новая категория"}
+                isOpen={isModalOpen}
+                setIsOpen={setIsModalOpen}
+            >
+                <form onSubmit={formHandler} className={"w-full"}>
+                    <ValidatedTextArea
+                        value={categoryName}
+                        onChange={(e) => setCategoryName(e.target.value)}
+                        label={"Название категории"}
+                        showValidation={showValidation}
+                        setIsValid={setIsCategoryNameValid}
+                        isValid={isCategoryNameValid}
+                        validateFunc={validateCategoryName}
+                        className={"max-h-64 min-h-[45px]"}
+                    />
+                    <div className={"w-full flex justify-end mt-6"}>
+                        <div className={"text-pale-foreground flex items-end text-xs mr-2"}>Отправить: Ctrl + Enter
+                        </div>
+                        <PrimaryButton
+                            className={`min-w-[200px] ${loading === "pending" ? "cursor-not-allowed" : ""}`}
+                            type={"submit"}
+                            disabled={loading === "pending"}
+                        >
+                            {loading === "pending"
+                                ? <Loader size={LoaderSize.small}/>
+                                : <div className={"flex items-center justify-center gap-x-1"}>
+                                    <PlusIcon className={"w-5 h-5"}/>
+                                    <span>Создать категорию</span>
+                                </div>
+                            }
+                        </PrimaryButton>
+                    </div>
+                </form>
+            </Modal>
+        </div>
     );
 }
