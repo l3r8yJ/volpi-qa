@@ -31,6 +31,11 @@ public class CategoriesRestController {
         return ResponseEntity.ok(this.categoryService.findAll());
     }
 
+    @GetMapping("/names")
+    public final ResponseEntity<?> allCategoriesNames() {
+        return ResponseEntity.ok(this.categoryService.findAllCategoriesNames());
+    }
+
     @GetMapping("/{name}")
     public final ResponseEntity<?> categoryByName(@PathVariable final String name) {
         return ResponseEntity.ok(this.categoryService.findCategoryByName(name));

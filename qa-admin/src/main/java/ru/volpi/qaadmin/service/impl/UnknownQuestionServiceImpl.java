@@ -67,7 +67,12 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
     public List<UnknownQuestionResponse> findAll() {
         return this.unknownQuestionRepository.findAll()
             .stream()
-            .map(question -> new UnknownQuestionResponse(question.getId(), question.getText()))
-            .toList();
+            .map(
+                question -> new UnknownQuestionResponse(
+                    question.getId(),
+                    question.getText(),
+                    question.getCreatedAt()
+                )
+            ).toList();
     }
 }

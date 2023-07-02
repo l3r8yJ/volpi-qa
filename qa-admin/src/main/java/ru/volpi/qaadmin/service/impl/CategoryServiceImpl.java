@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import ru.volpi.qaadmin.domain.category.Categories;
 import ru.volpi.qaadmin.domain.category.Category;
+import ru.volpi.qaadmin.dto.category.CategoryName;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
 import ru.volpi.qaadmin.dto.category.CategoryUpdate;
@@ -92,5 +93,13 @@ public class CategoryServiceImpl implements CategoryService {
         return this.categoryRepository.findByNameIgnoreCase(name)
             .map(Category::getId)
             .orElseThrow(() -> new CategoryNotFoundException(name));
+    }
+
+    @Override
+    public List<CategoryName> findAllCategoriesNames() {
+        return this.categoryRepository.findAllCategoriesNames()
+            .stream()
+            .map(CategoryName::new)
+            .toList();
     }
 }

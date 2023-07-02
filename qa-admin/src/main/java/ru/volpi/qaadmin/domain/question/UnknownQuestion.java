@@ -9,7 +9,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
+
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -30,4 +33,7 @@ public class UnknownQuestion {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @NonNull
+    @Column(name = "created_at", nullable = false)
+    private ZonedDateTime createdAt;
 }

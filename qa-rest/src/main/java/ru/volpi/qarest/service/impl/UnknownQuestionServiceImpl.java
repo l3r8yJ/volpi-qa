@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.volpi.qarest.common.Messages;
+import ru.volpi.qarest.domain.question.UnknownQuestion;
 import ru.volpi.qarest.dto.question.RegisterUnknownQuestion;
 import ru.volpi.qarest.dto.question.ResponseDto;
 import ru.volpi.qarest.exception.question.EmailAlreadyExistsException;
@@ -16,6 +17,8 @@ import ru.volpi.qarest.repository.question.UnknownQuestionRepository;
 import ru.volpi.qarest.service.UnknownQuestionService;
 import ru.volpi.qarest.service.mapper.UnknownQuestionMapper;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Set;
 
 @Service
@@ -38,7 +41,13 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
             throw new EmailAlreadyExistsException();
         }
         this.validate(register);
-        this.unknownQuestionRepository.save(this.questionMapper.toEntity(register));
+        final UnknownQuestion question = this.questionMapper.toEntity(register);
+        question.setCreatedAt(
+            ZonedDateTime.now().withZoneSameLocal(
+                ZoneId.of("Europe/Moscow")
+            )
+        );
+        this.unknownQuestionRepository.save(question);
         return ResponseDto.builder()
             .text(Messages.NEW_QUESTION_ADDED.formatted(register.getText()))
             .build();

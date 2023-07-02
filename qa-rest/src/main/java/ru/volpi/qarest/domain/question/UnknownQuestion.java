@@ -12,8 +12,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "unknown_questions", schema = "unknown_questions_storage")
@@ -37,5 +40,8 @@ public class UnknownQuestion {
     @NotNull
     @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "created_at", nullable = true)
+    private ZonedDateTime createdAt;
 
 }

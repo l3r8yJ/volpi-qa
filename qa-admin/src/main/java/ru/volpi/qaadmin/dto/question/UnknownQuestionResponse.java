@@ -1,4 +1,6 @@
 package ru.volpi.qaadmin.dto.question;
 
-public record UnknownQuestionResponse(Long id, String text) {
+import java.time.ZonedDateTime;
+
+public record UnknownQuestionResponse(Long id, String text, ZonedDateTime createdAt) {
 }

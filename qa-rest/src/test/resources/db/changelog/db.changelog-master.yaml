@@ -9,3 +9,5 @@ databaseChangeLog:
       file: db/changelog/004-add-user-role.sql
   - include:
       file: db/changelog/005-add-unknown-questions.sql
+  - include:
+      file: db/changelog/006-add-unknown-questions-created-at.sql

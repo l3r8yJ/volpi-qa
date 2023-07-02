@@ -3,6 +3,7 @@ package ru.volpi.qarest.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
+import ru.volpi.qarest.dto.category.CategoryName;
 import ru.volpi.qarest.dto.category.CategoryResponse;
 import ru.volpi.qarest.exception.category.CategoryNotFoundException;
 import ru.volpi.qarest.repository.category.CategoryRepository;
@@ -39,5 +40,13 @@ public class ReadCategoryServiceImpl implements ReadCategoryService {
     public List<CategoryResponse> findAllCategories() {
         return this.categoryRepository.findAll()
             .stream().map(CategoryResponse::from).toList();
+    }
+
+    @Override
+    public List<CategoryName> findAllCategoriesNames() {
+        return this.categoryRepository.findAllCategoriesNames()
+            .stream()
+            .map(CategoryName::new)
+            .toList();
     }
 }

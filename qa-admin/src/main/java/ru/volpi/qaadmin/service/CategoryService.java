@@ -1,5 +1,6 @@
 package ru.volpi.qaadmin.service;
 
+import ru.volpi.qaadmin.dto.category.CategoryName;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
 import ru.volpi.qaadmin.dto.category.CategoryUpdate;
@@ -19,4 +20,6 @@ public interface CategoryService {
     Long deleteById(Long id);
 
     Long categoryIdByName(String name);
+
+    List<CategoryName> findAllCategoriesNames();
 }
