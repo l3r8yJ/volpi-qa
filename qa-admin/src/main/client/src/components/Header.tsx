@@ -38,7 +38,7 @@ export const Header: FC = () => {
                                 : <Link to={"/unknown-questions"}
                                         className={"flex gap-x-1 items-center hover:text-primary-foreground/80 duration-150"}>
                                     <FolderIcon className={"w-5 h-5"}/>
-                                    <span>Заданные вопросы (3)</span>
+                                    <span>Заданные вопросы</span>
                                 </Link>
                         }
                         <div
