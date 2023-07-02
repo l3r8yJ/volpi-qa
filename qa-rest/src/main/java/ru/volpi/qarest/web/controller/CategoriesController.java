@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.volpi.qarest.dto.category.CategoryName;
 import ru.volpi.qarest.service.ReadCategoryService;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -30,5 +33,10 @@ public class CategoriesController {
     @GetMapping("/{id}")
     public final ResponseEntity<?> categoryById(@PathVariable final Long id) {
         return ResponseEntity.ok(this.categoryService.findCategoryById(id));
+    }
+
+    @GetMapping("/names")
+    public final ResponseEntity<List<CategoryName>> allCategoriesNames() {
+        return ResponseEntity.ok(this.categoryService.findAllCategoriesNames());
     }
 }
