@@ -34,7 +34,7 @@ export const UnknownQuestion: FC<UnknownQuestionProps> = ({question}) => {
                             <span>Отменить</span>
                         </PrimaryButton>,
                         <SecondaryButton
-                            className={"flex items-center justify-center gap-x-1"}
+                            className={"flex items-center justify-center gap-x-1 w-full"}
                             variant={"danger"}
                         >
                             <XMarkIcon className={"w-5 h-5"}/>

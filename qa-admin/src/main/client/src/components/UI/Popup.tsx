@@ -14,14 +14,14 @@ export const Popup: FC<PopupProps> = ({ButtonElement, children, title, position 
     const testID = process.env.NODE_ENV === "test" ? PopupTestID : undefined
     return (
         <Popover className="relative flex outline-none" data-testid={testID}>
-            <Popover.Button className={"outline-none"}>{ButtonElement}</Popover.Button>
+            <Popover.Button className={"outline-none"} as={"div"}>{ButtonElement}</Popover.Button>
             <Popover.Panel
                 className={`absolute text-primary-foreground z-10 ${position === "left" ? "right-0" : "left-0"} top-10 bg-primary shadow-lg shadow-shadow/40 p-4 rounded-lg min-w-[300px] w-auto space-y-4`}
             >
-                {title && <div className={"text-xl"}>{title}</div>}
+                {title && <div className={"text-lg"}>{title}</div>}
                 {children}
                 {optionButtons &&
-                    <div className={"space-x-2 flex justify-end"}>
+                    <div className={"flex flex-col gap-y-2"}>
                         {optionButtons.map(btn => (
                             <Popover.Button key={Math.random()} as={"div"}>{btn}</Popover.Button>
                         ))}

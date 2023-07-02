@@ -32,20 +32,20 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
             <Popup
                 title={"Вы уверены, что хотите удалить категорию?"}
                 ButtonElement={
-                    <div className={"hover:bg-pale/20 p-1 rounded-full"}>
+                    <button className={"hover:bg-pale/20 p-1 rounded-full"}>
                         <XMarkIcon className={"w-5 h-5"}/>
-                    </div>
+                    </button>
                 }
                 optionButtons={[
                     <PrimaryButton
-                        className={"flex items-center gap-1"}
+                        className={"flex items-center justify-center gap-1"}
                         variant={"safe"}
                     >
                         <NoSymbolIcon className={"w-5 h-5"}/>
                         <span>Не удалять</span>
                     </PrimaryButton>,
                     <SecondaryButton
-                        className={"flex items-center gap-1"}
+                        className={"flex items-center justify-center gap-1"}
                         variant={"danger"}
                         onClick={deleteBtnHandler}
                     >
