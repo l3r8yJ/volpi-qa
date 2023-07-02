@@ -95,7 +95,7 @@ public class QuestionsRestController {
     }
 
     @Operation(summary = "Удалить вопрос от пользователя по id")
-    @DeleteMapping("/unknown")
+    @DeleteMapping("/unknown/{id}")
     public ResponseEntity<Void> deleteUnknownQuestionById(@PathVariable final Long id) {
         this.unknownQuestionService.deleteById(id);
         return ResponseEntity.accepted().build();
