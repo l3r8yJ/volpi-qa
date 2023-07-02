@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import ru.volpi.qarest.exception.category.CategoryNotFoundException;
+import ru.volpi.qarest.exception.question.EmailAlreadyExistsException;
 import ru.volpi.qarest.exception.question.QuestionAlreadyExistsException;
 import ru.volpi.qarest.exception.question.QuestionNotFoundException;
 import ru.volpi.qarest.exception.question.QuestionValidationException;
@@ -44,6 +45,12 @@ public class GlobalHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(QuestionAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public final ResponseEntity<?> onQuestionAlreadyExistsException(final QuestionAlreadyExistsException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public final ResponseEntity<?> onEmailAlreadyExistsException(final EmailAlreadyExistsException exc) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exc.getMessage());
     }
 }
