@@ -7,6 +7,7 @@ import {deleteCategory, fetchCategories} from "../../../store/actions/categoryAc
 import {Popup} from "../../UI/Popup";
 import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
 import {NoSymbolIcon} from "@heroicons/react/20/solid";
+import {SecondaryButton} from "../../UI/SecondaryButton";
 
 interface CategoryRowProps extends ICategoryNoQuestions {
     testID?: string
@@ -37,16 +38,20 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
                 }
                 optionButtons={[
                     <PrimaryButton
-                        className={"bg-danger hover:bg-danger/80 flex items-center gap-1"}
+                        className={"flex items-center gap-1"}
+                        variant={"safe"}
+                    >
+                        <NoSymbolIcon className={"w-5 h-5"}/>
+                        <span>Не удалять</span>
+                    </PrimaryButton>,
+                    <SecondaryButton
+                        className={"flex items-center gap-1"}
+                        variant={"danger"}
                         onClick={deleteBtnHandler}
                     >
                         <XMarkIcon className={"w-5 h-5"}/>
                         <span>Удалить</span>
-                    </PrimaryButton>,
-                    <PrimaryButton className={"flex items-center gap-1"}>
-                        <NoSymbolIcon className={"w-5 h-5"}/>
-                        <span>Не удалять</span>
-                    </PrimaryButton>
+                    </SecondaryButton>
                 ]}
             >
             </Popup>

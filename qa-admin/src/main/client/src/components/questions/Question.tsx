@@ -10,6 +10,7 @@ import {createValidateInputValueFunc} from "../../utils/createValidateInputValue
 import {ValidatedTextArea} from "../UI/ValidatedTextArea";
 import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid";
 import {parseLinks} from "../../utils/parseLinks/parseLinks";
+import {SecondaryButton} from "../UI/SecondaryButton";
 
 interface QuestionProps {
     question: IQuestion
@@ -78,19 +79,20 @@ export const Question: FC<QuestionProps> = ({question}) => {
                     <div className={"flex space-x-2 mt-4 justify-end"}>
                         <div className={"flex gap-2"}>
                             <PrimaryButton
-                                className={"bg-safe hover:bg-safe/80 flex gap-1 items-center"}
-                                onClick={updateHandler}
-                            >
-                                <CheckIcon className={"w-5 h-5"}/>
-                                <span>Сохранить</span>
-                            </PrimaryButton>
-                            <PrimaryButton
                                 className={"flex items-center gap-1"}
+                                variant={"safe"}
                                 onClick={cancelHandler}
                             >
                                 <NoSymbolIcon className={"w-5 h-5"}/>
                                 <span>Отменить</span>
                             </PrimaryButton>
+                            <SecondaryButton
+                                className={"flex gap-1 items-center"}
+                                onClick={updateHandler}
+                            >
+                                <CheckIcon className={"w-5 h-5"}/>
+                                <span>Сохранить</span>
+                            </SecondaryButton>
                         </div>
                     </div>
                 </div>
@@ -123,19 +125,21 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             }
                             optionButtons={[
                                 <PrimaryButton
-                                    className={"bg-danger hover:bg-danger/80 flex gap-1 items-center"}
-                                    onClick={deleteHandler}
-                                >
-                                    <XMarkIcon className={"w-5 h-5"}/>
-                                    <span>Удалить</span>
-                                </PrimaryButton>,
-                                <PrimaryButton
+                                    variant={"safe"}
                                     className={"flex items-center gap-1"}
                                     onClick={cancelHandler}
                                 >
                                     <NoSymbolIcon className={"w-5 h-5"}/>
                                     <span>Отменить</span>
-                                </PrimaryButton>
+                                </PrimaryButton>,
+                                <SecondaryButton
+                                    variant={"danger"}
+                                    className={"flex gap-1 items-center"}
+                                    onClick={deleteHandler}
+                                >
+                                    <XMarkIcon className={"w-5 h-5"}/>
+                                    <span>Удалить</span>
+                                </SecondaryButton>
                             ]}
                             title={"Уверены, что хотите удалить вопрос?"}
                         >

@@ -14,6 +14,7 @@ import {PencilSquareIcon} from "@heroicons/react/24/outline";
 import {fetchCategories, updateCategory} from "../store/actions/categoryAction";
 import {clearQuestions} from "../store/reducers/questionSlice";
 import {PrimaryButton} from "../components/UI/PrimaryButton/PrimaryButton";
+import {SecondaryButton} from "../components/UI/SecondaryButton";
 
 const CategoryName: FC = () => {
     const navigate = useNavigate()
@@ -69,13 +70,7 @@ const CategoryName: FC = () => {
                             onChange={(e) => setCategoryName(e.target.value)}
                         />
                         <PrimaryButton
-                            className={"flex items-center justify-center gap-1 w-auto bg-safe hover:bg-safe/80"}
-                            type={"submit"}
-                        >
-                            <CheckIcon className={"w-5 h-5"}/>
-                            <span>Сохранить</span>
-                        </PrimaryButton>
-                        <PrimaryButton
+                            variant={"safe"}
                             type={"reset"}
                             className={"flex items-center justify-center gap-1 w-auto"}
                             onClick={exitEditModeHandler}
@@ -83,6 +78,13 @@ const CategoryName: FC = () => {
                             <NoSymbolIcon className={"w-5 h-5"}/>
                             <span>Отменить</span>
                         </PrimaryButton>
+                        <SecondaryButton
+                            className={"flex items-center justify-center gap-1 w-auto"}
+                            type={"submit"}
+                        >
+                            <CheckIcon className={"w-5 h-5"}/>
+                            <span>Сохранить</span>
+                        </SecondaryButton>
 
                     </form>
                     : <div className={"flex items-center"}>

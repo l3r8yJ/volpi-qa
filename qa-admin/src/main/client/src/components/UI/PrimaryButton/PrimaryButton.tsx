@@ -1,12 +1,16 @@
 import {ButtonHTMLAttributes, FC} from 'react';
+import {getBtnClassesByVariant} from "../../../utils/getbtnClassesByVariant";
 
-export const PrimaryButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({children, className, ...props}) => {
-    if (!className) className = ""
-    if (!className?.includes("bg")) className += " bg-accent hover:bg-accent/80"
+interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+    variant?: "danger" | "safe" | "default"
+}
+
+export const PrimaryButton: FC<PrimaryButtonProps> = ({children, className, variant = "default", ...props}) => {
+    className += getBtnClassesByVariant(variant, "primary")
     if (!className?.includes("w")) className += " w-full"
     return (
         <button
-            className={`${className ? className : ""} px-4 py-2 rounded-lg text-btn-foreground`} {...props}>
+            className={`${className ? className : ""} px-4 py-2 rounded-lg border text-btn-foreground text-sm`} {...props}>
             {children}
         </button>
     );
