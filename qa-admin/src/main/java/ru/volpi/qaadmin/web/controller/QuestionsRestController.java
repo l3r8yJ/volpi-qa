@@ -38,6 +38,7 @@ public class QuestionsRestController {
 
     private final UnknownQuestionService unknownQuestionService;
 
+    @Operation(summary = "Достает все вопросы")
     @GetMapping
     public ResponseEntity<?> allQuestions() {
         return ResponseEntity.ok(this.questionService.findAll());
