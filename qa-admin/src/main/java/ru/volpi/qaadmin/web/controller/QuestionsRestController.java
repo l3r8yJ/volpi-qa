@@ -84,7 +84,7 @@ public class QuestionsRestController {
     }
 
     @Operation(summary = "Достает все вопросы от пользователей")
-    @GetMapping
+    @GetMapping("/unknown")
     public ResponseEntity<?> unknownQuestions() {
         return ResponseEntity.ok(this.unknownQuestionService.findAll());
     }
