@@ -1,6 +1,5 @@
 package ru.volpi.qaadmin.service;
 
-import ru.volpi.qaadmin.dto.question.Answer;
 import ru.volpi.qaadmin.dto.question.QuestionRegistration;
 import ru.volpi.qaadmin.dto.question.QuestionResponse;
 import ru.volpi.qaadmin.dto.question.QuestionUpdate;
@@ -20,6 +19,4 @@ public interface QuestionService {
     QuestionResponse save(QuestionRegistration registration);
 
     Long deleteById(Long id);
-
-    QuestionResponse addAnswer(Answer answer);
 }

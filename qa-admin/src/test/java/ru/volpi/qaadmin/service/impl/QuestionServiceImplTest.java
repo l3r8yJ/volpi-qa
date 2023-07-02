@@ -40,9 +40,6 @@ class QuestionServiceImplTest extends TestcontainersTest {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private UnknownQuestionRepository unknownQuestionRepository;
-
     @Test
     @DisplayName("Finds all questions")
     void findsAllQuestions() {
@@ -116,19 +113,5 @@ class QuestionServiceImplTest extends TestcontainersTest {
             () -> this.questionService.findById(DELETION_QUESTION_ID),
             "Вопрос с id '%d' не найден!".formatted(DELETION_QUESTION_ID)
         );
-    }
-
-    @Test
-    @DisplayName("Adds answer to unknown question")
-    void sendsAnswer() {
-        final String answerPhrase = "Ответ на ваш вопрос";
-        final String secondCategory = "Вторая категория";
-        final QuestionResponse actual = this.questionService.addAnswer(
-            new Answer(111L, answerPhrase, secondCategory)
-        );
-        assertThat(this.unknownQuestionRepository.findById(111L).isPresent()).isFalse();
-        assertThat(actual.answer()).isEqualTo(answerPhrase);
-        assertThat(actual.text()).isEqualTo("Мой новый вопрос");
-        assertThat(actual.categoryName()).isEqualTo(secondCategory);
     }
 }
