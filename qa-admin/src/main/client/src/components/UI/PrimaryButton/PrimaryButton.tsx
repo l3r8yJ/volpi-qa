@@ -6,6 +6,7 @@ interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 
 export const PrimaryButton: FC<PrimaryButtonProps> = ({children, className, variant = "default", ...props}) => {
+    if(!className) className = ""
     className += getBtnClassesByVariant(variant, "primary")
     if (!className?.includes("w")) className += " w-full"
     return (

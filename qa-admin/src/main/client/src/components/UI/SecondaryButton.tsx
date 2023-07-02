@@ -6,6 +6,7 @@ interface SecondaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 
 export const SecondaryButton: FC<SecondaryButtonProps> = ({children, className, variant = "default", ...props}) => {
+    if(!className) className = ""
     className += getBtnClassesByVariant(variant, "secondary")
     if (!className?.includes("w")) className += " w-full"
     return (
