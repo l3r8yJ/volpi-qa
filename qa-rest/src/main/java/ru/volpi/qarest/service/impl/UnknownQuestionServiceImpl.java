@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.volpi.qarest.common.Messages;
 import ru.volpi.qarest.dto.question.RegisterUnknownQuestion;
 import ru.volpi.qarest.dto.question.ResponseDto;
+import ru.volpi.qarest.exception.question.EmailAlreadyExistsException;
 import ru.volpi.qarest.exception.question.QuestionAlreadyExistsException;
 import ru.volpi.qarest.exception.question.QuestionValidationException;
 import ru.volpi.qarest.repository.question.QuestionRepository;
@@ -34,7 +35,7 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
     @Override
     public ResponseDto save(final RegisterUnknownQuestion register) {
         if (this.unknownQuestionRepository.existsByEmail(register.getEmail())) {
-            throw new QuestionAlreadyExistsException("Вы ужа задали вопрос, мы обрабатываем его");
+            throw new EmailAlreadyExistsException();
         }
         this.validate(register);
         this.unknownQuestionRepository.save(this.questionMapper.toEntity(register));
