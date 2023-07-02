@@ -37,8 +37,8 @@ export const ValidatedInput: FC<InputProps> = ({
 
     return (
         <label className={"w-full"}>
-            {label && <div className={"text-pale text-sm ml-1"}>{label}</div>}
-            <div className={`rounded-lg flex items-center bg-secondary px-4 py-2 h-[40px] border ${statusClasses}`}>
+            {label && <div className={"text-pale-foreground text-sm ml-1"}>{label}</div>}
+            <div className={`rounded-lg flex items-center bg-primary px-4 py-2 h-[40px] border ${statusClasses}`}>
                 <input
                     className={`${className} bg-transparent outline-none w-full`}
                     value={value}
@@ -48,14 +48,14 @@ export const ValidatedInput: FC<InputProps> = ({
                 {isPassword &&
                     <div className={"cursor-pointer"} onClick={() => setIsShowPassword(prev => !prev)}>
                         {isShowPassword
-                            ? <EyeSlashIcon className={"w-5 h-5 hover:text-contrastHov"}/>
-                            : <EyeIcon className={"w-5 h-5 hover:text-contrastHov"}/>
+                            ? <EyeSlashIcon className={"w-5 h-5 hover:text-primary-foreground/80"}/>
+                            : <EyeIcon className={"w-5 h-5 hover:text-primary-foreground/80"}/>
                         }
                     </div>
                 }
             </div>
             {showValidation && <div
-                className={`text-sm ${validateResult === "выглядит хорошо!" ? "text-safe/80" : "text-danger/80"}`}>{validateResult}</div>}
+                className={`text-sm ${validateResult === "выглядит хорошо!" ? "text-safe-foreground/80" : "text-danger-foreground/80"}`}>{validateResult}</div>}
         </label>
     );
 }

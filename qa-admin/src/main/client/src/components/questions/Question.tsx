@@ -10,6 +10,7 @@ import {createValidateInputValueFunc} from "../../utils/createValidateInputValue
 import {ValidatedTextArea} from "../UI/ValidatedTextArea";
 import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid";
 import {parseLinks} from "../../utils/parseLinks/parseLinks";
+import {SecondaryButton} from "../UI/SecondaryButton";
 
 interface QuestionProps {
     question: IQuestion
@@ -51,7 +52,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
     }
     return (
 
-        <div className={"p-4 bg-border/10 rounded-lg flex space-x-6 justify-between w-full"}>
+        <div className={"p-4 bg-primary border-border/50 rounded-lg flex space-x-6 justify-between w-full"}>
             {isEditMode
                 ? <div className={"w-full"}>
                     <div className={"flex flex-col space-y-2 w-full"}>
@@ -78,19 +79,20 @@ export const Question: FC<QuestionProps> = ({question}) => {
                     <div className={"flex space-x-2 mt-4 justify-end"}>
                         <div className={"flex gap-2"}>
                             <PrimaryButton
-                                className={"bg-safe hover:bg-safeHov flex gap-1 items-center"}
-                                onClick={updateHandler}
-                            >
-                                <CheckIcon className={"w-5 h-5"}/>
-                                <span>Сохранить</span>
-                            </PrimaryButton>
-                            <PrimaryButton
                                 className={"flex items-center gap-1"}
+                                variant={"safe"}
                                 onClick={cancelHandler}
                             >
                                 <NoSymbolIcon className={"w-5 h-5"}/>
                                 <span>Отменить</span>
                             </PrimaryButton>
+                            <SecondaryButton
+                                className={"flex gap-1 items-center"}
+                                onClick={updateHandler}
+                            >
+                                <CheckIcon className={"w-5 h-5"}/>
+                                <span>Сохранить</span>
+                            </SecondaryButton>
                         </div>
                     </div>
                 </div>
@@ -101,13 +103,13 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             dangerouslySetInnerHTML={{__html: parseLinks(question.text)}}
                         ></div>
                         <div
-                            className={"text-pale"}
+                            className={"text-pale-foreground"}
                             dangerouslySetInnerHTML={{__html: parseLinks(question.answer)}}
                         ></div>
                     </div>
                     <div className={"flex items-start space-x-2"}>
                         <div
-                            className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}
+                            className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}
                             onClick={() => setIsEditMode(true)}
                         >
                             <PencilSquareIcon
@@ -116,26 +118,28 @@ export const Question: FC<QuestionProps> = ({question}) => {
                         </div>
                         <Popup
                             ButtonElement={
-                                <div className={"cursor-pointer hover:bg-pale/20 p-1 rounded-full duration-150"}>
+                                <div className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}>
                                     <XMarkIcon
                                         className={"w-5 h-5"}/>
                                 </div>
                             }
                             optionButtons={[
                                 <PrimaryButton
-                                    className={"bg-danger hover:bg-dangerHov flex gap-1 items-center"}
-                                    onClick={deleteHandler}
-                                >
-                                    <XMarkIcon className={"w-5 h-5"}/>
-                                    <span>Удалить</span>
-                                </PrimaryButton>,
-                                <PrimaryButton
+                                    variant={"safe"}
                                     className={"flex items-center gap-1"}
                                     onClick={cancelHandler}
                                 >
                                     <NoSymbolIcon className={"w-5 h-5"}/>
                                     <span>Отменить</span>
-                                </PrimaryButton>
+                                </PrimaryButton>,
+                                <SecondaryButton
+                                    variant={"danger"}
+                                    className={"flex gap-1 items-center"}
+                                    onClick={deleteHandler}
+                                >
+                                    <XMarkIcon className={"w-5 h-5"}/>
+                                    <span>Удалить</span>
+                                </SecondaryButton>
                             ]}
                             title={"Уверены, что хотите удалить вопрос?"}
                         >

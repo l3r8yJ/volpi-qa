@@ -16,7 +16,7 @@ export const CategoryOption: FC<CategoryProps> = ({category}) => {
     return (
         <div
             onClick={chooseCategoryHandler}
-            className={"p-4 bg-zinc-100 rounded-lg cursor-pointer hover:bg-zinc-200 duration-200 break-words"}
+            className={"p-4 rounded-lg cursor-pointer border border-neutral-300/50 hover:shadow-lg hover:scale-105 duration-150 break-words shadow-md shadow-zinc-200"}
         >
             {category.name}
         </div>

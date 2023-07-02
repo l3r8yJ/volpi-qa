@@ -8,7 +8,7 @@ export const Sidebar: FC<SidebarProps> = ({children}) => {
 
     return (
         <div
-            className={"sticky top-20 flex flex-col min-w-60 rounded-lg p-4 border border-border/50 shadow-lg shadow-shadow/40 mr-4"}>
+            className={"sticky top-20 flex flex-col rounded-lg p-4 border border-border/50 shadow-lg shadow-shadow/40 mr-4"}>
             {children}
         </div>
     );

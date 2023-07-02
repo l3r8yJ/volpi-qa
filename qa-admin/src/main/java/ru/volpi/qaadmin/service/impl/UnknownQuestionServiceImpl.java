@@ -75,4 +75,9 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
                 )
             ).toList();
     }
+
+    @Override
+    public void deleteById(final Long id) {
+        this.unknownQuestionRepository.deleteById(id);
+    }
 }

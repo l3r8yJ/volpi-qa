@@ -7,6 +7,7 @@ import {deleteCategory, fetchCategories} from "../../../store/actions/categoryAc
 import {Popup} from "../../UI/Popup";
 import {PrimaryButton} from "../../UI/PrimaryButton/PrimaryButton";
 import {NoSymbolIcon} from "@heroicons/react/20/solid";
+import {SecondaryButton} from "../../UI/SecondaryButton";
 
 interface CategoryRowProps extends ICategoryNoQuestions {
     testID?: string
@@ -22,31 +23,35 @@ export const CategoryRow: FC<CategoryRowProps> = ({id, name, testID, num}) => {
     return (
         <li
             data-testid={testID}
-            className={"even:bg-secondaryEven flex justify-between rounded-lg items-center hover:bg-primaryHov px-4"}
+            className={"even:bg-secondary flex justify-between rounded-lg items-center hover:bg-accent hover:text-btn-foreground px-4 group"}
         >
             <Link to={"/categories/" + name} className={"flex w-full py-2"}>
-                <div className={"w-10 text-pale"}>{num}</div>
+                <div className={"w-10 text-pale-foreground group-hover:text-btn-foreground"}>{num}</div>
                 <div className={"pl-2 break-words flex-1"}>{name}</div>
             </Link>
             <Popup
                 title={"Вы уверены, что хотите удалить категорию?"}
                 ButtonElement={
-                    <div className={"hover:bg-paleHov/20 p-1 rounded-full duration-150"}>
+                    <button className={"hover:bg-pale/20 p-1 rounded-full"}>
                         <XMarkIcon className={"w-5 h-5"}/>
-                    </div>
+                    </button>
                 }
                 optionButtons={[
                     <PrimaryButton
-                        className={"bg-danger hover:bg-dangerHov flex items-center gap-1"}
+                        className={"flex items-center justify-center gap-1"}
+                        variant={"safe"}
+                    >
+                        <NoSymbolIcon className={"w-5 h-5"}/>
+                        <span>Не удалять</span>
+                    </PrimaryButton>,
+                    <SecondaryButton
+                        className={"flex items-center justify-center gap-1"}
+                        variant={"danger"}
                         onClick={deleteBtnHandler}
                     >
                         <XMarkIcon className={"w-5 h-5"}/>
                         <span>Удалить</span>
-                    </PrimaryButton>,
-                    <PrimaryButton className={"flex items-center gap-1"}>
-                        <NoSymbolIcon className={"w-5 h-5"}/>
-                        <span>Не удалять</span>
-                    </PrimaryButton>
+                    </SecondaryButton>
                 ]}
             >
             </Popup>
