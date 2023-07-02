@@ -70,4 +70,9 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
             .map(question -> new UnknownQuestionResponse(question.getId(), question.getText()))
             .toList();
     }
+
+    @Override
+    public void deleteById(final Long id) {
+        this.unknownQuestionRepository.deleteById(id);
+    }
 }
