@@ -10,7 +10,7 @@ export const store = configureStore({
         question: questionReducer,
         category: categoryReducer,
         view: viewReducer,
-        modal: modalReducer
+        modal: modalReducer,
     }
 })
 

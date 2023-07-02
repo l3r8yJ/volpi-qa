@@ -24,7 +24,7 @@ describe("PrimaryButton", () => {
         })
 
         it("renders correctly with default and additional classes", () => {
-            expect(buttonElement).toHaveClass("bg-primary hover:bg-primaryHov w-full px-4 py-2 rounded-lg")
+            expect(buttonElement).toHaveClass("bg-accent hover:bg-accent/80 w-full px-4 py-2 rounded-lg")
             renderOption.rerender(
                 <PrimaryButton
                     data-testid={PrimaryButtonTestID}

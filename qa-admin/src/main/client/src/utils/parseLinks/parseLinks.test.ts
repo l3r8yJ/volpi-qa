@@ -1,7 +1,7 @@
 import {describe, expect, it} from "vitest"
 import {parseLinks} from "./parseLinks";
 
-const aClasses = '\"text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded\"'
+const aClasses = '\"text-link-foreground hover:text-link-foreground/80\"'
 
 describe("parseLinks", () => {
     it.each([
@@ -15,15 +15,15 @@ describe("parseLinks", () => {
         ],
         [
             "https://volpi.ru/losos/karas",
-            "<a href='https://volpi.ru/losos/karas' class=\"text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded\">volpi.ru/losos/karas</a>"
+            `<a href='https://volpi.ru/losos/karas' class=${aClasses}>volpi.ru/losos/karas</a>`
         ],
         [
             "sdlkf sdf ksa https://volpi.ru/losos/karas asdlfk",
-            "sdlkf sdf ksa <a href='https://volpi.ru/losos/karas' class=\"text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded\">volpi.ru/losos/karas</a> asdlfk"
+            `sdlkf sdf ksa <a href='https://volpi.ru/losos/karas' class=${aClasses}>volpi.ru/losos/karas</a> asdlfk`
         ],
         [
             "some big link vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfjkashdfkhkajsdfhasjkdhfkjashdjkfhaksjhdfkjhasdhfkjahsdkfljhaskjdhfkjhasd",
-            "some big link <a href='https://vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfjkashdfkhkajsdfhasjkdhfkjashdjkfhaksjhdfkjhasdhfkjahsdkfljhaskjdhfkjhasd\' class=\"text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded\">vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfj...</a>"
+            `some big link <a href='https://vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfjkashdfkhkajsdfhasjkdhfkjashdjkfhaksjhdfkjhasdhfkjahsdkfljhaskjdhfkjhasd' class=${aClasses}>vk.com/fjhasdkjfhajksdhfkadshkfhasjdkhfj...</a>`
         ],
         [
             "andrew-semyonov.vercel.app",

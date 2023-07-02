@@ -3,7 +3,7 @@ export const parseLinks = (text: string) => {
     return text.replace(urlRegex, (url: string, domainAndPath: string) => {
         const fullUrl = url.startsWith("http") ? url : `https://${url}`;
         if (domainAndPath.length > 40) domainAndPath = domainAndPath.slice(0, 40) + "..."
-        return `<a href='${fullUrl}' class="text-link hover:text-linkHov text-base bg-secondary p-0.5 border border-border/40 rounded">${domainAndPath}</a>`;
+        return `<a href='${fullUrl}' class="text-link-foreground hover:text-link-foreground/80">${domainAndPath}</a>`;
     });
 }
 

@@ -9,3 +9,7 @@ export interface IQuestionNoID {
 export interface IQuestion extends IQuestionNoID {
     id: number
 }
+
+export type UnknownQuestion = Pick<IQuestion, "id" | "text">
+
+export type AnsweredUnknownQuestion = Pick<IQuestion, "text" | "answer"> & { unknownQuestionId: number, category: string }

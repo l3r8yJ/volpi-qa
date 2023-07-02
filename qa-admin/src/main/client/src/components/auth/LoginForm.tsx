@@ -62,7 +62,11 @@ export const LoginForm: FC = () => {
                         onClick={inputClickHandler}
                     />
                 </div>
-                <PrimaryButton type={"submit"} className={"flex items-center justify-center mt-8 min-h-[40px]"}>
+                <PrimaryButton
+                    type={"submit"}
+                    className={`flex items-center justify-center mt-8 min-h-[40px] ${loading === "pending" ? "cursor-not-allowed" : ""}`}
+                    disabled={loading === "pending"}
+                >
                     {loading === "pending"
                         ? <Loader size={LoaderSize.small}/>
                         : <>
