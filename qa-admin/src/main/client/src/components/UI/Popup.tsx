@@ -7,15 +7,16 @@ interface PopupProps {
     children?: ReactNode
     optionButtons?: ReactElement[]
     title?: string
+    position?: "left" | "right"
 }
 
-export const Popup: FC<PopupProps> = ({ButtonElement, children, title, optionButtons}) => {
+export const Popup: FC<PopupProps> = ({ButtonElement, children, title, position = "left", optionButtons}) => {
     const testID = process.env.NODE_ENV === "test" ? PopupTestID : undefined
     return (
         <Popover className="relative flex outline-none" data-testid={testID}>
             <Popover.Button className={"outline-none"}>{ButtonElement}</Popover.Button>
             <Popover.Panel
-                className="absolute z-10 right-0 top-10 bg-primary shadow-lg shadow-shadow/40 p-4 rounded-lg min-w-[300px] w-auto space-y-4"
+                className={`absolute text-primary-foreground z-10 ${position === "left" ? "right-0" : "left-0"} top-10 bg-primary shadow-lg shadow-shadow/40 p-4 rounded-lg min-w-[300px] w-auto space-y-4`}
             >
                 {title && <div className={"text-xl"}>{title}</div>}
                 {children}
