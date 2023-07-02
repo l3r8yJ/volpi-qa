@@ -1,6 +1,6 @@
 import {lazy, ReactElement} from "react";
 import {Navigate} from "react-router-dom";
-import {AskedQuestions} from "../pages/AskedQuestions";
+import {UnknownQuestions} from "../pages/UnknownQuestions";
 
 const Categories = lazy(() => import("../pages/Categories"))
 const CategoryName = lazy(() => import("../pages/CategoryName"))
@@ -19,6 +19,6 @@ export const notAuthorizedRoutes: IRoute[] = [
 export const authorizedRoutes: IRoute[] = [
     {path: "/", element: <Categories/>},
     {path: "/categories/:name", element: <CategoryName/>},
-    {path: "/asked-questions", element: <AskedQuestions/>},
+    {path: "/unknown-questions", element: <UnknownQuestions/>},
     {path: "*", element: <Navigate to={"/"}/>}
 ]

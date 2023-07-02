@@ -31,3 +31,8 @@ export const fetchQuestionsByCategory = createAsyncThunk("questions/getByCategor
     const res = await QuestionService.fetchQuestionsByCategory(categoryName)
     return res.data
 })
+
+export const fetchUnknownQuestions = createAsyncThunk("questions/getUnknown", async () => {
+    const res = await QuestionService.fetchUnknownQuestions()
+    return res.data
+})

@@ -35,7 +35,7 @@ export const Header: FC = () => {
                                     <FolderIcon className={"w-5 h-5"}/>
                                     <span>Заданные вопросы (3)</span>
                                 </div>
-                                : <Link to={"/asked-questions"}
+                                : <Link to={"/unknown-questions"}
                                         className={"flex gap-x-1 items-center hover:text-primary-foreground/80 duration-150"}>
                                     <FolderIcon className={"w-5 h-5"}/>
                                     <span>Заданные вопросы (3)</span>
