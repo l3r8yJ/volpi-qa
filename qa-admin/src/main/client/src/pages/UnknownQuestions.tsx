@@ -8,7 +8,7 @@ export const UnknownQuestions:FC = () => {
     const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(fetchUnknownQuestions())
-    })
+    }, [])
     return (
         <MainLayout>
             {unknownQuestions.map(q => (
