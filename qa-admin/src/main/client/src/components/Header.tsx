@@ -22,7 +22,7 @@ export const Header: FC = () => {
                         Volpi QA <span className={"text-accent-foreground"}>admin</span>
                     </div>
                     : <Link className={"font-semibold text-3xl"} to={"/"}>
-                        Volpi QA <span className={"text-accent"}>admin</span>
+                        Volpi QA <span className={"text-accent-foreground"}>admin</span>
                     </Link>
                 }
                 <div className={"flex gap-x-6"}>
