@@ -22,7 +22,7 @@ export const UnknownQuestion: FC<UnknownQuestionProps> = ({question}) => {
     }
     return (
         <div className={"flex flex-col p-4 gap-y-4 items-start"}>
-            <Linkify className={"break-words"} text={question.text}/>
+            <Linkify style={{wordBreak: 'break-word'}} text={question.text}/>
             <div className={"flex gap-x-2"}>
                 <UnknownQuestionForm defaultQuestionText={question.text} questionId={question.id}/>
                 <Popup

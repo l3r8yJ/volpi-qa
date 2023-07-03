@@ -9,7 +9,6 @@ import {Popup} from "../UI/Popup";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {ValidatedTextArea} from "../UI/ValidatedTextArea";
 import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid";
-import {parseLinks} from "../../utils/parseLinks/parseLinks";
 import {SecondaryButton} from "../UI/SecondaryButton";
 import {Linkify} from "../Linkify";
 
@@ -99,44 +98,52 @@ export const Question: FC<QuestionProps> = ({question}) => {
                 </div>
                 : <>
                     <div>
-                        <Linkify text={question.text} className={"text-xl"}/>
-                        <Linkify text={question.answer} className={"text-pale-foreground"}/>
+                        <Linkify
+                            text={question.text}
+                            style={{wordBreak: 'break-word'}}
+                            className={"text-xl"}
+                        />
+                        <Linkify
+                            text={question.answer}
+                            style={{wordBreak: 'break-word'}}
+                            className={"text-pale-foreground"}
+                        />
                     </div>
-                    <div className={"flex items-start space-x-2"}>
+                    <div className="flex items-start space-x-2">
                         <div
-                            className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}
+                            className="cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"
                             onClick={() => setIsEditMode(true)}
                         >
-                            <PencilSquareIcon
-                                className={"w-5 h-5"}
-                            />
+                            <PencilSquareIcon className="w-5 h-5"/>
                         </div>
                         <Popup
                             ButtonElement={
-                                <div className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}>
-                                    <XMarkIcon
-                                        className={"w-5 h-5"}/>
+                                <div
+                                    className="cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150">
+                                    <XMarkIcon className="w-5 h-5"/>
                                 </div>
                             }
                             optionButtons={[
                                 <PrimaryButton
                                     variant={"safe"}
-                                    className={"flex items-center gap-1"}
+                                    className={"flex items-center gap-1 justify-center"}
+
                                     onClick={cancelHandler}
                                 >
-                                    <NoSymbolIcon className={"w-5 h-5"}/>
+                                    <NoSymbolIcon className="w-5 h-5"/>
                                     <span>Отменить</span>
                                 </PrimaryButton>,
                                 <SecondaryButton
                                     variant={"danger"}
-                                    className={"flex gap-1 items-center"}
+                                    className={"flex gap-1 items-center justify-center"}
+
                                     onClick={deleteHandler}
                                 >
-                                    <XMarkIcon className={"w-5 h-5"}/>
+                                    <XMarkIcon className="w-5 h-5"/>
                                     <span>Удалить</span>
-                                </SecondaryButton>
+                                </SecondaryButton>,
                             ]}
-                            title={"Уверены, что хотите удалить вопрос?"}
+                            title="Уверены, что хотите удалить вопрос?"
                         >
                         </Popup>
                     </div>

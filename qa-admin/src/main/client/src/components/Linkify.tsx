@@ -1,22 +1,26 @@
-import {FC, useEffect, useRef} from "react"
-import {parseLinks} from "../utils/parseLinks/parseLinks";
+import { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useRef, CSSProperties } from "react";
+import { parseLinks } from "../utils/parseLinks/parseLinks";
 
-interface LinkifyProps {
-    className?: string
-    text: string
+interface LinkifyProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    text: string;
 }
 
-export const Linkify: FC<LinkifyProps> = ({className, text}) => {
-    const ref = useRef<HTMLDivElement>(null)
+export const Linkify: FC<LinkifyProps> = ({ text, style, ...props }) => {
+    const ref = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
-        if (ref.current)
-            ref.current.innerHTML = parseLinks(text) || "<div class='text-danger-foreground/60'>Скорее всего тут был скрипт, поэтому он был удалён 😳</div>"
-    }, [text])
+        if (ref.current) {
+            ref.current.innerHTML =
+                parseLinks(text) ||
+                "<div class='text-danger-foreground/60'>Скорее всего тут был скрипт, поэтому он был удалён 😳</div>";
+        }
+    }, [text]);
 
     return (
         <div
+            {...props}
             ref={ref}
-            className={className}
+            style={style}
         ></div>
     );
 };
