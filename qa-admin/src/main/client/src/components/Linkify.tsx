@@ -11,7 +11,7 @@ export const Linkify: FC<LinkifyProps> = ({className, text}) => {
     return (
         <div
             className={className}
-            dangerouslySetInnerHTML={{__html: parseLinks(DOMPurify.sanitize(text)) || "Текста нету 😢"}}
+            dangerouslySetInnerHTML={{__html: parseLinks(text) || "Текста нету 😢"}}
         />
     );
 };
