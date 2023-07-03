@@ -98,50 +98,48 @@ export const Question: FC<QuestionProps> = ({question}) => {
                 </div>
                 : <>
                     <div>
-                        <div
-                            className={"text-xl"}
-                            dangerouslySetInnerHTML={{__html: parseLinks(question.text)}}
-                        ></div>
-                        <div
-                            className={"text-pale-foreground"}
-                            dangerouslySetInnerHTML={{__html: parseLinks(question.answer)}}
-                        ></div>
+                        <div className="text-xl" style={{ wordBreak: 'break-word' }}>
+                            {parseLinks(question.text)}
+                        </div>
+                        <div className="text-pale-foreground" style={{ wordBreak: 'break-word' }}>
+                            {parseLinks(question.answer)}
+                        </div>
                     </div>
-                    <div className={"flex items-start space-x-2"}>
+                    <div className="flex items-start space-x-2">
                         <div
-                            className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}
+                            className="cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"
                             onClick={() => setIsEditMode(true)}
                         >
-                            <PencilSquareIcon
-                                className={"w-5 h-5"}
-                            />
+                            <PencilSquareIcon className="w-5 h-5"/>
                         </div>
                         <Popup
                             ButtonElement={
-                                <div className={"cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150"}>
-                                    <XMarkIcon
-                                        className={"w-5 h-5"}/>
+                                <div
+                                    className="cursor-pointer hover:text-primary-foreground/50 p-1 rounded-full duration-150">
+                                    <XMarkIcon className="w-5 h-5"/>
                                 </div>
                             }
                             optionButtons={[
                                 <PrimaryButton
                                     variant={"safe"}
                                     className={"flex items-center gap-1 justify-center"}
+
                                     onClick={cancelHandler}
                                 >
-                                    <NoSymbolIcon className={"w-5 h-5"}/>
+                                    <NoSymbolIcon className="w-5 h-5"/>
                                     <span>Отменить</span>
                                 </PrimaryButton>,
                                 <SecondaryButton
                                     variant={"danger"}
                                     className={"flex gap-1 items-center justify-center"}
+
                                     onClick={deleteHandler}
                                 >
-                                    <XMarkIcon className={"w-5 h-5"}/>
+                                    <XMarkIcon className="w-5 h-5"/>
                                     <span>Удалить</span>
-                                </SecondaryButton>
+                                </SecondaryButton>,
                             ]}
-                            title={"Уверены, что хотите удалить вопрос?"}
+                            title="Уверены, что хотите удалить вопрос?"
                         >
                         </Popup>
                     </div>

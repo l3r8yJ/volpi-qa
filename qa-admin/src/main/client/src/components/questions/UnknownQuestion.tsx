@@ -21,7 +21,7 @@ export const UnknownQuestion: FC<UnknownQuestionProps> = ({question}) => {
     }
     return (
         <div className={"flex flex-col p-4 gap-y-4 items-start"}>
-            <div className={"break-words"}>{question.text}</div>
+            <div style={{ wordBreak: 'break-word' }}>{question.text}</div>
             <div className={"flex gap-x-2"}>
                 <UnknownQuestionForm defaultQuestionText={question.text} questionId={question.id}/>
                 <Popup

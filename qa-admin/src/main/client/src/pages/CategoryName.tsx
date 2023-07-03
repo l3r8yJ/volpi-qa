@@ -88,8 +88,8 @@ const CategoryName: FC = () => {
 
                     </form>
                     : <div className={"flex items-center"}>
-                        <div>
-                            <span className={"ml-2 break-all text-3xl"}>{name}</span>
+                        <div className={"ml-2"}>
+                            <span className={"text-3xl"} style={{ wordBreak: 'break-word' }}>{name}</span>
                         </div>
 
                         <div
@@ -104,7 +104,7 @@ const CategoryName: FC = () => {
             </div>
             <div className={"mt-4 flex items-start"}>
                 <Sidebar><QuestionsForm categoryName={name}/></Sidebar>
-                <div className={"flex-1"}>
+                <div className={""}>
                     <QuestionsList/>
                 </div>
             </div>
