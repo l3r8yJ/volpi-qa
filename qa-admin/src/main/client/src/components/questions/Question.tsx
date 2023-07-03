@@ -99,10 +99,7 @@ export const Question: FC<QuestionProps> = ({question}) => {
                 </div>
                 : <>
                     <div>
-                        <div
-                            className={"text-xl"}
-                            dangerouslySetInnerHTML={{__html: parseLinks(question.text)}}
-                        ></div>
+                        <Linkify text={question.text} className={"text-xl"}/>
                         <Linkify text={question.answer} className={"text-pale-foreground"}/>
                     </div>
                     <div className={"flex items-start space-x-2"}>

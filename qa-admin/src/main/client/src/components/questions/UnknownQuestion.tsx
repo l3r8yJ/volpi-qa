@@ -8,6 +8,7 @@ import {NoSymbolIcon} from "@heroicons/react/20/solid";
 import {XMarkIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch} from "../../hooks/redux";
 import {deleteUnknownQuestion, fetchUnknownQuestions} from "../../store/actions/questionAction";
+import {Linkify} from "../Linkify";
 
 interface UnknownQuestionProps {
     question: UnknownQuestionType
@@ -21,7 +22,7 @@ export const UnknownQuestion: FC<UnknownQuestionProps> = ({question}) => {
     }
     return (
         <div className={"flex flex-col p-4 gap-y-4 items-start"}>
-            <div className={"break-words"}>{question.text}</div>
+            <Linkify className={"break-words"} text={question.text}/>
             <div className={"flex gap-x-2"}>
                 <UnknownQuestionForm defaultQuestionText={question.text} questionId={question.id}/>
                 <Popup
