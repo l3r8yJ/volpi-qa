@@ -121,16 +121,18 @@ export const Question: FC<QuestionProps> = ({question}) => {
                             }
                             optionButtons={[
                                 <PrimaryButton
-                                    variant="safe"
-                                    className="flex items-center gap-1"
+                                    variant={"safe"}
+                                    className={"flex items-center gap-1 justify-center"}
+
                                     onClick={cancelHandler}
                                 >
                                     <NoSymbolIcon className="w-5 h-5"/>
                                     <span>Отменить</span>
                                 </PrimaryButton>,
                                 <SecondaryButton
-                                    variant="danger"
-                                    className="flex gap-1 items-center"
+                                    variant={"danger"}
+                                    className={"flex gap-1 items-center justify-center"}
+
                                     onClick={deleteHandler}
                                 >
                                     <XMarkIcon className="w-5 h-5"/>

@@ -2,19 +2,19 @@ export const getBtnClassesByVariant = (variant: "safe" | "danger" | "default", t
     if (type === "secondary")
         switch (variant) {
             case "danger":
-                return " text-danger-foreground border-danger hover:bg-danger/90 hover:text-btn-foreground hover:border-danger/5"
+                return " text-danger-foreground hover:bg-danger hover:text-btn-foreground"
             case "safe":
-                return " text-safe-foreground border-safe hover:bg-safe/80 hover:text-btn-foreground hover:border-safe/5"
+                return " text-safe-foreground hover:bg-safe hover:text-btn-foreground"
             default:
-                return " text-accent-foreground border-accent hover:bg-accent/80 hover:text-btn-foreground hover:border-accent/5"
+                return " text-accent-foreground hover:bg-accent hover:text-btn-foreground"
         }
 
     switch (variant) {
         case "danger":
-            return " bg-danger hover:bg-danger/80 border-danger hover:border-danger/5"
+            return " bg-danger hover:bg-danger/80"
         case "safe":
-            return " bg-safe hover:bg-safe/80 border-safe hover:border-safe/5"
+            return " bg-safe hover:bg-safe/80"
         default:
-            return " bg-accent hover:bg-accent/80 border-accent hover:border-accent/5"
+            return " bg-accent hover:bg-accent/80"
     }
 }
