@@ -4,9 +4,8 @@ export const parseLinks = (text: string) => {
     const urlRegex = /(?:https?:\/\/)?(?:www\.)?([^\s]+(\.ru|\.com|\.ai|\.рф|\.app|\.net|\.org|\.io|\.gov|\.edu|\.mil|\.int)[^\s]*)/g;
 
     const sanitizedText = DOMPurify.sanitize(text, {
-        FORBID_TAGS: ["a"], // Exclude <a> tags from being sanitized
-        ADD_TAGS: [], // Wrap all tags inspan> element
-        ADD_ATTR: ['class'], // Preserve existing class attributes
+        FORBID_TAGS: ["a"],
+        ADD_ATTR: ['class'],
     });
 
     const textWithEncodedHtml = sanitizedText.replace(/</g, "&lt;").replace(/>/g, "&gt;");
