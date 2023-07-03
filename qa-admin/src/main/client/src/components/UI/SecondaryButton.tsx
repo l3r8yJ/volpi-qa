@@ -11,7 +11,7 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({children, className, 
     if (!className?.includes("w")) className += " w-full"
     return (
         <button
-            className={`${className ? className : ""} bg-transparent px-4 py-2 rounded-lg text-sm duration-150`} {...props}>
+            className={`${className ? className : ""} bg-transparent px-4 py-2 rounded-lg text-sm duration-200`} {...props}>
             {children}
         </button>
     );
