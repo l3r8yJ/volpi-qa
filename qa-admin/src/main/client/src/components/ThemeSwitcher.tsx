@@ -1,17 +1,12 @@
-import React, {FC, useEffect} from "react"
-import {useTheme} from "../hooks/useTheme";
+import React, {FC} from "react";
 import {themes} from "../constants/theme";
 import {ChevronDownIcon, MoonIcon, SunIcon} from "@heroicons/react/24/outline";
 import {Listbox} from "@headlessui/react";
+import {useThemeContext} from "./ThemeProvider";
 
 export const ThemeSwitcher: FC = () => {
-    const {selectedTheme, setSelectedTheme} = useTheme();
-    useEffect(() => {
-        const themeName = localStorage.getItem("theme") ?? "system";
-        const theme =
-            themes[themeName as "light" | "dark" | "system"] || themes.system;
-        setSelectedTheme(theme);
-    }, [setSelectedTheme]);
+    const {selectedTheme, setSelectedTheme} = useThemeContext();
+
     return (
         <div className={"relative z-10"}>
             <Listbox value={selectedTheme} onChange={setSelectedTheme}>
@@ -31,15 +26,12 @@ export const ThemeSwitcher: FC = () => {
                 <Listbox.Options
                     className={"absolute top-full right-0 mt-6 w-36 rounded-lg py-1 shadow-lg overflow-hidden bg-primary shadow-shadow/50"}>
                     {Object.values(themes).map((theme) => (
-                        <Listbox.Option
-                            key={theme.id}
-                            value={theme}
-                        >
+                        <Listbox.Option key={theme.id} value={theme}>
                             {({active, selected}) => (
                                 <div
-                                    className={`px-2 py-1 cursor-pointer 
-                                ${active ? "bg-active" : ""}
-                                ${selected ? "text-selected-foreground" : ""}`}
+                                    className={`px-2 py-1 cursor-pointer ${active ? "bg-active" : ""} ${
+                                        selected ? "text-selected-foreground" : ""
+                                    }`}
                                 >
                                     <div className={"flex capitalize"}>
                                         <theme.Icon className={"w-6 h-6 mr-2"}/>
