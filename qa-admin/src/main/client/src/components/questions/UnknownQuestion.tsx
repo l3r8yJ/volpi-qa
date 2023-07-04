@@ -9,10 +9,16 @@ import {XMarkIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch} from "../../hooks/redux";
 import {deleteUnknownQuestion, fetchUnknownQuestions} from "../../store/actions/questionAction";
 import {Linkify} from "../Linkify";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import 'dayjs/locale/ru';
 
 interface UnknownQuestionProps {
     question: UnknownQuestionType
 }
+
+dayjs.extend(relativeTime);
+dayjs.locale('ru');
 
 export const UnknownQuestion: FC<UnknownQuestionProps> = ({question}) => {
     const dispatch = useAppDispatch()
@@ -21,8 +27,11 @@ export const UnknownQuestion: FC<UnknownQuestionProps> = ({question}) => {
         dispatch(fetchUnknownQuestions())
     }
     return (
-        <div className={"flex flex-col p-4 gap-y-4 items-start"}>
-            <Linkify style={{wordBreak: 'break-word'}} text={question.text}/>
+        <div className={"flex flex-col gap-y-4 items-start p-4"}>
+            <div>
+                <Linkify style={{wordBreak: 'break-word'}} text={question.text}/>
+                <div className={"text-xs text-pale-foreground"}>{dayjs(question.createdAt).fromNow()}</div>
+            </div>
             <div className={"flex gap-x-2"}>
                 <UnknownQuestionForm defaultQuestionText={question.text} questionId={question.id}/>
                 <Popup
