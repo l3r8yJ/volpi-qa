@@ -1,8 +1,6 @@
 import {FC} from 'react';
 import {Question} from "./Question";
 import {useAppSelector} from "../../hooks/redux";
-import {Loader} from "../UI/Loader";
-import {LoaderSize} from "../../utils/getLoaderSizeByName";
 import {Skeleton} from "../UI/Skeleton";
 
 
