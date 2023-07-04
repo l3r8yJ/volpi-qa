@@ -1,6 +1,6 @@
-import React, { useEffect, createContext, useState, useContext, FC, ReactNode } from "react";
-import { themes } from "../constants/theme";
-import { Theme } from "../types/Theme";
+import React, {useEffect, createContext, useState, useContext, FC, ReactNode} from "react";
+import {themes} from "../constants/theme";
+import {Theme} from "../types/Theme";
 
 interface ThemeContextProps {
     selectedTheme: Theme;
@@ -9,10 +9,11 @@ interface ThemeContextProps {
 
 const ThemeContext = createContext<ThemeContextProps>({
     selectedTheme: themes.system,
-    setSelectedTheme: () => {},
+    setSelectedTheme: () => {
+    },
 });
 
-export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const ThemeProvider: FC<{ children: ReactNode }> = ({children}) => {
     const [selectedTheme, setSelectedTheme] = useState(themes.system);
     const [themeLoaded, setThemeLoaded] = useState(false);
 
@@ -64,7 +65,7 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }, [themeLoaded, selectedTheme]);
 
     return (
-        <ThemeContext.Provider value={{ selectedTheme, setSelectedTheme: setTheme }}>
+        <ThemeContext.Provider value={{selectedTheme, setSelectedTheme: setTheme}}>
             {children}
         </ThemeContext.Provider>
     );
