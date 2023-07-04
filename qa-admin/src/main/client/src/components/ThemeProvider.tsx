@@ -61,7 +61,6 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({children}) => {
         if (themeLoaded) {
             setTheme(selectedTheme);
         }
-        console.log("call useEffect")
     }, [themeLoaded, selectedTheme]);
 
     return (
