@@ -36,7 +36,7 @@ public class CategoriesController {
     }
 
     @GetMapping("/names")
-    public final ResponseEntity<List<CategoryName>> allCategoriesNames() {
+    public final ResponseEntity<List<String>> allCategoriesNames() {
         return ResponseEntity.ok(this.categoryService.findAllCategoriesNames());
     }
 }
