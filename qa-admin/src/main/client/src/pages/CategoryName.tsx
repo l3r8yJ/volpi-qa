@@ -52,7 +52,6 @@ const CategoryName: FC = () => {
     const exitEditModeHandler = () => {
         setShowValidation(false)
         setEditCategoryNameMode(false)
-        setCategoryName(name)
     }
     return (
         <MainLayout>
