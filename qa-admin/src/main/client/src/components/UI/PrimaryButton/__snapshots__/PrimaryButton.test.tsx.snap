@@ -2,7 +2,7 @@
 
 exports[`PrimaryButton > default behaviour > renders correctly default title 1`] = `
 <button
-  class=" bg-accent hover:bg-accent/80 w-full px-4 py-2 rounded-lg text-btn-foreground text-sm duration-2000"
+  class=" bg-accent hover:bg-accent/80 disabled:bg-accent/50 w-full px-4 py-2 rounded-lg text-btn-foreground text-sm duration-2000"
   data-testid="PrimaryButton-testID"
 >
   42
