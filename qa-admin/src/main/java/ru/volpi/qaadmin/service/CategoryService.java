@@ -21,5 +21,5 @@ public interface CategoryService {
 
     Long categoryIdByName(String name);
 
-    List<CategoryName> findAllCategoriesNames();
+    List<String> findAllCategoriesNames();
 }

@@ -96,10 +96,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryName> findAllCategoriesNames() {
-        return this.categoryRepository.findAllCategoriesNames()
-            .stream()
-            .map(CategoryName::new)
-            .toList();
+    public List<String> findAllCategoriesNames() {
+        return this.categoryRepository.findAllCategoriesNames();
     }
 }

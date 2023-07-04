@@ -13,5 +13,5 @@ public interface ReadCategoryService {
 
     List<CategoryResponse> findAllCategories();
 
-    List<CategoryName> findAllCategoriesNames();
+    List<String> findAllCategoriesNames();
 }
