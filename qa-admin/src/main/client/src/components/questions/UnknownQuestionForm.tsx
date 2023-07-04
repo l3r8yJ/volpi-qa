@@ -7,7 +7,7 @@ import {Loader} from "../UI/Loader";
 import {LoaderSize} from "../../utils/getLoaderSizeByName";
 import {PlusIcon} from "@heroicons/react/20/solid";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {fetchCategories} from "../../store/actions/categoryAction";
+import {fetchCategories, fetchCategoriesNames} from "../../store/actions/categoryAction";
 import {AnsweredUnknownQuestion} from "../../types/IQuestion";
 import {answerUnknownQuestion, fetchUnknownQuestions} from "../../store/actions/questionAction";
 
@@ -25,8 +25,7 @@ export const UnknownQuestionForm: FC<UnknownQuestionFormProps> = ({defaultQuesti
     const [isAnswerValid, setIsAnswerValid] = useState(false)
     const [showValidation, setShowValidation] = useState(false)
     const dispatch = useAppDispatch()
-    const {categories} = useAppSelector(state => state.category)
-    const {currentCategory} = useAppSelector(state => state.category)
+    const {categoriesNames} = useAppSelector(state => state.category)
     const {questions, loading} = useAppSelector(state => state.question)
     const validateText = useCallback(
         () =>
@@ -43,7 +42,7 @@ export const UnknownQuestionForm: FC<UnknownQuestionFormProps> = ({defaultQuesti
         [questions]
     )();
     useEffect(() => {
-        dispatch(fetchCategories())
+        dispatch(fetchCategoriesNames())
     }, [])
 
     const formHandler = async (e: FormEvent) => {
@@ -106,8 +105,8 @@ export const UnknownQuestionForm: FC<UnknownQuestionFormProps> = ({defaultQuesti
                             required
                         >
                             <option value={"Выберите категорию"} disabled>Выберите категорию</option>
-                            {categories.map((category) => (
-                                    <option key={category.id} value={category.name}>{category.name}</option>
+                            {categoriesNames.map((name) => (
+                                    <option key={name} value={name}>{name}</option>
                                 )
                             )}
                         </select>

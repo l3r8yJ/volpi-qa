@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     createCategory,
     deleteCategory,
-    fetchCategories,
+    fetchCategories, fetchCategoriesNames,
     fetchCategoryByName,
     updateCategory
 } from "../actions/categoryAction";
@@ -13,12 +13,14 @@ interface CategoryState {
     categories: ICategory[]
     currentCategory: ICategory
     loading: "idle" | "pending" | "succeeded" | "failed"
+    categoriesNames: string[]
 }
 
 const initialState: CategoryState = {
     categories: [],
     currentCategory: {} as ICategory,
     loading: "idle",
+    categoriesNames: []
 }
 
 const categorySlice = createSlice({
@@ -74,6 +76,16 @@ const categorySlice = createSlice({
         }).addCase(deleteCategory.fulfilled, (state) => {
             state.loading = "succeeded"
         }).addCase(deleteCategory.rejected, (state, action) => {
+            state.loading = "failed"
+            console.log(action.error)
+        })
+
+        builder.addCase(fetchCategoriesNames.pending, (state) => {
+            state.loading = "pending"
+        }).addCase(fetchCategoriesNames.fulfilled, (state, action) => {
+            state.loading = "succeeded"
+            state.categoriesNames = action.payload
+        }).addCase(fetchCategoriesNames.rejected, (state, action) => {
             state.loading = "failed"
             console.log(action.error)
         })
