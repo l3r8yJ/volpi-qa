@@ -3,6 +3,7 @@ import {IQuestion} from "../types/IQuestion";
 import {Disclosure} from "@headlessui/react";
 import {ChevronDownIcon} from "@heroicons/react/24/outline";
 import {parseLinks} from "../utils/parseLinks";
+import {Linkify} from "./Linkify";
 
 export const Question: FC<Omit<IQuestion, "id" | "category">> = ({text, answer}) => {
     return (
@@ -20,8 +21,9 @@ export const Question: FC<Omit<IQuestion, "id" | "category">> = ({text, answer})
                 </Disclosure.Button>
                 <Disclosure.Panel
                     className={"px-2 pt-2 text-neutral-900/60 text-sm break-words"}
-                    dangerouslySetInnerHTML={{__html: parseLinks(answer)}}
-                ></Disclosure.Panel>
+                >
+                    <Linkify text={answer}/>
+                </Disclosure.Panel>
             </div>
         </Disclosure>
     );

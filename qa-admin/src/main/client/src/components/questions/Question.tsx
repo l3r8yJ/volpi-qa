@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {IQuestion} from "../../types/IQuestion";
 import {PencilSquareIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
@@ -9,8 +9,8 @@ import {Popup} from "../UI/Popup";
 import {createValidateInputValueFunc} from "../../utils/createValidateInputValue/createValidateInputValueFunc";
 import {ValidatedTextArea} from "../UI/ValidatedTextArea";
 import {CheckIcon, NoSymbolIcon} from "@heroicons/react/20/solid";
-import {parseLinks} from "../../utils/parseLinks/parseLinks";
 import {SecondaryButton} from "../UI/SecondaryButton";
+import {Linkify} from "../Linkify";
 
 interface QuestionProps {
     question: IQuestion
@@ -98,12 +98,16 @@ export const Question: FC<QuestionProps> = ({question}) => {
                 </div>
                 : <>
                     <div>
-                        <div className="text-xl" style={{ wordBreak: 'break-word' }}>
-                            {parseLinks(question.text)}
-                        </div>
-                        <div className="text-pale-foreground" style={{ wordBreak: 'break-word' }}>
-                            {parseLinks(question.answer)}
-                        </div>
+                        <Linkify
+                            text={question.text}
+                            style={{wordBreak: 'break-word'}}
+                            className={"text-xl"}
+                        />
+                        <Linkify
+                            text={question.answer}
+                            style={{wordBreak: 'break-word'}}
+                            className={"text-pale-foreground"}
+                        />
                     </div>
                     <div className="flex items-start space-x-2">
                         <div

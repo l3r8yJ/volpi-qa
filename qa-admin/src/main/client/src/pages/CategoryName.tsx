@@ -104,7 +104,7 @@ const CategoryName: FC = () => {
             </div>
             <div className={"mt-4 flex items-start"}>
                 <Sidebar><QuestionsForm categoryName={name}/></Sidebar>
-                <div className={""}>
+                <div className={"w-full"}>
                     <QuestionsList/>
                 </div>
             </div>
