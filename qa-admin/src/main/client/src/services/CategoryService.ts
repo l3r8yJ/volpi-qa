@@ -23,4 +23,8 @@ export class CategoryService {
     static deleteCategory(id: number): Promise<AxiosResponse<ICategory>> {
         return $api.delete<ICategory>("categories/" + id)
     }
+
+    static fetchCategoriesNames(): Promise<AxiosResponse<string[]>>{
+        return $api.get<string[]>("categories/names")
+    }
 }

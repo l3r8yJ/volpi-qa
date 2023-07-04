@@ -32,3 +32,9 @@ export const deleteCategory = createAsyncThunk("categories/delete",
         const res = await CategoryService.deleteCategory(id)
         return res.data
     })
+
+export const fetchCategoriesNames = createAsyncThunk("categories/getNames",
+    async () => {
+        const res = await CategoryService.fetchCategoriesNames()
+        return res.data
+    })
