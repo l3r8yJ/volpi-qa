@@ -1,6 +1,6 @@
-import React, {useEffect, createContext, useState, useContext, FC, ReactNode} from "react";
-import {themes} from "../constants/theme";
-import {Theme} from "../types/Theme";
+import React, { useEffect, createContext, useState, useContext, FC, ReactNode } from "react";
+import { themes } from "../constants/theme";
+import { Theme } from "../types/Theme";
 
 interface ThemeContextProps {
     selectedTheme: Theme;
@@ -9,11 +9,10 @@ interface ThemeContextProps {
 
 const ThemeContext = createContext<ThemeContextProps>({
     selectedTheme: themes.system,
-    setSelectedTheme: () => {
-    },
+    setSelectedTheme: () => {},
 });
 
-export const ThemeProvider: FC<{ children: ReactNode }> = ({children}) => {
+export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [selectedTheme, setSelectedTheme] = useState(themes.system);
     const [themeLoaded, setThemeLoaded] = useState(false);
 
@@ -22,6 +21,26 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({children}) => {
         const theme = themes[themeName as "light" | "dark" | "system"] || themes.system;
         setSelectedTheme(theme);
         setThemeLoaded(true);
+    }, []);
+
+    useEffect(() => {
+        const systemThemeListener = (event: MediaQueryListEvent) => {
+            if (event.matches) {
+                // System theme is dark
+                setSelectedTheme(themes.dark);
+            } else {
+                // System theme is light
+                setSelectedTheme(themes.light);
+            }
+        };
+
+        const systemThemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        systemThemeMediaQuery.addEventListener("change", systemThemeListener);
+
+        // Cleanup listener on unmount
+        return () => {
+            systemThemeMediaQuery.removeEventListener("change", systemThemeListener);
+        };
     }, []);
 
     const setTheme = (theme: Theme) => {
@@ -64,7 +83,7 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({children}) => {
     }, [themeLoaded, selectedTheme]);
 
     return (
-        <ThemeContext.Provider value={{selectedTheme, setSelectedTheme: setTheme}}>
+        <ThemeContext.Provider value={{ selectedTheme, setSelectedTheme: setTheme }}>
             {children}
         </ThemeContext.Provider>
     );
