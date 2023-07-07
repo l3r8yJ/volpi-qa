@@ -20,9 +20,14 @@ export const DefaultView: FC = () => {
             </div>
             <div className={"font-semibold text-lg px-4 pt-4 pb-3 sticky border-b -top-1 bg-white/50 backdrop-blur-sm z-10"}>Категории:</div>
             <div className={"space-y-4 px-4 pt-4"}>
-                {categories.map((category) => (
-                    <CategoryOption key={category.id} category={category}/>
-                ))}
+                {loading === "succeeded"
+                    ? categories.map((category) => (
+                        <CategoryOption key={category.id} category={category}/>
+                    ))
+                    : <div>
+                        Какая жалость, категории кто-то украл <span className={"text-xl"}>😢</span>
+                    </div>
+                }
             </div>
         </>
     )
