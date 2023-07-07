@@ -18,8 +18,11 @@ function App() {
             {isDevMode
                 ?
                 <div className={"flex flex-col items-center justify-center min-h-screen"}>
-                    <button className={isOpen ? "hidden" : ""} onClick={() => dispatch(setIsOpen(!isOpen))}>
-                        <ChatBubbleLeftRightIcon className={"w-10 h-10"}/>
+                    <button
+                        className={`${isOpen ? "hidden" : ""} p-2.5 bg-gradient-to-br from-purple-700 to-sky-500 rounded-full shadow-lg shadow-sky-500/50 hover:shadow-xl hover:shadow-sky-600/50 duration-200 hover:scale-110`}
+                        onClick={() => dispatch(setIsOpen(!isOpen))}
+                    >
+                        <ChatBubbleLeftRightIcon className={"w-9 h-9 text-white"}/>
                     </button>
                     <Modal>
                         <Suspense fallback={<Layout><Loader/></Layout>}>
@@ -29,8 +32,11 @@ function App() {
                 </div>
                 :
                 <>
-                    <button className={isOpen ? "hidden" : ""} onClick={() => dispatch(setIsOpen(!isOpen))}>
-                        <ChatBubbleLeftRightIcon className={"w-10 h-10"}/>
+                    <button
+                        className={`${isOpen ? "hidden" : ""} p-2.5 bg-gradient-to-br from-purple-700 to-sky-500 rounded-full shadow-lg shadow-sky-500/50 hover:shadow-xl hover:shadow-sky-600/50 duration-200 hover:scale-110`}
+                        onClick={() => dispatch(setIsOpen(!isOpen))}
+                    >
+                        <ChatBubbleLeftRightIcon className={"w-9 h-9 text-white"}/>
                     </button>
                     <Modal>
                         <Suspense fallback={<Layout><Loader/></Layout>}>
