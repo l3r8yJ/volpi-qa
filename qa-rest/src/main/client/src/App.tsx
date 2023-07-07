@@ -29,9 +29,11 @@ function App() {
                 </div>
                 :
                 <>
+                    <div className={"absolute bottom-5 right-5"}>
                     <button className={isOpen ? "hidden" : ""} onClick={() => dispatch(setIsOpen(!isOpen))}>
                         <ChatBubbleBottomCenterTextIcon className={"w-10 h-10"}/>
                     </button>
+                    </div>
                     <Modal>
                         <Suspense fallback={<Layout><Loader/></Layout>}>
                             <Chat/>
