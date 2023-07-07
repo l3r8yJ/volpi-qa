@@ -1,4 +1,4 @@
-import {ChatBubbleBottomCenterTextIcon} from "@heroicons/react/24/outline";
+import {ChatBubbleLeftRightIcon} from "@heroicons/react/24/outline";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
 import {setIsOpen} from "./store/reducers/modalSlice";
 import {lazy, Suspense} from "react";
@@ -19,7 +19,7 @@ function App() {
                 ?
                 <div className={"flex flex-col items-center justify-center min-h-screen"}>
                     <button className={isOpen ? "hidden" : ""} onClick={() => dispatch(setIsOpen(!isOpen))}>
-                        <ChatBubbleBottomCenterTextIcon className={"w-10 h-10"}/>
+                        <ChatBubbleLeftRightIcon className={"w-10 h-10"}/>
                     </button>
                     <Modal>
                         <Suspense fallback={<Layout><Loader/></Layout>}>
@@ -30,7 +30,7 @@ function App() {
                 :
                 <>
                     <button className={isOpen ? "hidden" : ""} onClick={() => dispatch(setIsOpen(!isOpen))}>
-                        <ChatBubbleBottomCenterTextIcon className={"w-10 h-10"}/>
+                        <ChatBubbleLeftRightIcon className={"w-10 h-10"}/>
                     </button>
                     <Modal>
                         <Suspense fallback={<Layout><Loader/></Layout>}>
