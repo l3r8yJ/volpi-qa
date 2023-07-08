@@ -79,18 +79,24 @@ export const TextInputForm: FC = () => {
                                 </Combobox.Button>
                             </div>
                         ) : (
-                            filteredQuestions.map((question) => (
-                                <Combobox.Option
-                                    key={question.id}
-                                    value={question.text}
-                                    className={"cursor-pointer select-none flex p-2 relative text-zinc-900 ui-active:bg-blue-600 ui-active:text-white"}
-                                >
+                            filteredQuestions.length
+                                ? (filteredQuestions.map((question) => (
+                                    <Combobox.Option
+                                        key={question.id}
+                                        value={question.text}
+                                        className={"cursor-pointer select-none flex p-2 relative text-zinc-900 ui-active:bg-blue-600 ui-active:text-white"}
+                                    >
                                     <span
                                         className={"ui-selected:font-semibold break-words"}
                                         dangerouslySetInnerHTML={{__html: parseLinks(question.text)}}
                                     ></span>
-                                </Combobox.Option>
-                            )))}
+                                    </Combobox.Option>)))
+
+                                : (<div className={"p-2"}>
+                                    <h4 className={"text-lg font-semibold"}>И вопросы украдены <span className={"text-xl"}>😱</span></h4>
+                                    <p>Но вполне вероятно что они скоро вернутся. Пожалуйста, загляните попозже</p>
+                                </div>)
+                        )}
                     </Combobox.Options>
                 }
 

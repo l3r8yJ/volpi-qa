@@ -10,7 +10,7 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = ({children}) => {
     const {isActiveForm} = useAppSelector(state => state.question)
     return (
-        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[600px] flex flex-col"}>
+        <div className={"rounded-lg overflow-hidden text-zinc-900 relative h-[600px] flex flex-col font-sans"}>
             <ChatHeader/>
             <div className={`flex-grow relative bg-white ${isActiveForm ? "overflow-hidden" : "overflow-y-auto"}`}>
                 <div className="relative min-h-full">
