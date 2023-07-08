@@ -22,6 +22,15 @@ spring:
     hibernate:
       ddl-auto: none
     open-in-view: false
+  mail:
+    host: ${SMTP_HOST}
+    port: ${SMTP_PORT}
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
 server:
   port: ${QA_ADMIN_PORT}
 answer:
