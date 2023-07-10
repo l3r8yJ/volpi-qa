@@ -12,10 +12,10 @@ import ru.volpi.qarest.dto.question.ResponseDto;
 import ru.volpi.qarest.exception.question.EmailAlreadyExistsException;
 import ru.volpi.qarest.exception.question.QuestionAlreadyExistsException;
 import ru.volpi.qarest.exception.question.QuestionValidationException;
+import ru.volpi.qarest.mapper.UnknownQuestionMapper;
 import ru.volpi.qarest.repository.question.QuestionRepository;
 import ru.volpi.qarest.repository.question.UnknownQuestionRepository;
 import ru.volpi.qarest.service.UnknownQuestionService;
-import ru.volpi.qarest.service.mapper.UnknownQuestionMapper;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -41,7 +41,7 @@ public class UnknownQuestionServiceImpl implements UnknownQuestionService {
             throw new EmailAlreadyExistsException();
         }
         this.validate(register);
-        final UnknownQuestion question = this.questionMapper.toEntity(register);
+        final UnknownQuestion question = this.questionMapper.toUnknownQuestion(register);
         question.setCreatedAt(
             ZonedDateTime.now().withZoneSameLocal(
                 ZoneId.of("Europe/Moscow")
