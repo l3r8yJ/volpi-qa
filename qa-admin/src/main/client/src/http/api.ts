@@ -14,15 +14,17 @@ $api.interceptors.request.use((config) => {
     return config;
 });
 
-const logRequest = (requestConfig: AxiosRequestConfig):AxiosRequestConfig => {
-    console.log('Request:', requestConfig.method?.toUpperCase(), requestConfig.url);
-    console.log('Headers:', requestConfig.headers);
-    if(requestConfig.data) console.log('Data:', requestConfig.data);
-    return requestConfig;
+if (import.meta.env.VITE_ENABLE_LOGGING === "true") {
+    const logRequest = (requestConfig: AxiosRequestConfig): AxiosRequestConfig => {
+        console.log('Request:', requestConfig.method?.toUpperCase(), requestConfig.url);
+        console.log('Headers:', requestConfig.headers);
+        if (requestConfig.data) console.log('Data:', requestConfig.data);
+        return requestConfig;
+    }
+    //@ts-ignore
+    $api.interceptors.request.use(logRequest);
 }
 
-//@ts-ignore
-$api.interceptors.request.use(logRequest);
 
 
 
