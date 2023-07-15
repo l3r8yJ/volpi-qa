@@ -16,7 +16,6 @@ import java.lang.annotation.Target;
 @Transactional
 @Testcontainers
 @ActiveProfiles("test")
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public @interface IntegrationTest {
 }

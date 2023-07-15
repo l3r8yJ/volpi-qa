@@ -9,9 +9,13 @@ spring:
   mail:
     username: user
     password: admin
+  main:
+    lazy-initialization: true
 logging:
   level:
     web: debug
+    org.springframework.orm.jpa: debug
+    org.springframework.transaction: debug
 answer:
   answered-subject:
     Ответ на Ваш вопрос добавлен
