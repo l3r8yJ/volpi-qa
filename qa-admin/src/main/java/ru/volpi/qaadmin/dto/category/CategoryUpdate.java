@@ -13,9 +13,9 @@ import static ru.volpi.qaadmin.validation.message.CategoryMessages.CATEGORY_NAME
  * A DTO for the {@link Category} entity
  */
 public record CategoryUpdate(
-        @NotEmpty(message = CATEGORY_CANNOT_BE_EMPTY)
-        @Length(message = CATEGORY_NAME_TOO_LONG, max = 128)
-        String name
+    @NotEmpty(message = CATEGORY_CANNOT_BE_EMPTY)
+    @Length(message = CATEGORY_NAME_TOO_LONG, max = 128)
+    String name
 ) implements Serializable {
     public static CategoryUpdate from(final Category category) {
         return new CategoryUpdate(category.getName());

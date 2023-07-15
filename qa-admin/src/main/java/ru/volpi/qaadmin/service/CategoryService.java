@@ -1,6 +1,5 @@
 package ru.volpi.qaadmin.service;
 
-import ru.volpi.qaadmin.dto.category.CategoryName;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
 import ru.volpi.qaadmin.dto.category.CategoryUpdate;

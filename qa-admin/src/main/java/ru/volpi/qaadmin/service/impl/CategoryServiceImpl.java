@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import ru.volpi.qaadmin.domain.category.Categories;
 import ru.volpi.qaadmin.domain.category.Category;
-import ru.volpi.qaadmin.dto.category.CategoryName;
 import ru.volpi.qaadmin.dto.category.CategoryRegistration;
 import ru.volpi.qaadmin.dto.category.CategoryResponse;
 import ru.volpi.qaadmin.dto.category.CategoryUpdate;
