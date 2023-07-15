@@ -15,10 +15,6 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
   jpa:
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
     hibernate:
       ddl-auto: none
     open-in-view: false
