@@ -1,7 +1,5 @@
-import axios from "axios";
+import axios, {AxiosRequestConfig, AxiosRequestHeaders} from "axios";
 import {API_URL} from "../constants/api";
-import {AxiosRequestHeaders} from "axios/index";
-
 
 export const $api = axios.create({
     baseURL: API_URL
@@ -16,6 +14,15 @@ $api.interceptors.request.use((config) => {
     return config;
 });
 
+const logRequest = (requestConfig: AxiosRequestConfig):AxiosRequestConfig => {
+    console.log('Request:', requestConfig.method?.toUpperCase(), requestConfig.url);
+    console.log('Headers:', requestConfig.headers);
+    if(requestConfig.data) console.log('Data:', requestConfig.data);
+    return requestConfig;
+}
+
+//@ts-ignore
+$api.interceptors.request.use(logRequest);
 
 
 
