@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   postgres:
-    container_name: qa-postgres
+    container_name: qa-postgres-container
     image: postgres:15.1-alpine
     restart: always
     environment:
@@ -10,24 +10,24 @@ services:
     networks:
       - volpi-qa
     ports:
-      - '5433:5433'
+      - '5432:5432'
     volumes:
       - postgres:/var/lib/postgresql/data
-  qa-admin:
+  qa-admin-server:
     container_name: qa-admin-container
     env_file:
       - docker.env
     build:
       context: ./qa-admin
       dockerfile: Dockerfile
-    image: qa-admin:latest
+    image: qa-admin-server:latest
     ports:
       - '6532:6532'
     networks:
       - volpi-qa
     depends_on:
       - postgres
-  qa-rest:
+  qa-rest-server:
     container_name: qa-rest-container
     env_file:
       - docker.env
@@ -40,7 +40,21 @@ services:
     networks:
       - volpi-qa
     depends_on:
-      - qa-admin
+      - qa-admin-server
+  qa-admin-client:
+    container_name: qa-admin-client-container
+    env_file:
+      - docker.env
+    build:
+      context: ./qa-admin/src/main/client
+      dockerfile: Dockerfile
+    image: qa-admin-client:latest
+    ports:
+      - '5532:5532'
+    networks:
+      - volpi-qa
+    depends_on:
+      - qa-admin-server
 volumes:
   postgres:
     driver: local
